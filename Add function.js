@@ -3,7 +3,7 @@ async function sendNoti(){
 	await fetch(telegramUrl);
 }
 function event() {
-	parent.sendNoti();
+    parent.sendNoti();
     var t = parent.wog_view.document;
     message_cls();
     var e = new Date;
