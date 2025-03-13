@@ -1,5 +1,5 @@
 async function sendNoti(){
-	const telegramUrl = "https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4740924635&text=因驗證碼出現,自動打怪停止:"+parent.p_name;
+	const telegramUrl = "https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-1002556694569&text=因驗證碼出現,自動打怪停止:"+parent.p_name;
 	await fetch(telegramUrl);
 }
 function event() {
