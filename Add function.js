@@ -55,7 +55,7 @@ async function changeLuck(){
 	let formData = new FormData();
 	formData.append('act', "ch_luck");
 	formData.append('f', "ch");
-	formData.append('pw', safePw);
+	formData.append('pw', safePW);
 	let i = 0;
 	let e = parent.wog_view.document;
 	e.body.innerHTML="";
