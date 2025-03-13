@@ -162,4 +162,4 @@ function createExtraFunction(){
 	oriTable.appendChild(newColumn2);
 	newColumn2.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='復活中心' onclick='parent.act_click(\"chara\",\"revive\")' class='button'></td></tr><tr><td><input type='button' value='新印花屋' onclick='parent.newStampHouse()' class='button'></td></tr></tbody></table>";
 }
-createExtraFunction();
+window.createExtraFunction = createExtraFunction;
