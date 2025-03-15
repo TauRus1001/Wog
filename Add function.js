@@ -176,21 +176,6 @@ function armPageCss(){
 	styleSheet.textContent = styles;
 	parent.wog_view.document.head.appendChild(styleSheet);
 }
-async function drawSetList(){
-	let e = parent.wog_view.document;
-	let eTable = parent.wog_view.document.getElementsByName("f1")[0].getElementsByTagName("tbody")[0].getElementsByTagName("tr");
-	let setJ = fetch('https://raw.githack.com/TauRus1001/Wog/main/setList.json')
-    .then((response) => response.json())
-    .then(
-        async(json) => {
-            console.log(json);
-            for(let i=json.sets.length-1;i>=0;i--){
-            	//console.log(json.sets[i].title);
-            	let firstRow = eTable[0];
-            	firstRow.outerHTML="<tr><td><input type='radio' name='index_id'></td><td>"+json.sets[i].title+"</td></tr>"+firstRow.outerHTML;
-            }
-        });
-}
 async function armAll(selected){
 //console.log("selected="+selected);
 let e = parent.wog_view.document;
