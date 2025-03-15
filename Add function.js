@@ -72,6 +72,10 @@ async function changeLuck(){
 	formData.append('pw', safePW);
 	let i = 0;
 	let e = parent.wog_view.document;
+	if(localStorage.getItem("last_page")==="一鍵換裝"){
+		parent.wog_view.document.getElementsByTagName("style")[1].remove();
+		localStorage.setItem("last_page", "");
+	}
 	e.body.innerHTML="";
 	while(true){
 	    await fetch("https://wog.we-u.net/wog_act.php",
@@ -129,6 +133,7 @@ function armPage(){
 	`);
 	parent.drawSetList();
 	parent.armPageCss();
+	localStorage.setItem("last_page", "一鍵換裝");
 }
 async function drawSetList(){
 	let e = parent.wog_view.document;
@@ -251,6 +256,7 @@ function stampHouseCss(){
 	parent.wog_view.document.head.appendChild(styleSheet);
 }
 function createExtraFunction(){
+	localStorage.setItem("last_page", "");
 	const oriTable = parent.foot.document.getElementsByTagName("Table")[1].getElementsByTagName("tbody")[0].getElementsByTagName("tr")[0];
 
 	let newColumn1 = document.createElement('td');
