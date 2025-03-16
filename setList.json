@@ -70,5 +70,10 @@
             "armList" :["5887","5886"],
             "unArmList":[6,9]
         }
+	{
+            "title":"<font color='66FF66'>經.誠所至 + 飛升吸經大法套裝</font>",
+            "armList" :["6614","1","2"],
+            "unArmList":[0,6,7]
+        }
     ]
 }
