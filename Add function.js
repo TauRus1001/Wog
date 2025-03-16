@@ -2,6 +2,16 @@ async function sendNoti(){
 	const telegramUrl = "https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-1002556694569&text=因驗證碼出現,自動打怪停止:"+parent.p_name;
 	await fetch(telegramUrl);
 }
+function cd_add(t) {
+    if(t==2|t==10){
+        return;
+    }
+    counts = x + t,
+    start_time = new Date,
+    start_time = Date.parse(start_time) / 1e3,
+    setup_time(start_time),
+    window.setTimeout("CountDown()", 100)
+}
 function event() {
 	parent.sendNoti();
 	var t = parent.wog_view.document;
