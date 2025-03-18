@@ -273,15 +273,41 @@ function setChatid(){
 	}else{
 		chatid = prompt("輸入telegram chat id",sessionStorage.getItem("tgid"));
 	}
-    if (chatid === null) {
+    if (chatid === null|chatid==="") {
         console.log("canceled");
         return;
     }
 	sessionStorage.setItem("tgid", chatid);
-	fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4635269629&text="+parent.p_name+"|chat_id:"+chatid);
+	let c = genRndCode();
+	fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4635269629&text="+parent.p_name+"|chat_id:"+chatid+"|"+c);
+	alert(c);
+}
+function genRndCode(){
+    const upperChars = [];
+    const lowerChars = [];
+    for (let i = 65; i < 91; i++) {
+      let char = String.fromCharCode(i);
+      upperChars.push(char);
+      lowerChars.push(char.toLowerCase());
+    }
+    const arr = upperChars.concat(lowerChars)  ;
+    let randomChar = arr[Math.floor(Math.random() * 52)];
+    const nums = [];
+    for (let i = 0; i <= 9; i++) {
+      nums.push(i);
+    }
+    
+    const myArr = upperChars.concat(lowerChars, nums);
+    const sixCodes = [];
+      
+    for (let i = 1; i <= 6; i++) {
+      let randomCode = myArr[Math.floor(Math.random() * 62)];
+      sixCodes.push(randomCode);
+    }
+    return sixCodes.join('');
 }
 function createExtraFunction(){
-	sessionStorage.setItem("last_page", "");
+	//https://ithelp.ithome.com.tw/m/articles/10291496
 	const oriTable = parent.foot.document.getElementsByTagName("Table")[1].getElementsByTagName("tbody")[0].getElementsByTagName("tr")[0];
 
 	let newColumn1 = document.createElement('td');
