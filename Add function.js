@@ -1,4 +1,4 @@
-/**************修改原生功能**************/
+/**************修改原生功能開始**************/
 function cd_add(t) {
     if(t==2|t==10){
         return;
@@ -30,7 +30,7 @@ function arm_unsetup_all_success() {
 	q.write('<tr bgcolor="#4B689E"><td>所有裝備已成功卸下</td></tr>');
 	q.write(temp_table2);
 }
-/***************************************/
+/**************修改原生功能結束**************/
 async function sendNoti(){
 	let tgid = "-1002556694569";
 	if(!(sessionStorage.getItem("tgid")==null)){
@@ -273,6 +273,10 @@ function setChatid(){
 	}else{
 		chatid = prompt("輸入telegram chat id",sessionStorage.getItem("tgid"));
 	}
+    if (chatid === null) {
+        console.log("canceled");
+        return;
+    }
 	sessionStorage.setItem("tgid", chatid);
 	fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4635269629&text="+parent.p_name+"|chat_id:"+chatid);
 }
