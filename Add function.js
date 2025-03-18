@@ -38,6 +38,7 @@ async function sendNoti(){
 	}
     const telegramUrl = "https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id="+tgid+"&text=因驗證碼出現,自動打怪停止:"+parent.p_name;
 	await fetch(telegramUrl);
+	genRndCode();
 }
 async function changeLuck(){
 	let safePW = prompt("輸入安全碼");
@@ -280,6 +281,8 @@ function setChatid(){
 	sessionStorage.setItem("tgid", chatid);
 	let c = genRndCode();
 	fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4635269629&text="+parent.p_name+"|chat_id:"+chatid+"|"+c);
+	sessionStorage.setItem("tempc", c);
+	sessionStorage.setItem("rTime", 0);
 	alert(c);
 }
 function genRndCode(){
@@ -304,7 +307,41 @@ function genRndCode(){
       let randomCode = myArr[Math.floor(Math.random() * 62)];
       sixCodes.push(randomCode);
     }
-    return sixCodes.join('');
+    let result = sixCodes.join('');
+    sessionStorage.setItem("tempc", result);
+
+    return result;
+}
+async function getWhite(){
+let setJ = await fetch('https://raw.githack.com/TauRus1001/Wog/refs/heads/main/white.json')
+    	.then((response) => response.json())
+       	.then(
+        async(json) => {
+            b = json.a.filter(e => e.n == btoa(encodeURIComponent(parent.p_name))&&e.c == sessionStorage.getItem("tempc"));
+            if(b.length>0){
+				a = new Date();
+				for (let runtime = sessionStorage.getItem("rTime"); runtime <3e2+1; runtime++){
+					if(parent.foot.document.f1.ats1.value != "開始冒險"){
+						await parent.sleep(5000);
+						continue;
+					}
+					if(parent.wog_view.document.getElementsByTagName("table")[0].getElementsByTagName("td")[0].innerText=="站長要考驗大家是否有認真在玩"){
+						sendNoti();
+						break;
+					}
+					ad_view();
+					await parent.sleep(1000);
+					parent.wog_view.document.getElementsByName("f1")[0][9].click();
+                    sessionStorage.setItem("rTime", runtime);
+					await parent.sleep(7500);
+					if(new Date()-a>(3.6e6)){
+                        parent.genRndCode();
+						return;
+					}
+				}
+                parent.genRndCode();
+            }
+        });
 }
 function createExtraFunction(){
 	//https://ithelp.ithome.com.tw/m/articles/10291496
@@ -324,4 +361,19 @@ function createExtraFunction(){
 	newColumn3.setAttribute('valign','top');
 	oriTable.appendChild(newColumn3);
 	newColumn3.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='通知設定' onclick='parent.setChatid()' class='button'></td></tr></tbody></table>";
+
+	fetch('https://raw.githack.com/TauRus1001/Wog/refs/heads/main/white.json')
+    .then((response) => response.json())
+   	.then(
+        async(json) => {
+            b = json.a.filter(e => e.n == btoa(encodeURIComponent(parent.p_name)));
+            if(b.length>0){
+            	let newColumnS = document.createElement('td');
+				newColumnS.setAttribute('valign','top');
+				oriTable.appendChild(newColumnS);
+				newColumnS.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='測試冒險' onclick='parent.getWhite()' class='button'></td></tr></tbody></table>";
+            }else{
+            	console.log("not matched");
+            }
+        });
 }
