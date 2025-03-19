@@ -223,12 +223,16 @@ async function changeStamp(changeAmount,changeTime){
 		alert("錯誤的換領次數，請輸入1-100");
 		return;
 	}
+    let changeData=[];
 	let formData = new FormData();
 	let e = parent.wog_view.document;
 	e.body.innerHTML="";
 	formData.append('f', "ch");
 	formData.append('act', "stamp");
 	formData.append('temp_id', changeAmount);
+    e.write(temp_table1);
+    e.write('<tr><td>換領中...請稍後..請不要離開頁面</td></tr>');
+    e.write(temp_table2);
 	for(let i = 0;i<changeTime;i++){
 	await fetch("https://wog.we-u.net/wog_act.php",
 	    {
@@ -242,17 +246,35 @@ async function changeStamp(changeAmount,changeTime){
 		let temp = html.substring(start,html.length);
 		let end = temp.indexOf("')</script>");
 		itemValue = (html.substring(start,start+end)).replace("'","");
-		e.write(temp_table1);
+        aLength = changeData.length;
+        add = true;
+        for(let i =0;i<aLength;i++){
+            if(!(changeData[i].name==itemValue)){
+                continue;
+            }
+            add = false;
+            changeData[i].t +=1;
+            break;
+        }
+        if(add==true){
+            changeData.push({name:itemValue,t:1});
+        }
+		
 		if(end === -1){
+            e.write(temp_table1);
 			e.write('<tr><td>沒有足夠的印花</td></tr>');
-			i=changeTime;
-		}else{
-			e.write('<tr><td>第 '+(i+1)+' 次換領印花, 成功換領了 <font color=#ff0000>' + itemValue + '</font></td></tr>');
+            e.write("</td></tr>" + temp_table2);
+            i=changeTime;
 		}
-		e.write("</td></tr>" + temp_table2);
 	    return itemValue;
         });
     }
+    e.write('<hr>');
+    e.write(`<div align="center"><table border="2" cellspacing="0" cellpadding="2" bordercolor="#868686"><tbody><tr><td>已換領項目</td><td>數量</td></tr>`);
+    for(let j = 0; j<changeData.length;j++){
+        e.write('<tr><td width="200px">'+changeData[j].name+'</td><td width="50px">'+changeData[j].t+'</td></tr>');
+    }
+    e.write(temp_table2+'</div>');
 }
 function newStampHouse(){
 	message_cls();
