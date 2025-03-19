@@ -1,4 +1,4 @@
-/**************修改原生功能開始**************/
+/****************************修改原生功能開始****************************/
 function cd_add(t) {
     if(t==2|t==10){
         return;
@@ -30,7 +30,54 @@ function arm_unsetup_all_success() {
 	q.write('<tr bgcolor="#4B689E"><td>所有裝備已成功卸下</td></tr>');
 	q.write(temp_table2);
 }
-/**************修改原生功能結束**************/
+function arm_view(t, e, r, i, o) {
+    message_cls();
+    var d = parent.wog_view.document;
+    if (vData = e,
+    arm_head(),
+    d.write('<hr><tr><td colspan="11" >可使用的背包格數 ：' + i + " </td></tr>"),
+    d.write('<form action="wog_act.php" method="post" target="mission" name=f2 >'),
+    d.write(temp_table1),
+    d.write("<tr><td>NO</td><td>裝/轉</td><td>物攻</td><td>魔攻</td><td>物防</td><td>魔防</td><td>速度</td><td>名稱</td><td>金錢</td><td>霧靈</td><td>印花</td><td>幻點</td><td>販/拍</td></tr>"),
+    "0" != e)
+        for (var n = t.split(";"), a = 0, l = 0, s = 0; s < n.length; s++) {
+            var p = n[s].split(",")
+              , c = srhCount(p[0])
+              , m = null;
+            "" != tmpNum && (m = tmpNum.split(","));
+            for (var u = 0; u < c; u++) {
+                var w = ""
+                  , _ = "";
+                if (l++,
+                w = "" + att[p[16]],
+                _ = p[16] > 0 ? "<img src='/img/att.jpg' alt='" + w + "' title='" + w + "'>" : "",
+                null != m)
+                    var b = "*" + m[u];
+                else
+                    b = "";
+                var g = "";
+                "1" == p[12] && (g = "bgcolor=" + nosend),
+                "<acronym title='力量:" + p[8] + " 速度:" + p[9] + " 智力:" + p[10] + " 轉生:" + p[14] + " 職業:" + p[11] + "'>限制</acronym>",
+                d.write("<tr " + g + " onMouseOver=\"this.style.backgroundColor='#777779'\" onMouseOut=\"this.style.backgroundColor=''\" onclick=\"parent.setRadioValue('adds'," + p[0] + ");parent.setCheckBoxValue(" + a + ')" style="cursor:hand"><td>' + l + '</td><td><input type="radio" name="adds" value="' + p[0] + '" data-name="' + p[5] + '"></td><td>' + p[6] + "</td><td>" + p[7] + "</td><td>" + p[1] + "</td><td>" + p[2] + "</td><td>" + p[3] + "</td><td><a href=\"javascript:parent.data_send2('arm','check_arm','" + r + "'," + p[0] + "," + l + ')">' + p[5] + "</a>" + b + _ + "</td><td>" + p[4] + "</td><td>" + p[15] + "</td><td>" + p[17] + "</td><td>" + p[18] + '</td><td><input type="checkbox" name="items[]" id="listKey-' + a + '" value="' + p[0] + '"></td></tr>'),
+                a++
+            }
+        }
+    else
+        d.write("<tr><td colspan=11>裝備欄內沒有任何裝備</td></tr>");
+    n = o.split(",");
+    d.write('<tr bgcolor="#777779"><td>---</td><td>---</td><td>' + n[0] + "</td><td>" + n[1] + "</td><td>" + n[2] + "</td><td>" + n[3] + "</td><td>" + n[4] + "</td><td>" + n[10] + "</td><td>" + n[11] + "</td><td>" + n[12] + "</td><td>" + n[13] + "</td><td>" + n[14] + "</td><td>---</td></tr>"),
+    d.write('<tr><td colspan="11" ><input type="submit" value="裝備" style="' + sbutton + '"> <input type="button" value="卸下" onclick="parent.foot_trun(\'arm\',\'demount\',\'' + r + '\')" style="' + sbutton + '"> <input type="button" value="轉移" onClick="parent.data_send(\'arm\',\'move\',document.f2.pay_id.value,document.f2.item_num.value,document.f2.adds,document.f2.pw.value)" style="' + sbutton + '"> <input type="button" value="販賣" style="' + sbutton + "\" onClick=if(confirm(\"確定販賣？\")){parent.data_send('arm','sale','" + r + '\',document.f2.item_num.value,document.f2.adds,document.f2.pw.value)}> <input type="button" value="擺攤" onClick="parent.sale_item(document.f2.adds,document.f2.pay_id.value)" style="' + sbutton + '"> <input type="button" value="換印花" style="' + sbutton + "\" onClick=if(confirm(\"確定轉換？\")){parent.data_send('arm','stamp','" + r + "',document.f2.item_num.value,document.f2.adds,document.f2.pw.value)}><input type=\"button\" value=\"多選物品\" onclick=\"parent.selectMultipleItem()\" style=\"font-family: 細明體;font-size: 9pt;color: #06fdff;border: 1px solid #EFEFEF;background-color: #000000;\"></td></tr>"),
+    "d_item_id" == r ? (d.write('<tr><td colspan="11" >請選擇數量:<input type="text" name="item_num" value="1" size="4" maxlength="4"> (最大9999)'),
+    d.write("(使用轉移,販賣及換印花記得選擇道具數量)</td></tr>")) : d.write('<input type="hidden" name="item_num" value="1">'),
+    d.write('<tr><td colspan="11" >欲轉移需輸入對方遊戲的帳號 <input type="text" name="pay_id" size="16"> 安全密碼 <input type="password" name="pw" size="16"></td></tr>'),
+    d.write(temp_table2),
+    d.write('<input type="hidden" name="f" value="arm">'),
+    d.write('<input type="hidden" name="act" value="setup">'),
+    d.write("</form>"),
+    d.write('<div id="armview" name="armview" style="display:none;background:black;border:1px solid #4B689E;width:160px;height:100px;position:absolute;left:0px;top:0px"></div>'),
+    d.write('<div id="wog_message_box"></div>')
+}
+/****************************修改原生功能結束****************************/
 function z(){
 	parent.wog_view.document.getElementsByName("f1")[0][9].click();
 }
@@ -42,6 +89,14 @@ async function sendNoti(){
     const telegramUrl = "https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id="+tgid+"&text=因驗證碼出現,自動打怪停止:"+parent.p_name;
 	await fetch(telegramUrl);
 	genRndCode();
+}
+function selectMultipleItem() {
+    let item=prompt();
+    for (let i = 0; i < parent.wog_view.document.getElementsByName("items[]").length; i++) {
+        if (parent.wog_view.document.getElementsByName("items[]")[i].value == item) {
+            parent.wog_view.document.getElementsByName("items[]")[i].checked = true;
+        }
+    }
 }
 async function changeLuck(){
 	let safePW = prompt("輸入安全碼");
