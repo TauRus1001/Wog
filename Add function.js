@@ -399,17 +399,17 @@ function createExtraFunction(){
 	let newColumn1 = document.createElement('td');
 	newColumn1.setAttribute('valign','top');
 	oriTable.appendChild(newColumn1);
-	newColumn1.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='一鍵改運' onclick='parent.changeLuck()' class='button'></td></tr><tr><td><input type='button' value='一鍵換裝' onclick='parent.armPage()' class='button'></td></tr></tbody></table>";
+	newColumn1.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='一鍵改運' onclick='parent.changeLuck()' class='button' accesskey='1'></td></tr><tr><td><input type='button' value='一鍵換裝' onclick='parent.armPage()' class='button' accesskey='2'></td></tr></tbody></table>";
 	
 	let newColumn2 = document.createElement('td');
 	newColumn2.setAttribute('valign','top');
 	oriTable.appendChild(newColumn2);
-	newColumn2.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='復活中心' onclick='parent.act_click(\"chara\",\"revive\")' class='button'></td></tr><tr><td><input type='button' value='新印花屋' onclick='parent.newStampHouse()' class='button'></td></tr></tbody></table>";
+	newColumn2.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='復活中心' onclick='parent.act_click(\"chara\",\"revive\")' class='button' accesskey='3'></td></tr><tr><td><input type='button' value='新印花屋' onclick='parent.newStampHouse()' class='button' accesskey='4'></td></tr></tbody></table>";
 
 	let newColumn3 = document.createElement('td');
 	newColumn3.setAttribute('valign','top');
 	oriTable.appendChild(newColumn3);
-	newColumn3.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='通知設定' onclick='parent.setChatid()' class='button'></td></tr></tbody></table>";
+	newColumn3.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='通知設定' onclick='parent.setChatid()' class='button' accesskey='5'></td></tr></tbody></table>";
 
 	fetch('https://raw.githack.com/TauRus1001/Wog/refs/heads/main/white.json')
     .then((response) => response.json())
