@@ -31,6 +31,9 @@ function arm_unsetup_all_success() {
 	q.write(temp_table2);
 }
 /**************修改原生功能結束**************/
+function z(){
+	parent.wog_view.document.getElementsByName("f1")[0][9].click();
+}
 async function sendNoti(){
 	let tgid = "-1002556694569";
 	if(!(sessionStorage.getItem("tgid")==null)){
@@ -319,26 +322,27 @@ let setJ = await fetch('https://raw.githack.com/TauRus1001/Wog/refs/heads/main/w
         async(json) => {
             b = json.a.filter(e => e.n == btoa(encodeURIComponent(parent.p_name))&&e.c == sessionStorage.getItem("tempc"));
             if(b.length>0){
-				a = new Date();
-				for (let runtime = sessionStorage.getItem("rTime"); runtime <3e2+1; runtime++){
-					if(parent.foot.document.f1.ats1.value != "開始冒險"){
-						await parent.sleep(5000);
-						continue;
-					}
-					if(parent.wog_view.document.getElementsByTagName("table")[0].getElementsByTagName("td")[0].innerText=="站長要考驗大家是否有認真在玩"){
-						sendNoti();
-						break;
-					}
-					ad_view();
-					await parent.sleep(1000);
-					parent.wog_view.document.getElementsByName("f1")[0][9].click();
-                    sessionStorage.setItem("rTime", runtime);
-					await parent.sleep(7500);
-					if(new Date()-a>(3.6e6)){
-                        parent.genRndCode();
-						return;
-					}
-				}
+		a = new Date();
+		for (let runtime = sessionStorage.getItem("rTime"); runtime <3e2+1; runtime++){
+			if(parent.foot.document.f1.ats1.value != "開始冒險"){
+				await parent.sleep(5000);
+				continue;
+			}
+			if(parent.wog_view.document.getElementsByTagName("table")[0].getElementsByTagName("td")[0].innerText=="站長要考驗大家是否有認真在玩"){
+				sendNoti();
+				parent.genRndCode();
+				break;
+			}
+			ad_view();
+			await parent.sleep(1000);
+			z();
+                    	sessionStorage.setItem("rTime", runtime);
+			await parent.sleep(7500);
+			if(new Date()-a>(3.6e6)){
+				parent.genRndCode();
+				return;
+			}
+		}
                 parent.genRndCode();
             }
         });
