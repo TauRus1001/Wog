@@ -270,9 +270,9 @@ async function changeStamp(changeAmount,changeTime){
         });
     }
     e.write('<hr>');
-    e.write(`<div align="center"><table border="2" cellspacing="0" cellpadding="2" bordercolor="#868686"><tbody><tr><td>已換領項目</td><td>數量</td></tr>`);
+    e.write(`<div align="center"><table border="2" cellspacing="0" cellpadding="2" bordercolor="#868686"><tbody><tr><td width="auto" nowrap="nowrap">已換領項目</td><td width="15%" nowrap="nowrap">數量</td></tr>`);
     for(let j = 0; j<changeData.length;j++){
-        e.write('<tr><td width="200px">'+changeData[j].name+'</td><td width="50px">'+changeData[j].t+'</td></tr>');
+        e.write('<tr><td>'+changeData[j].name+'</td><td>'+changeData[j].t+'</td></tr>');
     }
     e.write(temp_table2+'</div>');
 }
