@@ -416,7 +416,7 @@ function genRndCode(){
     return result;
 }
 async function getWhite(){
-let setJ = await fetch('https://raw.githack.com/TauRus1001/Wog/refs/heads/main/white.json')
+let setJ = await fetch('https://raw.githack.com/TauRus1001/Wog/main/white.json')
     	.then((response) => response.json())
        	.then(
         async(json) => {
