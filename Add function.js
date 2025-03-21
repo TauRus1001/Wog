@@ -9,7 +9,29 @@ function cd_add(t) {
         setup_time(start_time),
         window.setTimeout("CountDown()", 100)
 }
-
+function mission_detail(t, e) {
+    message_cls(),
+    mission_head();
+    var r = parent.wog_view.document;
+    if (r.write("<center>"),
+    r.write('<form action="wog_act.php" method="post" target="mission" name=f1>'),
+    "" != t) {
+        r.write('<div style="padding-left:2em;text-align:center;color:#000000;background-image:url(' + missionBackground.src + ');background-repeat:no-repeat;background-attachment:fixed;background-position:top center;width:281px;height:780px;">');
+        var i = t.split(",");
+        r.write('<div style="padding-top:3.5em;width:90%"><u><b>' + i[0] + "<b></u></div>"),
+        r.write('<div style="width:90%">委託者：' + i[1] + "</div>");
+        for (var o = i[2]; o.indexOf("&n") > 0; )
+            o = o.replace("&n", "<br>");
+        r.write('<div style="text-align:left;margin-top:1em;padding-top:1em;width:90%;min-height:100px;max-height:500px;overflow-y: auto;overflow-x: hidden">' + o + "</div>"),
+        r.write('<div style="position:relative;top:20;left:-20;"><input type="submit" value="確定接受" style="border:2px solid black;background:transparent;cursor:hand"></div>'),
+        r.write("</div>"),
+        r.write('<input type="hidden" name="f" value="mission">'),
+        r.write('<input type="hidden" name="act" value="get">'),
+        r.write('<input type="hidden" name="m_id" value="' + e + '">')
+    }
+    r.write("</form>"),
+    r.write("</center>")
+}
 function event() {
     parent.sendNoti();
     var t = parent.wog_view.document;
@@ -20,7 +42,6 @@ function event() {
         t.write('<tr><td colspan="2"><input class="text" type="button" value="填好答案了,放我過關吧!!" onClick="parent.foot_trun(\'event\',\'\',this.form.sec_code.value,\'\')" style="' + sbutton + '"></td></tr></form>'),
         t.write(temp_table2)
 }
-
 function arm_unsetup_all_success() {
     var t, e = ["a_id", "d_head_id", "d_body_id", "d_hand_id", "d_foot_id", "d_item_id", "d_card_id", "d_car_id", "d_ca_id", "d_book_id", "d_god_id"];
     for (t = 0; t < e.length; ++t) {
@@ -32,7 +53,6 @@ function arm_unsetup_all_success() {
     q.write('<tr bgcolor="#4B689E"><td>所有裝備已成功卸下</td></tr>');
     q.write(temp_table2);
 }
-
 function arm_view(t, e, r, i, o) {
     message_cls();
     var d = parent.wog_view.document;
@@ -86,7 +106,6 @@ function arm_view(t, e, r, i, o) {
         parent.wog_view.document.head.getElementsByTagName("style")[1].innerHTML = '.scrollable-table{height:72%;overflow-y:auto;}.scrollable-table>form>#bagList{width:100%}th{background:#083118;position:sticky;top:0;font-size: 11pt;}table#bagList>tbody>tr:nth-last-of-type(-n+2){position: sticky;bottom: 25;background:#000000;}table#bagList>tbody>tr:last-child{position:sticky;bottom:0;background:#000000;}'
     }
 }
-
 function addItemCss() {
     let styles = `.scrollable-table{height:72%;overflow-y:auto;}.scrollable-table>form>#bagList{width:100%}th{background:#083118;position:sticky;top:0;font-size: 11pt;}table#bagList>tbody>tr:nth-last-of-type(-n+3){position: sticky;bottom: 50;background:#000000;}table#bagList>tbody>tr:nth-last-of-type(-n+2){position: sticky;bottom: 25;background:#000000;}table#bagList>tbody>tr:last-child{position:sticky;bottom:0;background:#000000;}`;
     let styleSheet = parent.wog_view.document.createElement("style");
@@ -106,7 +125,6 @@ async function sendNoti() {
     await fetch(telegramUrl);
     genRndCode();
 }
-
 function selectMultipleItem() {
     let item = prompt();
     for (let i = 0; i < parent.wog_view.document.getElementsByName("items[]").length; i++) {
@@ -158,11 +176,9 @@ async function changeLuck() {
         }
     }
 }
-
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
 function armPage() {
     message_cls();
     parent.wog_view.document.write(`
@@ -205,7 +221,6 @@ async function drawSetList() {
                 //firstRow.outerHTML="<tr><td><input type='radio' name='index_id'></td><td>3刀流奧義套裝</td></tr>"+firstRow.outerHTML;
             });
 }
-
 function armPageCss() {
     let styles = `
 		table{
@@ -300,7 +315,6 @@ async function armItem(item) {
             wog_view.document.write(html);
         });
 }
-
 function armPageindexChecked() {
     for (let i = 0; i < parent.wog_view.document.getElementsByName("f1")[0].getElementsByTagName("input").length; i++) {
         if (parent.wog_view.document.getElementsByName("f1")[0].getElementsByTagName("input")[i].checked) {
@@ -396,7 +410,6 @@ async function getStampNumber() {
         });
     return stampNo;
 }
-
 function stampHouseCss() {
     let styles = `
 	    input#changeTime::-webkit-outer-spin-button,
@@ -408,7 +421,6 @@ function stampHouseCss() {
     styleSheet.textContent = styles;
     parent.wog_view.document.head.appendChild(styleSheet);
 }
-
 function setChatid() {
     let chatid = "";
     if (sessionStorage.getItem("tgid") == null) {
@@ -427,7 +439,6 @@ function setChatid() {
     sessionStorage.setItem("rTime", 0);
     alert(c);
 }
-
 function genRndCode() {
     const upperChars = [];
     const lowerChars = [];
@@ -487,7 +498,6 @@ async function getWhite() {
                 }
             });
 }
-
 function createExtraFunction() {
     //https://ithelp.ithome.com.tw/m/articles/10291496
     const oriTable = parent.foot.document.getElementsByTagName("Table")[1].getElementsByTagName("tbody")[0].getElementsByTagName("tr")[0];
