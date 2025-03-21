@@ -9,6 +9,34 @@ function cd_add(t) {
         setup_time(start_time),
         window.setTimeout("CountDown()", 100)
 }
+function mission_book(t, e) {
+    message_cls(),
+    mission_head();
+    var r = parent.wog_view.document;
+    r.write(`<style>.content{
+	    height:20px;
+	    overflow:hidden;
+	    text-overflow:ellipsis;
+	    white-space:nowrap;
+	}
+	input[type='checkbox'] { visibility: hidden; position: absolute; }
+	input[type='checkbox']:checked + .content { height: auto; width: auto;}</style>`);
+    e = e.split(",");
+    for (var i = t.split(";"), o = 0; o < e.length; o++) {
+        r.write('<form action="wog_act.php" method="post" target="mission" name=f1 class="missioon_detail">'),
+        r.write(temp_table1);
+        var d = i[o].split(",");
+        r.write('<tr><td bgcolor="000099">' + d[0] + "</td></tr>"),
+        r.write("<tr><td>委託者：" + d[1] + "</td></tr>");
+        for (var n = d[2]; n.indexOf("&n") > 0; )
+            n = n.replace("&n", "<br>");
+        r.write("<tr><td class=b1 cellpadding=3><label><input type='checkbox'/><div class='content'><span class='hidden'>" + n + "</span></div></label></td></tr>"),
+        r.write("<tr><td>任務所需怪物: " + d[4] + " / " + d[3] + "</td></tr>"),
+        r.write("<tr><td><input type=\"button\" value=\"完成任務\" onClick=\"parent.foot_trun('mission','end',''," + e[o] + ",'')\" style=\"" + sbutton + "\"> <input type=\"button\" value=\"放棄任務\" onClick=\"parent.foot_trun('mission','break',''," + e[o] + ",'')\" style=\"" + sbutton + '"></td></tr>'),
+        r.write(temp_table2),
+        r.write("</form>")
+    }
+}
 function mission_detail(t, e) {
     message_cls(),
     mission_head();
