@@ -9,6 +9,38 @@ function cd_add(t) {
         setup_time(start_time),
         window.setTimeout("CountDown()", 100)
 }
+//刪除開始冒險的圖片
+function ad_view() {
+    var t = parent.wog_view.document;
+    message_cls(),
+    t.write('<center><div style="width:400px;height:100px;">blank</div></center>'),
+    t.write(temp_table1),
+    t.write("<form name=f1>"),
+    t.write('<tr><td><input type="radio" name="a_type" value="1" checked>冒險修行 <select name="act_area" onChange="parent.select_area(this.options[this.options.selectedIndex].value,this.form)"></select>'),
+    t.write('<select name="act1" onChange="parent.change_mission(0,this.form)"><option value="" SELECTED>選擇場所</option></select></td></tr>'),
+    t.write('<tr><td><input type="radio" name="a_type" value="2" >武鬥競技 <select name="act2" onChange="parent.change_mission(1,this.form)"><option value="" SELECTED>選擇模式</option><option value="20" >挑戰冠軍</option></select></td></tr>'),
+    t.write('<tr><td ><input type="radio" name="a_mode" value="1" checked>快速模式  <input type="radio" name="a_mode" value="2" >一般模式</td></tr>'),
+    t.write('<tr><td >戰鬥回合數 <input type="text" name="f_count" value="400" size="3" maxlength="3"> (最大' + f_count + ")</td></tr>"),
+    t.write('<tr><td >HP低於 <input type="text" name="f_hp" value="15" size="3" maxlength="2"> %自動使用HP恢復劑</td></tr>'),
+    t.write('<tr><td ><input type="button" value="物理攻擊" onClick="parent.datechk(1,document.forms[0])" style="' + sbutton + '"> <input type="button" value="魔法攻擊" onClick="parent.datechk(2,document.forms[0])" style="' + sbutton + '"></td></tr>'),
+    t.write('<tr><td><input type="button" value="攻打領土" onClick="parent.act_click(\'group\',\'fire_list_peo\')" style="' + sbutton + '">--有加入公會才能使用</td></tr>'),
+    t.write('<tr><td>必殺技名稱 <input type="text" name="sat_name" size="40" maxlength="60" value="' + p_sat_name + '"></td></tr>'),
+    t.write("</form>"),
+    t.write(temp_table2);
+    for (var e = parent.wog_view.document.f1, r = 0; r < section.area.length; r++)
+        e.act_area.options[r] = new Option(section.area[r].name,r);
+    var i = Gookie("wog_set_cookie");
+    if (null != i) {
+        var o = i.split(",");
+        0 == o[0] ? t.write('<script>document.forms[0].a_type[0].checked=true;document.forms[0].a_type[1].checked=false;parent.select_area("' + o[3] + '",document.forms[0]);document.forms[0].act_area.value=' + o[3] + ";document.forms[0].act1.value=" + o[1] + ";</script>") : t.write("<script>document.forms[0].a_type[1].checked=true;document.forms[0].a_type[0].checked=false;document.forms[0].act2.value=" + o[1] + ";</script>"),
+        o[2],
+        t.write("<script>document.forms[0].a_mode[0].checked=true;document.forms[0].a_mode[1].checked=false;</script>")
+    }
+    i = Gookie("wog_set_f_count");
+    null != i && t.write("<script>document.f1.f_count.value=" + i + ";</script>");
+    i = Gookie("wog_set_f_hp");
+    null != i && t.write("<script>document.f1.f_hp.value=" + i + ";</script>")
+}
 //刪除戰鬥的圖片
 function fire_date(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, _, b, g, h) {
     var v = parent.wog_view.document
