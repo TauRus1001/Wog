@@ -161,7 +161,7 @@ function arm_view(t, e, r, i, o) {
         "0" != e)
         for (var n = t.split(";"), a = 0, l = 0, s = 0; s < n.length; s++) {
             var p = n[s].split(","),
-                c = srhCount(p[0]),
+                c = srhCount(p[0]),	
                 m = null;
             "" != tmpNum && (m = tmpNum.split(","));
             for (var u = 0; u < c; u++) {
@@ -183,12 +183,23 @@ function arm_view(t, e, r, i, o) {
         }
     else
         d.write("<tr><td colspan=11>裝備欄內沒有任何裝備</td></tr>");
-    n = o.split(",");
-    d.write('<tr bgcolor="#777779"><td>---</td><td>---</td><td>' + n[0] + "</td><td>" + n[1] + "</td><td>" + n[2] + "</td><td>" + n[3] + "</td><td>" + n[4] + "</td><td>" + n[10] + "</td><td>" + n[11] + "</td><td>" + n[12] + "</td><td>" + n[13] + "</td><td>" + n[14] + "</td><td>---</td></tr>"),
+    	n = o.split(",");
+    	d.write('<tr bgcolor="#777779"><td>---</td><td>---</td><td>' + n[0] + "</td><td>" + n[1] + "</td><td>" + n[2] + "</td><td>" + n[3] + "</td><td>" + n[4] + "</td><td>" + n[10] + "</td><td>" + n[11] + "</td><td>" + n[12] + "</td><td>" + n[13] + "</td><td>" + n[14] + "</td><td>---</td></tr>"),
         d.write('<tr><td colspan="13" ><input type="submit" value="裝備" style="' + sbutton + '"> <input type="button" value="卸下" onclick="parent.foot_trun(\'arm\',\'demount\',\'' + r + '\')" style="' + sbutton + '"> <input type="button" value="轉移" onClick="parent.data_send(\'arm\',\'move\',document.f2.pay_id.value,document.f2.item_num.value,document.f2.adds,document.f2.pw.value)" style="' + sbutton + '"> <input type="button" value="販賣" style="' + sbutton + "\" onClick=if(confirm(\"確定販賣？\")){parent.data_send('arm','sale','" + r + '\',document.f2.item_num.value,document.f2.adds,document.f2.pw.value)}> <input type="button" value="擺攤" onClick="parent.sale_item(document.f2.adds,document.f2.pay_id.value)" style="' + sbutton + '"> <input type="button" value="換印花" style="' + sbutton + "\" onClick=if(confirm(\"確定轉換？\")){parent.data_send('arm','stamp','" + r + "',document.f2.item_num.value,document.f2.adds,document.f2.pw.value)}><input type=\"button\" value=\"多選物品\" onclick=\"parent.selectMultipleItem()\" style=\"font-family: 細明體;font-size: 9pt;color: #06fdff;border: 1px solid #EFEFEF;background-color: #000000;\"></td></tr>"),
         "d_item_id" == r ? (d.write('<tr><td colspan="13" >請選擇數量:<input type="text" name="item_num" value="1" size="4" maxlength="4"> (最大9999)'),
-            d.write("(使用轉移,販賣及換印花記得選擇道具數量)</td></tr>")) : d.write('<input type="hidden" name="item_num" value="1">'),
-        d.write('<tr><td colspan="13" >欲轉移需輸入對方遊戲的帳號 <input type="text" name="pay_id" size="16"> 安全密碼 <input type="password" name="pw" size="16"></td></tr>'),
+        d.write("(使用轉移,販賣及換印花記得選擇道具數量)</td></tr>")) : d.write('<input type="hidden" name="item_num" value="1">');
+        let playerOptions = "";
+	    for (let i = 0; i < online_list.length; i++) {
+            if(online_list[i]!=parent.p_name){
+    	        playerOptions += `<option>${online_list[i]}</option>`;
+            }
+	    }
+	    d.write(
+	        `<tr><td colspan="13" >欲轉移需輸入對方遊戲的帳號
+	        <input type="text" name="pay_id" id="playList" list="playerList"/>
+	        <datalist id="playerList">${playerOptions}</datalist>
+	        安全密碼 <input type="password" name="pw" size="16"></td></tr>`
+	    );
         d.write(temp_table2),
         d.write('<input type="hidden" name="f" value="arm">'),
         d.write('<input type="hidden" name="act" value="setup">'),
@@ -196,10 +207,10 @@ function arm_view(t, e, r, i, o) {
         d.write(`</div>`),
         d.write('<div id="armview" name="armview" style="display:none;background:black;border:1px solid #4B689E;width:160px;height:100px;position:absolute;left:0px;top:0px"></div>'),
         d.write('<div id="wog_message_box"></div>');
-    addItemCss();
-    if ("d_item_id" != r) {
-        parent.wog_view.document.head.getElementsByTagName("style")[1].innerHTML = '.scrollable-table{height:72%;overflow-y:auto;}.scrollable-table>form>#bagList{width:100%}th{background:#083118;position:sticky;top:0;font-size: 11pt;}table#bagList>tbody>tr:nth-last-of-type(-n+2){position: sticky;bottom: 27;background:#000000;}table#bagList>tbody>tr:last-child{position:sticky;bottom:0;background:#000000;}'
-    }
+    	addItemCss();
+	    if ("d_item_id" != r) {
+	        parent.wog_view.document.head.getElementsByTagName("style")[1].innerHTML = '.scrollable-table{height:72%;overflow-y:auto;}.scrollable-table>form>#bagList{width:100%}th{background:#083118;position:sticky;top:0;font-size: 11pt;}table#bagList>tbody>tr:nth-last-of-type(-n+2){position: sticky;bottom: 27;background:#000000;}table#bagList>tbody>tr:last-child{position:sticky;bottom:0;background:#000000;}'
+	    }
 }
 function addItemCss() {
     let styles = `.scrollable-table{height:72%;overflow-y:auto;}.scrollable-table>form>#bagList{width:100%}th{background:#083118;position:sticky;top:0;font-size: 11pt;}table#bagList>tbody>tr:nth-last-of-type(-n+3){position: sticky;bottom: 52;background:#000000;}table#bagList>tbody>tr:nth-last-of-type(-n+2){position: sticky;bottom: 27;background:#000000;}table#bagList>tbody>tr:last-child{position:sticky;bottom:0;background:#000000;}`;
