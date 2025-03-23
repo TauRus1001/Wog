@@ -9,37 +9,72 @@ function cd_add(t) {
         setup_time(start_time),
         window.setTimeout("CountDown()", 100)
 }
-//刪除開始冒險的圖片
+//wog_view背景圖片切換
+function message_cls(t, e) {
+    var r = parent.wog_view.document;
+    null != t && (r = t),
+    null == e && (e = 2),
+    r.close(),
+    r.write("<html>"),
+    r.write("<head>"),
+    r.write('<meta http-equiv="Content-Type" content="text/html; charset=utf8">'),
+    r.write('<meta http-equiv=Cache-Control content="no-cache">'),
+    r.write('<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">'),
+    r.write("<style type=text/css>"),
+    r.write("td {font-family : verdana,Arial,Helvetica ;font-size : 10pt;\ttext-align : center;}"),
+    r.write(".b1 {text-align : left;}"),
+    r.write("</style>"),
+    r.write("</head>"),
+    r.write('<link rel="stylesheet" href="./wog.css" type="text/css">');
+    if(conciseStatus()){
+    	r.write('<body oncontextmenu="window.event.returnValue=false" bgcolor="#000000" text="#EFEFEF" link="#EFEFEF" vlink="#EFEFEF" alink="#EFEFEF" >');
+    }else{
+    	r.write('<body oncontextmenu="window.event.returnValue=false" bgcolor="#000000" text="#EFEFEF" link="#EFEFEF" vlink="#EFEFEF" alink="#EFEFEF" style="Background-attachment:fixed; background-image: url(/img/bg.jpg); background-repeat:no-repeat;" >')
+    }
+}
+//開始冒險的圖片切換
 function ad_view() {
     var t = parent.wog_view.document;
-    message_cls(),
-    t.write('<center><div style="width:400px;height:100px;">blank</div></center>'),
-    t.write(temp_table1),
-    t.write("<form name=f1>"),
-    t.write('<tr><td><input type="radio" name="a_type" value="1" checked>冒險修行 <select name="act_area" onChange="parent.select_area(this.options[this.options.selectedIndex].value,this.form)"></select>'),
-    t.write('<select name="act1" onChange="parent.change_mission(0,this.form)"><option value="" SELECTED>選擇場所</option></select></td></tr>'),
-    t.write('<tr><td><input type="radio" name="a_type" value="2" >武鬥競技 <select name="act2" onChange="parent.change_mission(1,this.form)"><option value="" SELECTED>選擇模式</option><option value="20" >挑戰冠軍</option></select></td></tr>'),
-    t.write('<tr><td ><input type="radio" name="a_mode" value="1" checked>快速模式  <input type="radio" name="a_mode" value="2" >一般模式</td></tr>'),
-    t.write('<tr><td >戰鬥回合數 <input type="text" name="f_count" value="400" size="3" maxlength="3"> (最大' + f_count + ")</td></tr>"),
-    t.write('<tr><td >HP低於 <input type="text" name="f_hp" value="15" size="3" maxlength="2"> %自動使用HP恢復劑</td></tr>'),
-    t.write('<tr><td ><input type="button" value="物理攻擊" onClick="parent.datechk(1,document.forms[0])" style="' + sbutton + '"> <input type="button" value="魔法攻擊" onClick="parent.datechk(2,document.forms[0])" style="' + sbutton + '"></td></tr>'),
-    t.write('<tr><td><input type="button" value="攻打領土" onClick="parent.act_click(\'group\',\'fire_list_peo\')" style="' + sbutton + '">--有加入公會才能使用</td></tr>'),
-    t.write('<tr><td>必殺技名稱 <input type="text" name="sat_name" size="40" maxlength="60" value="' + p_sat_name + '"></td></tr>'),
-    t.write("</form>"),
+    message_cls();
+    if (conciseStatus()) {
+        t.write('<center><div style="width:400px;height:100px;">blank</div></center>');
+    } else {
+        t.write('<center><img src="./img/Fight.png"></center>');
+    }
+    t.write(temp_table1);
+    t.write("<form name=f1>");
+    t.write('<tr><td><input type="radio" name="a_type" value="1" checked>冒險修行 <select name="act_area" onChange="parent.select_area(this.options[this.options.selectedIndex].value,this.form)"></select>');
+    t.write('<select name="act1" onChange="parent.change_mission(0,this.form)"><option value="" SELECTED>選擇場所</option></select></td></tr>');
+    t.write('<tr><td><input type="radio" name="a_type" value="2" >武鬥競技 <select name="act2" onChange="parent.change_mission(1,this.form)"><option value="" SELECTED>選擇模式</option><option value="20" >挑戰冠軍</option></select></td></tr>');
+    t.write('<tr><td ><input type="radio" name="a_mode" value="1" checked>快速模式  <input type="radio" name="a_mode" value="2" >一般模式</td></tr>');
+    t.write('<tr><td >戰鬥回合數 <input type="text" name="f_count" value="400" size="3" maxlength="3"> (最大' + f_count + ")</td></tr>");
+    t.write('<tr><td >HP低於 <input type="text" name="f_hp" value="15" size="3" maxlength="2"> %自動使用HP恢復劑</td></tr>');
+    t.write('<tr><td ><input type="button" value="物理攻擊" onClick="parent.datechk(1,document.forms[0])" style="' + sbutton + '"> <input type="button" value="魔法攻擊" onClick="parent.datechk(2,document.forms[0])" style="' + sbutton + '"></td></tr>');
+    t.write('<tr><td><input type="button" value="攻打領土" onClick="parent.act_click(\'group\',\'fire_list_peo\')" style="' + sbutton + '">--有加入公會才能使用</td></tr>');
+    t.write('<tr><td>必殺技名稱 <input type="text" name="sat_name" size="40" maxlength="60" value="' + p_sat_name + '"></td></tr>');
+    t.write("</form>");
     t.write(temp_table2);
-    for (var e = parent.wog_view.document.f1, r = 0; r < section.area.length; r++)
-        e.act_area.options[r] = new Option(section.area[r].name,r);
+    for (var e = parent.wog_view.document.f1, r = 0; r < section.area.length; r++) {
+        e.act_area.options[r] = new Option(section.area[r].name, r);
+    }
     var i = Gookie("wog_set_cookie");
     if (null != i) {
         var o = i.split(",");
-        0 == o[0] ? t.write('<script>document.forms[0].a_type[0].checked=true;document.forms[0].a_type[1].checked=false;parent.select_area("' + o[3] + '",document.forms[0]);document.forms[0].act_area.value=' + o[3] + ";document.forms[0].act1.value=" + o[1] + ";</script>") : t.write("<script>document.forms[0].a_type[1].checked=true;document.forms[0].a_type[0].checked=false;document.forms[0].act2.value=" + o[1] + ";</script>"),
-        o[2],
-        t.write("<script>document.forms[0].a_mode[0].checked=true;document.forms[0].a_mode[1].checked=false;</script>")
+        if (0 == o[0]) {
+            t.write('<script>document.forms[0].a_type[0].checked=true;document.forms[0].a_type[1].checked=false;parent.select_area("' + o[3] + '",document.forms[0]);document.forms[0].act_area.value=' + o[3] + ";document.forms[0].act1.value=" + o[1] + ";</script>");
+        } else {
+            t.write("<script>document.forms[0].a_type[1].checked=true;document.forms[0].a_type[0].checked=false;document.forms[0].act2.value=" + o[1] + ";</script>");
+        }
+        t.write("<script>document.forms[0].a_mode[0].checked=true;document.forms[0].a_mode[1].checked=false;</script>");
     }
     i = Gookie("wog_set_f_count");
-    null != i && t.write("<script>document.f1.f_count.value=" + i + ";</script>");
+    if (null != i) {
+        t.write("<script>document.f1.f_count.value=" + i + ";</script>");
+    }
     i = Gookie("wog_set_f_hp");
-    null != i && t.write("<script>document.f1.f_hp.value=" + i + ";</script>")
+    if (null != i) {
+        t.write("<script>document.f1.f_hp.value=" + i + ";</script>");
+    }
 }
 //刪除戰鬥的圖片
 function fire_date(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, _, b, g, h) {
@@ -559,6 +594,39 @@ function stampHouseCss() {
     styleSheet.textContent = styles;
     parent.wog_view.document.head.appendChild(styleSheet);
 }
+function conciseStatus(){
+    return parent.top_view.document.querySelector("#btnToggle").checked;
+}
+function addConciseMode(){
+	parent.top_view.document.getElementsByTagName("tbody")[0].getElementsByTagName("tr")[0].getElementsByTagName("td")[0].outerHTML=`
+    <style>
+    .toggle{position:relative;display:inline-block;top:4px;width:36px;height:21px;}.toggle input{display: none;}
+    .slider{position:absolute;cursor:pointer;top: 0;left: 0;right: 0;bottom: 0;background-color: #333;transition: 0.4s;border-radius: 20px;}
+    .slider:before{position:absolute;content:"";height:15px; width:15px;left:4px;bottom:3px;background-color:#FFF;transition: 0.4s;border-radius: 50%;}
+    input:checked + .slider {background-color: #209d55;}
+    input:checked + .slider:before{transform: translateX(14px);}
+    </style>
+    <td align="center" valign="middle">
+    <div id="a1"></div><select name="pagelist" style="background:black;color:white" onchange="if(document.f1.pagelist.value != '')parent.wog_view.document.location.href=document.f1.pagelist.value">
+      <option value="" selected="">遊戲選單</option>
+      <option value="rules.html">幻想規則</option>
+      <option value="./data/dnew1.html">新手須知</option>
+      <option value="wog_etc.php?f=sale&amp;act=view&amp;page=1">二手市場</option>
+      <option value="wog_etc.php?f=king">風雲榜</option>
+      <option value="wog_etc.php?f=king_vip">VIP風雲榜</option>
+      <option value="wog_etc.php?f=race&amp;act=join">賽鳥場</option>
+      <option value="wog_faq.htm">FAQ</option>
+    </select>
+    <!--<span onclick="menu_view('menu')" name="menu" id="menu" style="cursor:pointer;border:1pt solid white">遊戲選單　　　▼</span>-->
+    【<a href="http://wog2015.freebbs.tw/" target="_blank">
+      <font color="yellow">討論區</font>
+    </a>】【<a href="https://www.facebook.com/wogonline/" target="_blank">
+      <font color="red">FACEBOOK專區</font>
+    </a>】【<a href="bbs" target="_blank">
+      <font color="orange">特別討論區</font>
+    </a>】【<a href="login.php" target="_blank">管理台</a>】【<a href="data2" target="_blank">攻略網</a>】【<a href="javascript://" onclick="window.open('/prize.html','','menubar=no,status=no,scrollbars=yes,top=0,left=0,toolbar=no,width=1200,height=540,resizable=no')">寶箱列表</a>】【<a href="wog_id_admin.htm" target="wog_view">帳號中心</a>】【<a href="wog_etc.php?f=friend&amp;act=list" target="wog_view">好友名單</a>】簡潔模式 <label class="toggle"><input type="checkbox" id="btnToggle" name="btnToggle"/><span class="slider"></span></label>
+    </td>`;
+}
 function setChatid() {
     let chatid = "";
     if (sessionStorage.getItem("tgid") == null) {
@@ -638,6 +706,7 @@ async function getWhite() {
 }
 function createExtraFunction() {
     //https://ithelp.ithome.com.tw/m/articles/10291496
+    addConciseMode();
     const oriTable = parent.foot.document.getElementsByTagName("Table")[1].getElementsByTagName("tbody")[0].getElementsByTagName("tr")[0];
 
     let newColumn1 = document.createElement('td');
