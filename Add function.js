@@ -1,4 +1,4 @@
-/****************************修改原生功能開始****************************/
+/****************************修改原生功能開始*************************26/3/2025 16:55***/
 function cd_add(t) {
     if (t == 2 | t == 3 | t == 10) {
         return;
@@ -8,66 +8,6 @@ function cd_add(t) {
         start_time = Date.parse(start_time) / 1e3,
         setup_time(start_time),
         window.setTimeout("CountDown()", 100)
-}
-function fire_date(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, _, b, g, h) { //增加level2(觀察戰鬥前的等級)a
-    var v = parent.wog_view.document
-      , f = get_name()
-      , y = 0
-      , k = new Image;
-    level2 = parent.foot.document.getElementById("lv").innerHTML;
-    temp_p_hp = o,
-    temp_p_hpmax = d,
-    temp_m_hp = u,
-    temp_m_hpmax = w;
-    var E = temp_p_hp / temp_p_hpmax * 100
-      , x = (temp_m_hp,
-    temp_m_hpmax,
-    "");
-    setup_mname(b),
-    message_cls(),
-    n = s_status(n),
-    _ = s_status(_),
-    "" == g && (g = "no_img.jpg"),
-    1 == h ? (-1 == g.indexOf("http") && (g = img + g + ".gif"),
-    g = '<img id=g2 src="' + g + '" border="0" style="position: absolute;left: 65%;top: 200;Z-INDEX: 1;visibility: visible">') : (g = mimg + g,
-    g = '<img id=g2 src="' + g + '" border="0" style="position: absolute;left: 65%;top: 150;Z-INDEX: 1;visibility: visible">'),
-    x = 1 == a ? l : img + l + ".gif",
-    k.src = x,
-    y = 200 - Math.floor(parseInt(k.height) / 4),
-    v.write(fight_temp_table1 + '<tr><td colspan="4">' + f + " (" + n + '屬性)</td><td width="100" rowspan="7">第 <font color="red" size="4"><span id="count">0</span></font> 回合</td><td colspan="4" >' + b + " (" + _ + "屬性)</td></tr>"),
-    v.write('<tr><td width="12.5%">HP</td><td class=b1 width="37.5%" colspan="3"><img src=' + img + 'bar/bhg.gif border="0" width="' + E + '%" id="p_img" height="9" alt=""></td><td width="12.5%">HP</td><td class=b1 width="37.5%" colspan="3"><img src=' + img + 'bar/bhg.gif border="0" width="100%" id="m_img" height="9" alt=""></td></tr>'),
-    v.write('<tr><td>物攻</td><td width="12.5%">' + t + '</td><td width="12.5%">物防</td><td width="12.5%">' + e + '</td><td width="12.5%">物攻</td><td width="12.5%">' + s + '</td><td width="12.5%">物防</td><td width="12.5%">' + p + "</td></tr>"),
-    v.write('<tr><td width="12.5%">魔攻</td><td width="12.5%">' + r + '</td><td>魔防</td><td width="12.5%">' + i + '</td><td width="12.5%">魔攻</td><td width="12.5%">' + c + '</td><td>魔防</td><td width="12.5%">' + m + "</td></tr>"),
-    v.write(temp_table2),
-    v.write('<table width="600" border="0" cellspacing="0" cellpadding="0" align="center" >'),
-    v.write('<tr><td width="50%" height="185" align="center"><img id=g1 src="' + x + '" border="0" style="position: absolute;left: 15%;top: ' + y + ';Z-INDEX: 1;visibility: visible"></td><td align="center" width="50%" height="150">' + g + "</td></tr>"),
-    v.write(temp_table2),
-    v.write('<br><table width="97%" border="0" cellspacing="0" cellpadding="0" align="center" ><tr><td colspan="2" align="center">' + hr + '<div align="center" id="a1"></td></tr>'),
-    v.write(temp_table2),
-    v.write('<img id=g3 border="0" style="position: absolute;left: 5%;top: 150;Z-INDEX: 1;visibility: hidden">'),
-    "" != p_support_name && v.write('<img id=g4 src="' + img + p_support_img + '.gif" border="0" style="position: absolute;left: 5%;top: 200;Z-INDEX: 1;visibility: hidden">');
-    console.log(level2);
-}
-function lv_up(t, e, r, i, o, d, n, a) {//顯示上升等級
-    var l = parent.wog_view.document;
-    null == a && (l.write(hr),
-    l.write(temp_table1),
-    l.write('<tr><td colspan="10"><b>' + p_name + " 等級上升 "+((parseInt(parent.foot.document.getElementById("lv").innerHTML))-(level2))+"</b></td></tr>"),
-    l.write("<tr><td><b>力量</b></td>"),
-    l.write("<td><b>速度</b></td>"),
-    l.write("<td><b>智力</b></td>"),
-    l.write("<td><b>生命</b></td>"),
-    l.write("<td><b>體質</b></td>"),
-    l.write("<td><b>魅力</b></td>"),
-    l.write("<td><b>信仰</b></td></tr>"),
-    l.write("<tr><td><b>↑ " + t + "</b></td>"),
-    l.write("<td><b>↑ " + e + "</b></td>"),
-    l.write("<td><b>↑ " + r + "</b></td>"),
-    l.write("<td><b>↑ " + i + "</b></td>"),
-    l.write("<td><b>↑ " + o + "</b></td>"),
-    l.write("<td><b>↑ " + d + "</b></td>"),
-    l.write("<td><b>↑ " + n + "</b></td></tr>"),
-    l.write(temp_table2))
 }
 function mission_book(t, e) {
     message_cls(),
@@ -284,6 +224,7 @@ function fire_date(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, _, b, g, h) {
       , f = get_name()
       , y = 0
       , k = new Image;
+    level2 = parent.foot.document.getElementById("lv").innerHTML;
     temp_p_hp = o,
     temp_p_hpmax = d,
     temp_m_hp = u,
@@ -310,6 +251,27 @@ function fire_date(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, _, b, g, h) {
     v.write('<br><table width="97%" border="0" cellspacing="0" cellpadding="0" align="center" ><tr><td colspan="2" align="center">' + hr + '<div align="center" id="a1"></td></tr>'),
     v.write(temp_table2),
     "" != p_support_name && v.write('<img id=g4 src="' + img + p_support_img + '.gif" border="0" style="position: absolute;left: 5%;top: 200;Z-INDEX: 1;visibility: hidden">')
+}
+function lv_up(t, e, r, i, o, d, n, a) {//顯示上升等級
+    var l = parent.wog_view.document;
+    null == a && (l.write(hr),
+    l.write(temp_table1),
+    l.write('<tr><td colspan="10"><b>' + p_name + " 等級上升 "+((parseInt(parent.foot.document.getElementById("lv").innerHTML))-(level2))+"</b></td></tr>"),
+    l.write("<tr><td><b>力量</b></td>"),
+    l.write("<td><b>速度</b></td>"),
+    l.write("<td><b>智力</b></td>"),
+    l.write("<td><b>生命</b></td>"),
+    l.write("<td><b>體質</b></td>"),
+    l.write("<td><b>魅力</b></td>"),
+    l.write("<td><b>信仰</b></td></tr>"),
+    l.write("<tr><td><b>↑ " + t + "</b></td>"),
+    l.write("<td><b>↑ " + e + "</b></td>"),
+    l.write("<td><b>↑ " + r + "</b></td>"),
+    l.write("<td><b>↑ " + i + "</b></td>"),
+    l.write("<td><b>↑ " + o + "</b></td>"),
+    l.write("<td><b>↑ " + d + "</b></td>"),
+    l.write("<td><b>↑ " + n + "</b></td></tr>"),
+    l.write(temp_table2))
 }
 //刪除gif及統計人數
 function onlinelist(t) {
