@@ -1,4 +1,4 @@
-/****************************修改原生功能開始*************************26/3/2025 16:55***/
+/****************************修改原生功能開始***************************26/3/2025 17:29*/
 function cd_add(t) {
     if (t == 2 | t == 3 | t == 10) {
         return;
@@ -186,7 +186,7 @@ function ad_view() {
     t.write(temp_table1);
     t.write("<form name=f1>");
     t.write('<tr><td><input type="radio" name="a_type" value="1" checked>冒險修行 <select name="act_area" onChange="parent.select_area(this.options[this.options.selectedIndex].value,this.form)"></select>');
-    t.write('<select name="act1" onChange="parent.change_mission(0,this.form)"><option value="" SELECTED>選擇場所</option></select></td></tr>');
+    t.write('<select name="act1" onChange="parent.change_mission(0,this.form)"><option value="" SELECTED>選擇場所</option></select><label id="place_id"> 地區id:0</label></td></tr>');
     t.write('<tr><td><input type="radio" name="a_type" value="2" >武鬥競技 <select name="act2" onChange="parent.change_mission(1,this.form)"><option value="" SELECTED>選擇模式</option><option value="20" >挑戰冠軍</option></select></td></tr>');
     t.write('<tr><td ><input type="radio" name="a_mode" value="1" checked>快速模式  <input type="radio" name="a_mode" value="2" >一般模式</td></tr>');
     t.write('<tr><td >戰鬥回合數 <input type="text" name="f_count" value="400" size="3" maxlength="3"> (最大' + f_count + ")</td></tr>");
@@ -217,6 +217,11 @@ function ad_view() {
     if (null != i) {
         t.write("<script>document.f1.f_hp.value=" + i + ";</script>");
     }
+}
+function change_mission(t, e) {
+    var r = e;
+    0 == t ? r.a_type[0].checked = !0 : 1 == t && (r.a_type[1].checked = !0);
+    parent.wog_view.document.querySelector("#place_id").innerText = " 地區id:" + parent.wog_view.f1[2].value; //修改地區id
 }
 //刪除戰鬥的圖片
 function fire_date(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, _, b, g, h) {
@@ -522,10 +527,8 @@ async function unArm(index) {
         })
         .then((response) => {
             return response.text();
-        })
-        .then((html) => {
-            await arm_setup(e[index], "");
         });
+    await arm_setup(e[index], "");
 }
 async function armItem(item) {
     let formData = new FormData();
