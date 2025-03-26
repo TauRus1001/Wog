@@ -9,7 +9,7 @@ function cd_add(t) {
         setup_time(start_time),
         window.setTimeout("CountDown()", 100)
 }
-function fire_date(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, _, b, g, h) { //增加level2(觀察戰鬥前的等級)
+function fire_date(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, _, b, g, h) { //增加level2(觀察戰鬥前的等級)a
     var v = parent.wog_view.document
       , f = get_name()
       , y = 0
