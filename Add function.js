@@ -79,7 +79,7 @@ function arm_view(t, e, r, i, o) {
                     _ = "";
                 if (l++,
                     w = "" + att[p[16]],
-                    _ = p[16] > 0 ? "<img src='/img/att.jpg' alt='" + w + "' title='" + w + "'>" : "",
+                    _ = p[16] > 0 ? "<img src='/img/att.jpg' alt='" + w + "' title='" + w + "' width='16'>" : "",
                     null != m)
                     var b = "*" + m[u];
                 else
