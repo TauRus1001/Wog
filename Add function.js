@@ -63,7 +63,7 @@ function arm_view(t, e, r, i, o) {
     var d = parent.wog_view.document;
     if (vData = e,
         arm_head(),
-        d.write('<hr><tr><td colspan="11" >可使用的背包格數 ：' + i + " </td></tr>"),
+        d.write('<hr><tr><td colspan="11" >可使用的背包格數 ：' + i + ' </td></tr><a href="#bottom" style="margin-left:20px;">移到底部</a>'),
         d.write(`<div class='scrollable-table'>`),
         d.write('<form action="wog_act.php" method="post" target="mission" name="f2">'),
         d.write(`<table width="97%" border="2" cellspacing="0" cellpadding="2" align="center" bordercolor="#868686" id="bagList">`),
@@ -105,7 +105,7 @@ function arm_view(t, e, r, i, o) {
             }
 	    }
 	    d.write(
-	        `<tr><td colspan="13" >欲轉移需輸入對方遊戲的帳號
+	        `<tr><td colspan="13" ><a href="javascript:parent.wog_view.document.body.getElementsByClassName(\'scrollable-table\')[0].scrollTop=0" id="bottom" style="margin-right:10px;">回到頂部</a>欲轉移需輸入對方遊戲的帳號
 	        <input type="text" name="pay_id" id="playList" list="playerList"/>
 	        <datalist id="playerList">${playerOptions}</datalist>
 	        安全密碼 <input type="password" name="pw" size="16"></td></tr>`
