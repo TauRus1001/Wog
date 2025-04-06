@@ -37,29 +37,6 @@ function mission_book(t, e) {
         r.write("</form>")
     }
 }
-function mission_detail(t, e) {
-    message_cls(),
-    mission_head();
-    var r = parent.wog_view.document;
-    if (r.write("<center>"),
-    r.write('<form action="wog_act.php" method="post" target="mission" name=f1>'),
-    "" != t) {
-        r.write('<div style="padding-left:2em;text-align:center;color:#000000;background-image:url(' + missionBackground.src + ');background-repeat:no-repeat;background-attachment:fixed;background-position:top center;width:281px;height:780px;">');
-        var i = t.split(",");
-        r.write('<div style="padding-top:3.5em;width:90%"><u><b>' + i[0] + "<b></u></div>"),
-        r.write('<div style="width:90%">委託者：' + i[1] + "</div>");
-        for (var o = i[2]; o.indexOf("&n") > 0; )
-            o = o.replace("&n", "<br>");
-        r.write('<div style="text-align:left;margin-top:1em;padding-top:1em;width:90%;min-height:100px;max-height:500px;overflow-y: auto;overflow-x: hidden">' + o + "</div>"),
-        r.write('<div style="position:relative;top:20;left:-20;"><input type="submit" value="確定接受" style="border:2px solid black;background:transparent;cursor:hand"></div>'),
-        r.write("</div>"),
-        r.write('<input type="hidden" name="f" value="mission">'),
-        r.write('<input type="hidden" name="act" value="get">'),
-        r.write('<input type="hidden" name="m_id" value="' + e + '">')
-    }
-    r.write("</form>"),
-    r.write("</center>")
-}
 function event() {
     parent.sendNoti();
     var t = parent.wog_view.document;
@@ -90,7 +67,7 @@ function arm_view(t, e, r, i, o) {
         d.write(`<div class='scrollable-table'>`),
         d.write('<form action="wog_act.php" method="post" target="mission" name="f2">'),
         d.write(`<table width="97%" border="2" cellspacing="0" cellpadding="2" align="center" bordercolor="#868686" id="bagList">`),
-        d.write(`<thead><tr><th>NO</th><th>裝/轉</th><th>物攻</th><th>魔攻</th><th>物防</th><th>魔防</th><th>速度</th><th>名稱</th><th>金錢</th><th>霧靈</th><th>印花</th><th>幻點</th><th>販/拍</th></tr></thead>`),
+        d.write(`<thead><tr><th>NO</th><th>裝/轉</th><th>物攻</th><th>魔攻</th><th>物防</th><th>魔防</th><th>速度</th><th id="itemTitle">名稱</th><th>金錢</th><th>霧靈</th><th>印花</th><th>幻點</th><th>販/拍</th></tr></thead>`),
         "0" != e)
         for (var n = t.split(";"), a = 0, l = 0, s = 0; s < n.length; s++) {
             var p = n[s].split(","),
@@ -144,12 +121,6 @@ function arm_view(t, e, r, i, o) {
 	    if ("d_item_id" != r) {
 	        parent.wog_view.document.head.getElementsByTagName("style")[1].innerHTML = '.scrollable-table{height:72%;overflow-y:auto;}.scrollable-table>form>#bagList{width:100%}th{background:#083118;position:sticky;top:0;font-size: 11pt;}table#bagList>tbody>tr:nth-last-of-type(-n+2){position: sticky;bottom: 27;background:#000000;}table#bagList>tbody>tr:last-child{position:sticky;bottom:0;background:#000000;}'
 	    }
-}
-function addItemCss() {
-    let styles = `.scrollable-table{height:72%;overflow-y:auto;}.scrollable-table>form>#bagList{width:100%}th{background:#083118;position:sticky;top:0;font-size: 11pt;}table#bagList>tbody>tr:nth-last-of-type(-n+3){position: sticky;bottom: 52;background:#000000;}table#bagList>tbody>tr:nth-last-of-type(-n+2){position: sticky;bottom: 27;background:#000000;}table#bagList>tbody>tr:last-child{position:sticky;bottom:0;background:#000000;}`;
-    let styleSheet = parent.wog_view.document.createElement("style");
-    styleSheet.textContent = styles;
-    parent.wog_view.document.head.appendChild(styleSheet);
 }
 //wog_view背景圖片切換
 function message_cls(t, e) {
