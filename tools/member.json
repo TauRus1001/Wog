@@ -4,13 +4,13 @@
             {
                 "index":0,
                 "name":"初心者",
-                "level":0,
+                "level":3,
                 "end_date":"2026-4-8"
             },
             {
                 "index":1,
                 "name":"jim5201323",
-                "level":1,
+                "level":3,
                 "end_date":"2026-4-8"
             },
             {
@@ -36,7 +36,13 @@
                 "name":"呆呆",
                 "level":1,
                 "end_date":"2026-4-8"
+            },
+            {
+                "index":6,
+                "name":"狗黑",
+                "level":0,
+                "end_date":"2026-4-8"
             }
         ],
-    "version":"1.0.3beta"
+    "version":"1.0.4beta"
 }
