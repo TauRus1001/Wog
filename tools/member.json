@@ -42,6 +42,18 @@
                 "name":"狗黑",
                 "level":0,
                 "end_date":"2026-4-8"
+            },
+            {
+                "index":7,
+                "name":"絕望",
+                "level":0,
+                "end_date":"2026-4-8"
+            },
+            {
+                "index":7,
+                "name":"matemu",
+                "level":0,
+                "end_date":"2026-4-8"
             }
         ],
     "version":"1.0.4beta"
