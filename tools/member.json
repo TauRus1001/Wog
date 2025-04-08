@@ -44,17 +44,17 @@
                 "end_date":"2026-4-8"
             },
             {
-                "index":8,
+                "index":7,
                 "name":"絕望",
                 "level":0,
                 "end_date":"2026-4-8"
             },
             {
-                "index":7,
+                "index":8,
                 "name":"matemu",
                 "level":0,
                 "end_date":"2026-4-8"
             }
         ],
-    "version":"1.0.5beta"
+    "version":"1.0.4beta"
 }
