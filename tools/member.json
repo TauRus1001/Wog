@@ -5,61 +5,61 @@
                 "index":0,
                 "name":"初心者",
                 "level":3,
-                "end_date":"9026-04-08"
+                "end_date":"9026/04/08"
             },
             {
                 "index":1,
                 "name":"jim5201323",
                 "level":3,
-                "end_date":"9026-04-08"
+                "end_date":"9026/04/08"
             },
             {
                 "index":2,
                 "name":"TauRus1001",
                 "level":3,
-                "end_date":"9026-04-08"
+                "end_date":"9026/04/08"
             },
             {
                 "index":3,
                 "name":"虛無之界",
                 "level":1,
-                "end_date":"2025-05-08"
+                "end_date":"2025/05/08"
             },
             {
                 "index":4,
                 "name":"丹丹",
                 "level":1,
-                "end_date":"2025-05-08"
+                "end_date":"2025/05/08"
             },
             {
                 "index":5,
                 "name":"呆呆",
                 "level":1,
-                "end_date":"2025-05-08"
+                "end_date":"2025/05/08"
             },
             {
                 "index":6,
                 "name":"狗黑",
                 "level":1,
-                "end_date":"2025-05-12"
+                "end_date":"2025/05/12"
             },
             {
                 "index":7,
                 "name":"絕望",
                 "level":0,
-                "end_date":"2025-05-08"
+                "end_date":"2025/05/08"
             },
             {
                 "index":8,
                 "name":"matemu",
                 "level":1,
-                "end_date":"2025-05-08"
+                "end_date":"2025/05/08"
             },
             {
                 "index":9,
                 "name":"Benedict",
                 "level":1,
-                "end_date":"2025-08-09"
+                "end_date":"2025/08/09"
             }
         ],
     "version":"1.0.4beta"
