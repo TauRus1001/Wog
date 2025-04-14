@@ -65,7 +65,13 @@
                 "index":10,
                 "name":"嵐犽",
                 "level":0,
-                "end_date":"08/09/2025"
+                "end_date":"05/08/2025"
+            },
+            {
+                "index":11,
+                "name":"念慈",
+                "level":0,
+                "end_date":"05/08/2025"
             }
         ],
     "version":"1.0.4beta"
