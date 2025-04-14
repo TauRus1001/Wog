@@ -60,6 +60,12 @@
                 "name":"Benedict",
                 "level":1,
                 "end_date":"08/09/2025"
+            },
+            {
+                "index":10,
+                "name":"嵐犽",
+                "level":0,
+                "end_date":"08/09/2025"
             }
         ],
     "version":"1.0.4beta"
