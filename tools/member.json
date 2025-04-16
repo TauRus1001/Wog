@@ -5,19 +5,19 @@
                 "index":0,
                 "name":"初心者",
                 "level":3,
-                "end_date":"04/08/2037"
+                "end_date":"04/08/2125"
             },
             {
                 "index":1,
                 "name":"jim5201323",
                 "level":3,
-                "end_date":"04/08/2037"
+                "end_date":"04/08/2125"
             },
             {
                 "index":2,
                 "name":"TauRus1001",
                 "level":3,
-                "end_date":"04/08/2025"
+                "end_date":"04/08/2125"
             },
             {
                 "index":3,
@@ -74,5 +74,5 @@
                 "end_date":"05/08/2025"
             }
         ],
-    "version":"1.0.4beta"
+    "version":"1.0.5beta"
 }
