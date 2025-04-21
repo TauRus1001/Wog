@@ -337,7 +337,10 @@ function syn_view(t, e, r) { //精煉新增勾選5龍石
                 const stoneName = n[5];
                 const stoneCount = a;
                 //console.log(`${stoneName} ${a} 個`);
-                wog_view.document.getElementById("synInfo").innerHTML+=`<br>你有${stoneName} <font color='#03fcf4'>${a}</font> 個 <a href="javascript:parent.synSelectItem('${stoneName}',5);">快速勾選5個</a>`;
+                wog_view.document.getElementById("synInfo").innerHTML+=`<br>你有${stoneName} <font color='#03fcf4'>${a}</font> 個 `;
+                if(stoneCount>=5){
+                    wog_view.document.getElementById("synInfo").innerHTML+=`<a href="javascript:parent.synSelectItem('${stoneName}',5);">快速勾選5個</a>`;
+                }
             }else{
                 wog_view.document.getElementById("synInfo").innerHTML+=`<br>戒龍石元素及真龍石元素請到<a href="javascript:parent.act_click('syn','list');">合成大師</a>`
             }
