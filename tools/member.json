@@ -72,6 +72,12 @@
                 "name":"念慈",
                 "level":0,
                 "end_date":"05/08/2025"
+            },
+            {
+                "index":12,
+                "name":"KamL",
+                "level":0,
+                "end_date":"05/08/2025"
             }
         ],
     "version":"1.0.5beta"
