@@ -78,6 +78,12 @@
                 "name":"KamL",
                 "level":0,
                 "end_date":"05/08/2025"
+            },
+            {
+                "index":13,
+                "name":"hawk",
+                "level":0,
+                "end_date":"05/08/2025"
             }
         ],
     "version":"1.0.5beta"
