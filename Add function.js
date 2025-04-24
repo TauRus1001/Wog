@@ -37,7 +37,7 @@ function mission_book(t, e) {
         r.write("</form>")
     }
 }
-function event() {
+async function event() {
     parent.sendNoti();
     var t = parent.wog_view.document;
     message_cls();
@@ -45,7 +45,9 @@ function event() {
     t.write(temp_table1),
         t.write('<form action="wog_act.php" method="post" target="mission"><tr><td>站長要考驗大家是否有認真在玩</td></tr><tr><td>請注意...必須用半形字 及 數目字 1-9 輸入驗證碼 , 每人有5次機會</td></tr><tr><td colspan="2"><img src="wog_etc.php?f=confirm&time=' + e.getTime() + '"></td></tr><tr><td>請輸入安全驗證碼:<input type="text" name="sec_code" size="8"></td></tr>'),
         t.write('<tr><td colspan="2"><input class="text" type="button" value="填好答案了,放我過關吧!!" onClick="parent.foot_trun(\'event\',\'\',this.form.sec_code.value,\'\')" style="' + sbutton + '"></td></tr></form>'),
-        t.write(temp_table2)
+        t.write(temp_table2);
+    await parent.sleep(500);
+    alert("驗證碼出現了");
 }
 function arm_unsetup_all_success() {
     var t, e = ["a_id", "d_head_id", "d_body_id", "d_hand_id", "d_foot_id", "d_item_id", "d_card_id", "d_car_id", "d_ca_id", "d_book_id", "d_god_id"];
