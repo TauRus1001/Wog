@@ -486,15 +486,14 @@ function status_view2(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, _, b, g, h, v
         <table width="600px" border="1" bgcolor="#555555" style="
         border: 1px solid black;
         Z-INDEX: 100">
-          <tbody style="color:white">
-            <tr>
+          <thead style="position: sticky; top: 0; background-color: #555555;">
+            <tr width="100%">
               <th style="text-align: right"><a href="javascript:parent.adBoxToggle()">關閉</a></th>
             </tr>
-          <tr>
+        </thead>
+          <tbody style="color:white;">
+          <tr bgcolor="#4B689E">
               <td>${G}</td>
-            </tr>
-              <tr>
-              <th style="text-align: right"><a href="javascript:parent.adBoxToggle()">關閉</a</th>
             </tr>
         </table>
       </div>
