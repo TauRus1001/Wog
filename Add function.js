@@ -47,7 +47,7 @@ async function event() {
         t.write('<tr><td colspan="2"><input class="text" type="button" value="填好答案了,放我過關吧!!" onClick="parent.foot_trun(\'event\',\'\',this.form.sec_code.value,\'\')" style="' + sbutton + '"></td></tr></form>'),
         t.write(temp_table2);
     await parent.sleep(500);
-    alert("驗證碼出現了");
+    alert(`|驗證碼出現了￣￣￣￣￣￣|\n￣￣￣v￣￣￣￣￣￣￣￣￣\nヾ(๑╹◡╹)ﾉ🔪`);
 }
 function arm_unsetup_all_success() {
     var t, e = ["a_id", "d_head_id", "d_body_id", "d_hand_id", "d_foot_id", "d_item_id", "d_card_id", "d_car_id", "d_ca_id", "d_book_id", "d_god_id"];
