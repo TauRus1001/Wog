@@ -297,44 +297,29 @@ function onlinelist(t) {
 }
 function syn_view(t, e, r) { //精煉新增勾選5龍石
     var i = parent.wog_view.document;
-    message_cls(),
-    vData = e,
-    i.write(temp_table1),
-    i.write('<form action="wog_act.php" method="post" name=f1 target="mission">'),
-    i.write('<tr><td><img src="./img/eq/weapon.jpg"><br>武器</td><td><img src="./img/eq/head.jpg"><br>頭部</td><td><img src="./img/eq/body.jpg"><br>身體</td><td><img src="./img/eq/hand.jpg"><br>手部</td><td><img src="./img/eq/foot.jpg"><br>腳部</td><td><img src="./img/eq/tool.jpg"><br>道具</td><td><img src="./img/eq/simp.jpg"><br>護符</td><td><img src="./img/eq/ride.jpg"><br>座騎</td><td><img src="./img/eq/card.jpg"><br>幻想卡</td><td><img src="./img/eq/book.jpg"><br>幻戰書</td><td><img src="./img/eq/graund.jpg"><br>守護者</td></tr><tr>'),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('arm','view','a_id')\">裝備</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('arm','view','d_head_id')\">裝備</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('arm','view','d_body_id')\">裝備</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('arm','view','d_hand_id')\">裝備</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('arm','view','d_foot_id')\">裝備</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('arm','view','d_item_id')\">裝備</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('arm','view','d_card_id')\">裝備</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('arm','view','d_car_id')\">裝備</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('arm','view','d_ca_id')\">裝備</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('arm','view','d_book_id')\">裝備</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('arm','view','d_god_id')\">裝備</td>"),
-    i.write("</tr>"),
-    i.write("<tr>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('syn','view','a_id')\">精鍊</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('syn','view','d_head_id')\">精鍊</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('syn','view','d_body_id')\">精鍊</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('syn','view','d_hand_id')\">精鍊</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('syn','view','d_foot_id')\">精鍊</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('syn','view','d_item_id')\">精鍊</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('syn','view','d_card_id')\">精鍊</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('syn','view','d_car_id')\">精鍊</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('syn','view','d_ca_id')\">精鍊</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('syn','view','d_book_id')\">精鍊</td>"),
-    i.write("<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('syn','view','d_god_id')\">精鍊</td>"),
-    i.write("</tr>"),
-    i.write('<input type="hidden" name="f" value="">'),
-    i.write('<input type="hidden" name="act" value="">'),
-    i.write('<input type="hidden" name="temp_id" value="">'),
-    i.write("</form>"),
-    i.write(temp_table2),
-    i.write('<form action="wog_act.php" method="post" target="mission" name="f2">'),
-    i.write(temp_table1),
-    i.write('<tr><td colspan="9"><p align=center id="synInfo">歡迎來到精鍊中心，你可以在這裡升級你的裝備，首先，裝備必需<b><font color=red>可</font></b>精鍊<br>第二，升級裝備必須要有裝備類型對應的精鍊石，分別是<font color=red>天</font><font color=orange>帝</font><font color=yellow>戰</font><font color=green>泣</font><font color=lightgreen>聖</font><font color=blue>戒</font><font color=purple>斷</font><font color=white>真</font><font color=grey>神</font>九種精鍊石<br>不過，精鍊前請考慮風險，因為精鍊裝備會有機會失敗，導致裝備消失！<a href="/data/dsyn.html" target="_blank"><font color=ffffff>精鍊教學按此</font></a></p></td></tr>'),
+    message_cls();
+    vData = e;
+    const parts = ['a_id','d_head_id','d_body_id','d_hand_id','d_foot_id','d_item_id','d_card_id','d_car_id','d_ca_id','d_book_id','d_god_id'];
+    i.write(temp_table1);
+    i.write('<form action="wog_act.php" method="post" name=f1 target="mission">');
+    i.write('<tr><td><img src="./img/eq/weapon.jpg"><br>武器</td><td><img src="./img/eq/head.jpg"><br>頭部</td><td><img src="./img/eq/body.jpg"><br>身體</td><td><img src="./img/eq/hand.jpg"><br>手部</td><td><img src="./img/eq/foot.jpg"><br>腳部</td><td><img src="./img/eq/tool.jpg"><br>道具</td><td><img src="./img/eq/simp.jpg"><br>護符</td><td><img src="./img/eq/ride.jpg"><br>座騎</td><td><img src="./img/eq/card.jpg"><br>幻想卡</td><td><img src="./img/eq/book.jpg"><br>幻戰書</td><td><img src="./img/eq/graund.jpg"><br>守護者</td></tr><tr>');
+    for(let j=0;j<parts.length;j++){
+        i.write(`<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('arm','view','${parts[j]}')\">裝備</td>`);
+    }
+    i.write("</tr>");
+    i.write("<tr>");
+    for(let j=0;j<parts.length;j++){
+        i.write(`<td onmouseover=\"this.style.color='white';this.style.backgroundColor='#4B689E'\" onmouseout=\"this.style.color='white';this.style.backgroundColor=''\" onClick=\"parent.act_click('syn','view','${parts[j]}')\">精鍊</td>`);
+    }
+    i.write("</tr>");
+    i.write('<input type="hidden" name="f" value="">');
+    i.write('<input type="hidden" name="act" value="">');
+    i.write('<input type="hidden" name="temp_id" value="">');
+    i.write("</form>");
+    i.write(temp_table2);
+    i.write('<form action="wog_act.php" method="post" target="mission" name="f2">');
+    i.write(temp_table1);
+    i.write('<tr><td colspan="9"><p align=center id="synInfo">歡迎來到精鍊中心，你可以在這裡升級你的裝備，首先，裝備必需<b><font color=red>可</font></b>精鍊<br>第二，升級裝備必須要有裝備類型對應的精鍊石，分別是<font color=red>天</font><font color=orange>帝</font><font color=yellow>戰</font><font color=green>泣</font><font color=lightgreen>聖</font><font color=blue>戒</font><font color=purple>斷</font><font color=white>真</font><font color=grey>神</font>九種精鍊石<br>不過，精鍊前請考慮風險，因為精鍊裝備會有機會失敗，導致裝備消失！<a href="/data/dsyn.html" target="_blank"><font color=ffffff>精鍊教學按此</font></a></p></td></tr>');
     i.write("<tr><td>合成選擇</td><td>物理攻擊力</td><td>魔力攻擊力</td><td>物理防禦力</td><td>魔力防禦力</td><td>提升速度</td><td>名稱</td><td>價格</td><td>精鍊</td></tr>");
     for (var o = t.split(";"), d = 0; d < o.length; d++) {
         var n = o[d].split(",")
