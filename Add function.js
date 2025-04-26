@@ -134,17 +134,6 @@ function arm_view(t, e, r, i, o) {
             parent.wog_view.document.head.getElementsByTagName("style")[1].innerHTML = '.scrollable-table{height:72%;overflow-y:auto;}.scrollable-table>form>#bagList{width:100%}th{background:#083118;position:sticky;top:0;font-size: 11pt;}table#bagList>tbody>tr:nth-last-of-type(-n+2){position: sticky;bottom: 27;background:#000000;}table#bagList>tbody>tr:last-child{position:sticky;bottom:0;background:#000000;}'
         }
 }
-function draw_end_view2(t, e) {
-    var r = parent.wog_view.document;
-    message_cls(),
-    r.write(temp_table1 + "<tr><td>"),
-    1 == e && r.write("<p align=center>寶箱開啟了，得到： <font color=#ffffaf size=6>" + t + "</font></p> "),
-    2 == e && r.write("錯誤精鍊，變了一團煙"),
-    3 == e && r.write("精鍊失敗，物品消失了"),
-    4 == e && r.write("精鍊成功！但因為裝備欄已滿，所以裝備掉下被不明人士撿走，請自認倒楣。"),
-    1 == e && r.write(birth[0]),
-    r.write("</td></tr>" + temp_table2);
-}
 //wog_view背景圖片切換
 function message_cls(t, e) {
     var r = parent.wog_view.document;
