@@ -96,6 +96,12 @@
                 "name":"YoruKador",
                 "level":0,
                 "end_date":"05/08/2025"
+            },
+            {
+                "index":16,
+                "name":"紫氣東來",
+                "level":0,
+                "end_date":"05/08/2025"
             }
         ],
     "version":"1.0.5beta"
