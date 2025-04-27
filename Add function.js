@@ -396,7 +396,7 @@ function status_view2(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, b, _, g, h, v
     at >= 1 && (ct = '<img src="' + img + 'bar/bxg.gif" width="' + at + '%" height="9" title="' + at + '%">');
     lt >= 1 && (mt = '<img src="' + img + 'bar/bhg.gif" width="' + lt + '%" height="9" title="' + at + '%">');
     Q.write('<center><img src="./img/Player.png"></center>');
-    o == "TauRus1001" ? (Q.write('<center><audio controls autoplay style="width: 300px; height: 40px"><source src="https://cdn.whyp.it/e1312708-53db-4483-ad26-ee1d3d02ca05.mp3?token=ju2AOpouhqKnkJqiv4APeSdddYvJ8EoY6b3OI7gxCPA&expires=1745809541" type="audio/mpeg"></audio></center>')) : '';
+    o == "TauRus1001" ? (Q.write('<center><iframe width="300" height="100" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https://api.soundcloud.com/tracks/603113994&color=%23ff5500&auto_play=true&show_user=false"></iframe></center>')) : '';
     Q.write(temp_table1),
     Q.write('<tr><td width="60%">'),
     Q.write(temp_table1),
