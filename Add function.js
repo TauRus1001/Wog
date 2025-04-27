@@ -365,6 +365,109 @@ function syn_view(t, e, r) { //精煉新增勾選5龍石
     i.write('<input type="hidden" name="act" value="purify">'),
     i.write("</form>")
 }
+function status_view2(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, b, _, g, h, v, f, y, k, x, E, B, C, j, F, T, I, M, D, N, H, P, A, L, O, z, R, q, V, S, U, Y, X, W, G, K, Z, $) {
+    var Q = parent.wog_view.document
+      , J = "";
+    J = 1 == r ? i : img + i + ".gif";
+    var tt = "";
+    tt = "1" == d ? "男" : "女",
+    a = s_status(a);
+    get_f(w, 5e4),
+    get_f(b, 5e4),
+    get_f(_, 5e4),
+    get_f(g, 5e4),
+    get_f(v, 5e4),
+    get_f(f, 5e4),
+    get_f(h, 5e4);
+    var et = get_f(y, 5e4)
+      , rt = get_f(k, 5e4)
+      , it = get_f(x, 5e4)
+      , ot = get_f(E, 5e4)
+      , dt = s / p * 100
+      , nt = 99 - (dt = dt > 1 ? dt < 99 ? Math.round(dt) : Math.floor(dt) : Math.ceil(dt))
+      , at = m / u * 100
+      , lt = 99 - (at = at > 1 ? at < 99 ? Math.round(at) : Math.floor(at) : Math.ceil(at))
+      , st = ""
+      , pt = ""
+      , ct = ""
+      , mt = "";
+    dt >= 1 && (st = '<img src="' + img + 'bar/bxg.gif" width="' + dt + '%" height="9" title="' + dt + '%">');
+    nt >= 1 && (pt = '<img src="' + img + 'bar/bhg.gif" width="' + nt + '%" height="9" title="' + dt + '%">');
+    at >= 1 && (ct = '<img src="' + img + 'bar/bxg.gif" width="' + at + '%" height="9" title="' + at + '%">');
+    lt >= 1 && (mt = '<img src="' + img + 'bar/bhg.gif" width="' + lt + '%" height="9" title="' + at + '%">');
+    Q.write('<center><img src="./img/Player.png"></center>');
+    o == "TauRus1001" ? (Q.write('<center><audio controls autoplay style="width: 300px; height: 40px"><source src="https://cdn.whyp.it/e1312708-53db-4483-ad26-ee1d3d02ca05.mp3?token=ju2AOpouhqKnkJqiv4APeSdddYvJ8EoY6b3OI7gxCPA&expires=1745809541" type="audio/mpeg"></audio></center>')) : '';
+    Q.write(temp_table1),
+    Q.write('<tr><td width="60%">'),
+    Q.write(temp_table1),
+    Q.write('<tr><td colspan="2">勝場 ' + t + " / 敗場 " + e + "　(獲勝率:" + Math.floor(t / (t + e) * 100) + "%)</td></tr>"),
+    Q.write('<tr><td colspan="2"><img src="' + J + '" border="0" ></td></tr>'),
+    Q.write('<tr><td bgcolor="#000099">金錢</td><td><b>-----</b></td></tr>'),
+    Q.write('<tr><td bgcolor="#000099">霧靈鬼魂</td><td><b>-----</b></td></tr>'),
+    Q.write('<tr><td bgcolor="#000099">幻想點數</td><td><b>-----</b></td></tr>'),
+    Q.write('<tr><td bgcolor="#996600">冒險地</td><td ><b>' + section.getPlace(A) + "</b></td></tr>"),
+    Q.write('<tr><td bgcolor="#990099">出生地</td><td ><b>' + birth[L] + "</b></td></tr>"),
+    Q.write("<tr><td>Exp</td><td>" + st + pt + "<b>" + Math.floor(s / p * 100) + "%</b></td></tr>"),
+    Q.write("<tr><td>HP</td><td>" + ct + mt + "<b>" + m + "/" + u + "</b></td></tr>"),
+    Q.write('</table></td><td width="40%">'),
+    Q.write(temp_table1),
+    Q.write('<tr><td bgcolor="#006600">勇者姓名</td><td><b>' + o + " (" + tt + " " + O + "歲)</b></td></tr>"),
+    Q.write('<tr><td bgcolor="#006600">等級</td><td><b>' + S + " 轉 " + l + " 級</b></td></tr>"),
+    Q.write('<tr><td bgcolor="#006600">職業</td><td><b>' + a + "屬 " + n + "</b></td></tr>"),
+    "" != U ? Q.write('<tr><td bgcolor="#006600">官職</td><td ><b>' + U + "</b></td></tr>") : Q.write('<tr><td bgcolor="#006600">官職</td><td ><b>平民</b></td></tr>'),
+    "" != d_s_ch_name ? Q.write('<tr><td bgcolor="#006600">奧義</td><td ><b>' + q + "奧義</b></td></tr>") : Q.write('<tr><td bgcolor="#006600">奧義</td><td ><b>未有裝備奧義</b></td></tr>'),
+    "" != K ? Q.write('<tr><td bgcolor="#E6C075">所屬公會</td><td><b>' + K + "</b></td></tr>") : Q.write('<tr><td bgcolor="#E6C075">所屬公會</td><td><b>未有所屬公會</b></td></tr>'),
+    "" != Z ? Q.write('<tr><td bgcolor="#E6C075">公會頭銜</td><td><b>' + Z + "</b></td></tr>") : Q.write('<tr><td bgcolor="#E6C075">公會頭銜</td><td><b>未有公會頭銜</b></td></tr>'),
+    Q.write('<tr><td bgcolor="#3300FF">守護者</td><td><b><span onmouseover="parent.textboard_view(' + desc_id[11] + ',event)" onmouseout="parent.textboard_close()">' + P + "</span></b></td>"),
+    "undefined" != V && Q.write("<tr><td>連勝紀錄</td><td>" + V + " 連勝中</td></tr>"),
+    Q.write("</table>"),
+    Q.write("</hr>"),
+    Q.write("<table border=0 width=97%>"),
+    Q.write('<tr><td><fieldset style="height:100; width:97%;overflow:auto"><legend>個人狀態及廣告區<button onclick="parent.adBoxToggle()" style="' + sbutton + ';margin: 0px 5px;">展開</button></legend><b>' + G + "</b></fieldset></td></tr>"),
+    Q.write("</table>"),
+    Q.write("</td></tr></table>"),
+    Q.write("<hr>"),
+    Q.write(temp_table1),
+    Q.write('<tr><td colspan="8" bgcolor="#555555"><b>角色能力</b></td></tr>'),
+    Q.write('<tr><td bgcolor="#555555">力量</td><td class="b"><b>' + w + "</b></td>"),
+    Q.write('<td bgcolor="#555555">敏捷</td><td class="b"><b>' + _ + "</b></td>"),
+    Q.write('<td bgcolor="#555555">魅力</td><td class="b"><b>' + v + "</b></td>"),
+    Q.write('<td bgcolor="#555555">體質</td><td class="b"><b>' + h + "</b></td></tr>"),
+    Q.write('<tr><td bgcolor="#555555">智力</td><td class="b"><b>' + b + "</b></td>"),
+    Q.write('<td bgcolor="#555555">生命</td><td class="b"><b>' + g + "</b></td>"),
+    Q.write('<td bgcolor="#555555">信仰</td><td class="b"><b>' + f + "</b></td>"),
+    Q.write('<td bgcolor="#555555">運氣</td><td class="b"><b>-----</b></td></tr>'),
+    Q.write("</table>"),
+    Q.write("<hr>"),
+    Q.write(temp_table1),
+    Q.write('<tr><td colspan="4" bgcolor="#555555"><b>角色數值</b></td></tr>'),
+    Q.write('<tr><td width="10%" bgcolor="#555555">物攻</td><td class="b1" width="40%"><img src="' + img + 'bar/bmg.gif" width="' + et + '%" height="9"><b>' + y + "</b></td></tr>"),
+    Q.write('<tr><td width="10%" bgcolor="#555555">物防</td><td class="b1" width="40%"><img src="' + img + 'bar/bmg.gif" width="' + it + '%" height="9"><b>' + x + "</b></td></tr>"),
+    Q.write('<tr><td width="10%" bgcolor="#555555">魔攻</td><td class="b1" width="40%"><img src="' + img + 'bar/bmg.gif" width="' + rt + '%" height="9"><b>' + k + "</b></td></tr>"),
+    Q.write('<tr><td width="10%" bgcolor="#555555">魔防</td><td class="b1" width="40%"><img src="' + img + 'bar/bmg.gif" width="' + ot + '%" height="9"><b>' + E + "</b></td></tr>"),
+    Q.write("</tr></table>"),
+    Q.write("<hr>"),
+    Q.write(temp_table1),
+    Q.write('<tr><td colspan="5" bgcolor="#555555"><b>角色裝備 【 ' + $ + " 】</b></td></tr>"),
+    Q.write("<tr>"),
+    Q.write('<td>武器<br><img src="./img/eq/weapon.jpg"><br><b><span onmouseover="parent.textboard_view(' + desc_id[0] + ',event)" onmouseout="parent.textboard_close()">' + B + "</span></b></td>"),
+    Q.write('<td>頭部<br><img src="./img/eq/head.jpg"><br><b><span onmouseover="parent.textboard_view(' + desc_id[1] + ',event)" onmouseout="parent.textboard_close()">' + j + "</span></b></td>"),
+    Q.write('<td>身體<br><img src="./img/eq/body.jpg"><br><b><span onmouseover="parent.textboard_view(' + desc_id[2] + ',event)" onmouseout="parent.textboard_close()">' + C + "</span></b></td>"),
+    Q.write('<td>手部<br><img src="./img/eq/hand.jpg"><br><b><span onmouseover="parent.textboard_view(' + desc_id[3] + ',event)" onmouseout="parent.textboard_close()">' + F + "</span></b></td>"),
+    Q.write('<td>腳部<br><img src="./img/eq/foot.jpg"><br><b><span onmouseover="parent.textboard_view(' + desc_id[4] + ',event)" onmouseout="parent.textboard_close()">' + T + "</span></b></td>"),
+    Q.write("</tr><tr>"),
+    Q.write('<td>道具<br><img src="./img/eq/tool.jpg"><br><b><span onmouseover="parent.textboard_view(' + desc_id[5] + ',event)" onmouseout="parent.textboard_close()">' + I + "</span></b></td>"),
+    Q.write('<td>座騎<br><img src="./img/eq/ride.jpg"><br><b><span onmouseover="parent.textboard_view(' + desc_id[8] + ',event)" onmouseout="parent.textboard_close()">' + D + "</span></b></td>"),
+    Q.write('<td>護符<br><img src="./img/eq/simp.jpg"><br><b><span onmouseover="parent.textboard_view(' + desc_id[7] + ',event)" onmouseout="parent.textboard_close()">' + M + "</span></b></td>"),
+    Q.write('<td>幻想卡<br><img src="./img/eq/card.jpg"><br><b><span onmouseover="parent.textboard_view(' + desc_id[9] + ',event)" onmouseout="parent.textboard_close()">' + N + "</span></b></td>"),
+    Q.write('<td>幻戰書<br><img src="./img/eq/book.jpg"><br><b><span onmouseover="parent.textboard_view(' + desc_id[10] + ',event)" onmouseout="parent.textboard_close()">' + H + "</span></b></td>"),
+    Q.write("</tr></table>"),
+    Q.write(temp_table2),
+    Q.write('<div id="textboard" name="textboard" style="display:none;background:black;border:1px solid #4B689E;width:160px;height:100px;position:absolute;left:0px;top:0px"></div>'),
+    Q.write("</td></tr></table>"),
+    Q.write('<div id="wog_message_box"></div>'),
+    Q.write(`\n    <div name="adBox" style="position:absolute;left:37%;top:350px;height:650px;overflow:auto;display:none;">\n      <div style="border: 1px solid black;width: 600px;">\n        <table width="600px" border="1" bgcolor="#555555" style="\n        border: 1px solid black;\n        Z-INDEX: 100">\n          <thead style="position: sticky; top: 0; background-color: #555555;">\n            <tr width="100%">\n              <th style="text-align: right"><a href="javascript:parent.adBoxToggle()">關閉</a></th>\n            </tr>\n        </thead>\n          <tbody style="color:white;">\n          <tr bgcolor="#4B689E">\n              <td>${G}</td>\n            </tr>\n        </table>\n      </div>\n    </div>\n    `)
+}
 /****************************修改原生功能結束****************************/
 function synSelectItem(itemName,itemAmount) { //精煉多選物品
     const itemList={'天龍石':1068,'帝龍石':1069,'戰龍石':1070,'泣龍石':1071,'聖龍石':1072,'斷龍石':1074,'神龍石':1076};
