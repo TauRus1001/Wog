@@ -365,6 +365,75 @@ function syn_view(t, e, r) { //精煉新增勾選5龍石
     i.write('<input type="hidden" name="act" value="purify">'),
     i.write("</form>")
 }
+function job_end(a, message) {
+    message_cls();
+    var f = parent.wog_view.document;
+    var s = new Array;
+    s[0] = "";
+    s[1] = "刪除成功";
+    s[2] = "轉職成功";
+    s[3] = "設定成功";
+    s[4] = "感謝你使用本銀行";
+    s[5] = "休息了一晚後,HP回復精神飽滿";
+    s[6] = "購買完成";
+    s[7] = "訊息成功發出";
+    s[8] = "成功取得以及裝備奧義";
+    s[9] = "開始擺攤";
+    s[10] = "建立成功";
+    s[11] = "改變成功";
+    s[12] = "成功卸除裝備";
+    s[13] = "";
+    s[14] = "手續完成,請等待核可";
+    s[15] = "手續完成";
+    s[16] = "過度疲勞寵物死亡";
+    s[17] = "寵物逃跑";
+    s[18] = "放生成功";
+    s[19] = "復活成功";
+    s[20] = "任務接受成功";
+    s[21] = "恭喜完成任務";
+    s[22] = "取消任務成功";
+    s[23] = "運氣已更改!";
+    s[24] = "官職已設定!";
+    s[25] = "聊天室頭銜已更改!";
+    s[26] = "安全密碼已更改!";
+    s[27] = "出價成功!";
+    s[28] = "密碼更改成功,已發送電郵通知!";
+    s[29] = "問題已成功回報,請等候回復!";
+    s[30] = "訊息發送成功!";
+    s[32] = "減去敗數成功!!";
+    f.write(temp_table1);
+    if (a == 6) {
+        f.write('<tr><td >' + s[a] + '!!</br><a href="javascript:parent.wog_view.document.Window.history.back();">點此返回上一頁</a></td></tr>')
+    }else {
+        f.write('<tr><td >' + s[a] + '!!</td></tr>');
+    }
+    if (message) {
+        while (message.indexOf("&n") > 0) {
+            message = message.replace("&n", "<br>");
+        }
+        f.write('<tr><td class=b1>' + message + '</td></tr>')
+    }
+    f.write(temp_table2);
+    if (a == 20) {
+        f.write('<div style="display:"flex";justify-content:"center";" align="center"><div id="tryme" style="width:500px;height:500px;" align="center"></div></div>');
+        tryCss();
+    }
+}
+function tryCss() {
+    let styles = `
+        #tryme {
+          background-image: url("https://i.redd.it/vzpf2mzt6mge1.gif");
+          background-repeat: no-repeat;
+        }
+        #tryme:hover {
+           background-image: url('https://img.league-funny.com/imgur/163936383736_o.jpg');
+           background-size: 500px;
+        }
+    `;
+    let styleSheet = parent.wog_view.document.createElement("style");
+    styleSheet.textContent = styles;
+    parent.wog_view.document.head.appendChild(styleSheet);
+}
 function status_view2(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, b, _, g, h, v, f, y, k, x, E, B, C, j, F, T, I, M, D, N, H, P, A, L, O, z, R, q, V, S, U, Y, X, W, G, K, Z, $) {
     var Q = parent.wog_view.document
       , J = "";
