@@ -414,7 +414,7 @@ function job_end(a, message) {
         f.write('<tr><td class=b1>' + message + '</td></tr>')
     }
     f.write(temp_table2);
-    if (a == 20) {
+    if (a == 22) {
         f.write('<div style="display:"flex";justify-content:"center";" align="center"><div id="tryme" style="width:500px;height:500px;" align="center"></div></div>');
         tryCss();
     }
