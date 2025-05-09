@@ -396,13 +396,14 @@ function status_view2(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, b, _, g, h, v
     at >= 1 && (ct = '<img src="' + img + 'bar/bxg.gif" width="' + at + '%" height="9" title="' + at + '%">');
     lt >= 1 && (mt = '<img src="' + img + 'bar/bhg.gif" width="' + lt + '%" height="9" title="' + at + '%">');
     Q.write('<center><img src="./img/Player.png"></center>');
+    //https://mu6.me/193359
     o == "TauRus1001" ? (Q.write('<center><iframe width="290" height="100" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https://api.soundcloud.com/tracks/603113994&color=%23ff5500&auto_play=true&show_user=false"></iframe></center>')) : '';
-    Q.write(temp_table1),
-    Q.write('<tr><td width="60%">'),
-    Q.write(temp_table1),
-    Q.write('<tr><td colspan="2">勝場 ' + t + " / 敗場 " + e + "　(獲勝率:" + Math.floor(t / (t + e) * 100) + "%)</td></tr>"),
-    Q.write('<tr><td colspan="2"><img src="' + J + '" border="0" ></td></tr>'),
-    Q.write('<tr><td bgcolor="#000099">金錢</td><td><b>-----</b></td></tr>'),
+    Q.write(temp_table1);
+    Q.write('<tr><td width="60%">');
+    Q.write(temp_table1);
+    Q.write('<tr><td colspan="2">勝場 ' + t + " / 敗場 " + e + "　(獲勝率:" + Math.floor(t / (t + e) * 100) + "%)</td></tr>");
+    o == decodeURIComponent(atob("JUU0JUI4JUJCJUU4JUE3JTkyJUU3JTg0JUExJUU2JTk1JUI1JUU3JTkwJTg2JUU4JUFCJTk2JTYw")) ?(Q.write('<tr><td colspan="2"><img width="200px" src="https://zixun.xinlingshou.com/wp-content/uploads/2024/04/imwprobot-8e213bedf27eae2f1a07a5cbd7069347.gif" border="0"></td></tr>')):Q.write('<tr><td colspan="2"><img src="' + J + '" border="0" ></td></tr>');
+    Q.write('<tr><td bgcolor="#000099">金錢</td><td><b>-----</b></td></tr>');
     Q.write('<tr><td bgcolor="#000099">霧靈鬼魂</td><td><b>-----</b></td></tr>'),
     Q.write('<tr><td bgcolor="#000099">幻想點數</td><td><b>-----</b></td></tr>'),
     Q.write('<tr><td bgcolor="#996600">冒險地</td><td ><b>' + section.getPlace(A) + "</b></td></tr>"),
