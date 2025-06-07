@@ -499,7 +499,7 @@ function addConciseMode(){
     input:checked + .slider:before{transform: translateX(14px);}
     </style>
     <td align="center" valign="middle">
-    <div id="a1"></div><select name="pagelist" style="background:black;color:white" onchange="if(document.f1.pagelist.value != '')parent.wog_view.document.location.href=document.f1.pagelist.value">
+    <div id="a1"></div><select name="pagelist" style="background:black;color:white" onchange="if(event.target.value != '')parent.wog_view.document.location.href=event.target.value">
       <option value="" selected="">遊戲選單</option>
       <option value="rules.html">幻想規則</option>
       <option value="./data/dnew1.html">新手須知</option>
