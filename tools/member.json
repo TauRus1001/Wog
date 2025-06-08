@@ -144,9 +144,9 @@
             {
                 "index":20,
                 "name":"Jack",
-                "level":1,
+                "level":3,
                 "limitation":2,
-                "end_date":"07/08/2025"
+                "end_date":"08/08/2025"
             }
         ],
     "version":"1.0.7beta"
