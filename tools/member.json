@@ -147,6 +147,13 @@
                 "level":3,
                 "limitation":2,
                 "end_date":"08/08/2025"
+            },
+            {
+                "index":21,
+                "name":"MisuLL",
+                "level":0,
+                "limitation":2,
+                "end_date":"08/08/2025"
             }
         ],
     "version":"1.0.7beta"
