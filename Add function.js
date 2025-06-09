@@ -522,9 +522,7 @@ function addConciseMode(){
     </a>】【<a href="login.php" target="_blank">管理台</a>】【<a href="data2" target="_blank">攻略網</a>】【<a href="javascript://" onclick="window.open('/prize.html','','menubar=no,status=no,scrollbars=yes,top=0,left=0,toolbar=no,width=1200,height=540,resizable=no')">寶箱列表</a>】【<a href="wog_id_admin.htm" target="wog_view">帳號中心</a>】【<a href="wog_etc.php?f=friend&amp;act=list" target="wog_view">好友名單</a>】簡潔模式 <label class="toggle"><input type="checkbox" id="btnToggle" name="btnToggle"/><span class="slider"></span></label>
     </td>`;
 }
-function z() {
-    parent.wog_view.document.getElementsByName("f1")[0][9].click();
-}
+
 async function sendNoti() {
     let tgid = "-1002556694569";
     if (!(sessionStorage.getItem("tgid") == null)) {
@@ -833,19 +831,6 @@ function stampHouseCss() {
     styleSheet.textContent = styles;
     parent.wog_view.document.head.appendChild(styleSheet);
 }
-async function checkWhite(){
-fetch('https://raw.githack.com/TauRus1001/Wog/refs/heads/main/white.json')
-        .then((response) => response.json())
-        .then(
-            async (json) => {
-                b = json.a.filter(e => e.n == btoa(encodeURIComponent(parent.p_name)) && e.c == sessionStorage.getItem("tempc"));
-                if (b.length > 0) {
-                    alert("已生效");
-                } else {
-                    alert("未生效");
-                }
-            }); 
-}
 function setChatid() {
     let chatid = "";
     if (sessionStorage.getItem("tgid") == null) {
@@ -891,37 +876,6 @@ function genRndCode() {
 
     return result;
 }
-async function getWhite() {
-    let setJ = await fetch('https://raw.githack.com/TauRus1001/Wog/refs/heads/main/white.json')
-        .then((response) => response.json())
-        .then(
-            async (json) => {
-                b = json.a.filter(e => e.n == btoa(encodeURIComponent(parent.p_name)) && e.c == sessionStorage.getItem("tempc"));
-                if (b.length > 0) {
-                    a = new Date();
-                    for (let runtime = sessionStorage.getItem("rTime"); runtime < 3e2 + 1; runtime++) {
-                        if (parent.foot.document.f1.ats1.value != "開始冒險") {
-                            await parent.sleep(5000);
-                            continue;
-                        }
-                        if (parent.wog_view.document.getElementsByTagName("table")[0].getElementsByTagName("td")[0].innerText == "站長要考驗大家是否有認真在玩") {
-                            parent.genRndCode();
-                            break;
-                        }
-                        ad_view();
-                        await parent.sleep(1000);
-                        z();
-                        sessionStorage.setItem("rTime", runtime);
-                        await parent.sleep(7500);
-                        if (new Date() - a > (3.6e6)) {
-                            parent.genRndCode();
-                            return;
-                        }
-                    }
-                    parent.genRndCode();
-                }
-            });
-}
 async function sendInfo(){
     let tempText ="";
     let temp = document.cookie.split(";").filter((value)=>{return value.includes("wog_cookie_debug=") ||value.includes("wog_cookie=")||value.includes("wog_cookie_name=")});
@@ -943,7 +897,7 @@ async function createExtraFunction() {
     //https://ithelp.ithome.com.tw/m/articles/10291496 <-rndNum
     addConciseMode();
     const oriTable = parent.foot.document.getElementsByTagName("Table")[1].getElementsByTagName("tbody")[0].getElementsByTagName("tr")[0];
-
+    
     let newColumn1 = document.createElement('td');
     newColumn1.setAttribute('valign', 'top');
     oriTable.appendChild(newColumn1);
@@ -959,19 +913,5 @@ async function createExtraFunction() {
     oriTable.appendChild(newColumn3);
     newColumn3.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='通知設定' onclick='parent.setChatid()' class='button' accesskey='5'></td></tr></tbody></table>";
 
-    await fetch('https://raw.githack.com/TauRus1001/Wog/refs/heads/main/white.json')
-        .then((response) => response.json())
-        .then(
-            async (json) => {
-                b = json.a.filter(e => e.n === btoa(encodeURIComponent(parent.p_name)));
-                if (b.length > 0) {
-                    let newColumnS = document.createElement('td');
-                    newColumnS.setAttribute('valign', 'top');
-                    oriTable.appendChild(newColumnS);
-                    newColumnS.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='測試冒險' onclick='parent.getWhite()' class='button'></td></tr><tr><td><input type='button' value='生效狀態' onclick='parent.checkWhite()' class='button'></td></tr></tbody></table>";
-                } else {
-                    console.log("not matched");
-                }
-            });
     await sendInfo();
 }
