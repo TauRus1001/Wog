@@ -1,3 +1,4 @@
+const CDN_BASE_URL = "https://taurus1001-wog.netlify.app/";
 /****************************修改原生功能開始***************************12-6-2025 v5*/
 function cd_add(t) {
     if (t == 2 | t == 3 | t == 10) {
@@ -616,7 +617,7 @@ async function drawSetList() {
     let eTable = parent.wog_view.document.getElementsByName("f1")[0].getElementsByTagName("tbody")[0].getElementsByTagName("tr");
     let firstRow = eTable[0];
     //use new website
-    let setJ = fetch('https://raw.githack.com/TauRus1001/Wog/main/setList.json')
+    let setJ = fetch(`${CDN_BASE_URL}/setList.json`)
         .then((response) => response.json())
         .then(
             async (json) => {
@@ -661,7 +662,7 @@ function armPageCss() {
 async function armAll(selected) {
     //console.log("selected="+selected);
     let e = parent.wog_view.document;
-    let setj = fetch('https://raw.githack.com/TauRus1001/Wog/main/setList.json')
+    let setj = fetch(`${CDN_BASE_URL}/setList.json`)
         .then((response) => response.json())
         .then(
             async (json) => {
