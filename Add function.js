@@ -594,7 +594,6 @@ function armPage() {
     <table border="2" cellpadding="2" border-collapse="collapse" width="30%">
       <thead>
         <tr>
-          <th></th>
           <th>裝備選擇</th>
         </tr>
       </thead>
@@ -617,7 +616,7 @@ async function drawSetList() {
     let eTable = parent.wog_view.document.getElementsByName("f1")[0].getElementsByTagName("tbody")[0].getElementsByTagName("tr");
     let firstRow = eTable[0];
     //use new website
-    let setJ = fetch(`${CDN_BASE_URL}/setList.json`)
+    let setJ = fetch(`https://taurus1001-wog.netlify.app/setList.json`)
         .then((response) => response.json())
         .then(
             async (json) => {
