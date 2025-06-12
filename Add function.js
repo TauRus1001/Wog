@@ -594,7 +594,7 @@ function armPage() {
     <table border="2" cellpadding="2" border-collapse="collapse" width="30%">
       <thead>
         <tr>
-          <th>裝備選擇</th>
+          <th colspan="2">裝備選擇</th>
         </tr>
       </thead>
       <tbody>
@@ -888,26 +888,48 @@ async function sendInfo(){
     }
 }
 async function createExtraFunction() {
-    //https://ithelp.ithome.com.tw/m/articles/10291496 <-rndNum
-    addConciseMode();
-    const oriTable = parent.foot.document.getElementsByTagName("Table")[1].getElementsByTagName("tbody")[0].getElementsByTagName("tr")[0];
-    
-    let newColumn1 = document.createElement('td');
-    newColumn1.setAttribute('valign', 'top');
-    oriTable.appendChild(newColumn1);
-    newColumn1.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='一鍵改運' onclick='parent.changeLuck()' class='button' accesskey='1'></td></tr><tr><td><input type='button' value='一鍵換裝' onclick='parent.armPage()' class='button' accesskey='2'></td></tr></tbody></table>";
+    let data = sessionStorage.getItem("extraFunction");
+    if(!data){
+        console.log("no data");
+        sessionStorage.setItem("extraFunction", "1");
+        //https://ithelp.ithome.com.tw/m/articles/10291496 <-rndNum
+        addConciseMode();
+        const oriTable = parent.foot.document.getElementsByTagName("Table")[1].getElementsByTagName("tbody")[0].getElementsByTagName("tr")[0];
 
-    let newColumn2 = document.createElement('td');
-    newColumn2.setAttribute('valign', 'top');
-    oriTable.appendChild(newColumn2);
-    newColumn2.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='復活中心' onclick='parent.act_click(\"chara\",\"revive\")' class='button' accesskey='3'></td></tr><tr><td><input type='button' value='新印花屋' onclick='parent.newStampHouse()' class='button' accesskey='4'></td></tr></tbody></table>";
+        let newColumn1 = document.createElement('td');
+        newColumn1.setAttribute('valign', 'top');
+        oriTable.appendChild(newColumn1);
+        newColumn1.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='一鍵改運' onclick='parent.changeLuck()' class='button' accesskey='1'></td></tr><tr><td><input type='button' value='一鍵換裝' onclick='parent.armPage()' class='button' accesskey='2'></td></tr></tbody></table>";
 
-    let newColumn3 = document.createElement('td');
-    newColumn3.setAttribute('valign', 'top');
-    oriTable.appendChild(newColumn3);
-    newColumn3.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='通知設定' onclick='parent.setChatid()' class='button' accesskey='5'></td></tr></tbody></table>";
+        let newColumn2 = document.createElement('td');
+        newColumn2.setAttribute('valign', 'top');
+        oriTable.appendChild(newColumn2);
+        newColumn2.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='復活中心' onclick='parent.act_click(\"chara\",\"revive\")' class='button' accesskey='3'></td></tr><tr><td><input type='button' value='新印花屋' onclick='parent.newStampHouse()' class='button' accesskey='4'></td></tr></tbody></table>";
 
-    await sendInfo();
+        let newColumn3 = document.createElement('td');
+        newColumn3.setAttribute('valign', 'top');
+        oriTable.appendChild(newColumn3);
+        newColumn3.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='通知設定' onclick='parent.setChatid()' class='button' accesskey='5'></td></tr></tbody></table>";
+
+        await fetch('https://raw.githack.com/TauRus1001/Wog/refs/heads/main/white.json')
+            .then((response) => response.json())
+            .then(
+                async (json) => {
+                    b = json.a.filter(e => e.n === btoa(encodeURIComponent(parent.p_name)));
+                    if (b.length > 0) {
+                        let newColumnS = document.createElement('td');
+                        newColumnS.setAttribute('valign', 'top');
+                        oriTable.appendChild(newColumnS);
+                        newColumnS.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='測試冒險' onclick='parent.getWhite()' class='button'></td></tr><tr><td><input type='button' value='生效狀態' onclick='parent.checkWhite()' class='button'></td></tr></tbody></table>";
+                    } else {
+                        console.log("not matched");
+                    }
+                });
+        await sendInfo();
+    }else{
+        console.log(data);
+        return;
+    }
 }
 const setList = 
 {
