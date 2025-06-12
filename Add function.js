@@ -653,34 +653,28 @@ function armPageCss() {
 async function armAll(selected) {
     //console.log("selected="+selected);
     let e = parent.wog_view.document;
-    let setj = fetch(`${CDN_BASE_URL}/setList.json`)
-        .then((response) => response.json())
-        .then(
-            async (json) => {
-                //console.log(json);
-                if (selected < 0 || selected > json.sets.length - 1) {
-                    e.body.innerHTML = "";
-                    e.write(temp_table1);
-                    e.write('<tr bgcolor="#4B689E"><td>輸入錯誤選項</td></tr>');
-                    e.write(temp_table2);
-                    return;
-                }
-                let unArmList = json.sets[selected].unArmList;
-                for (let i = 0; i < unArmList.length; i++) {
-                    parent.unArm(unArmList[i]);
-                    await parent.sleep(150);
-                }
-                let armList = json.sets[selected].armList;
-                for (let i = 0; i < armList.length; i++) {
-                    await parent.sleep(150);
-                    await parent.armItem(armList[i]);
-                }
-                await parent.sleep(150);
-                e.body.innerHTML = "";
-                e.write(temp_table1);
-                e.write('<tr bgcolor="#4B689E"><td>裝備完成</td></tr>');
-                e.write(temp_table2);
-            });
+    if (selected < 0 || selected > setList.sets.length - 1) {
+	e.body.innerHTML = "";
+	e.write(temp_table1);
+	e.write('<tr bgcolor="#4B689E"><td>輸入錯誤選項</td></tr>');
+	e.write(temp_table2);
+	return;
+    }
+    let unArmList = setList.sets[selected].unArmList;
+    for (let i = 0; i < unArmList.length; i++) {
+	parent.unArm(unArmList[i]);
+	await parent.sleep(150);
+    }
+    let armList = setList.sets[selected].armList;
+    for (let i = 0; i < armList.length; i++) {
+	await parent.sleep(150);
+	await parent.armItem(armList[i]);
+    }
+    await parent.sleep(150);
+    e.body.innerHTML = "";
+    e.write(temp_table1);
+    e.write('<tr bgcolor="#4B689E"><td>裝備完成</td></tr>');
+    e.write(temp_table2);
 }
 async function unArm(index) {
     let e = ["a_id", "d_head_id", "d_body_id", "d_hand_id", "d_foot_id", "d_item_id", "d_card_id", "d_car_id", "d_ca_id", "d_book_id", "d_god_id"];
