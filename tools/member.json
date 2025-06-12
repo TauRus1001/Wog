@@ -154,6 +154,13 @@
                 "level":0,
                 "limitation":2,
                 "end_date":"08/08/2025"
+            },
+            {
+                "index":22,
+                "name":"Z",
+                "level":0,
+                "limitation":2,
+                "end_date":"05/08/2025"
             }
         ],
     "version":"1.0.8beta"
