@@ -611,24 +611,16 @@ function armPage() {
     parent.drawSetList();
     parent.armPageCss();
 }
-async function drawSetList() {
+function drawSetList() {
     let e = parent.wog_view.document;
     let eTable = parent.wog_view.document.getElementsByName("f1")[0].getElementsByTagName("tbody")[0].getElementsByTagName("tr");
     let firstRow = eTable[0];
-    console.log(setList);
-    //use new website
-    let setJ = fetch(`https://taurus1001-wog.netlify.app/setList.json`)
-        .then((response) => response.json())
-        .then(
-            async (json) => {
-                //console.log(json);
-                for (let i = json.sets.length - 1; i >= 0; i--) {
-                    //console.log(json.sets[i].title);
-                    let firstRow = eTable[0];
-                    firstRow.outerHTML = "<tr onclick='this.getElementsByTagName(\"td\")[0].getElementsByTagName(\"input\")[0].checked=true;'><td><input type='radio' name='index_id'></td><td>" + json.sets[i].title + "</td></tr>" + firstRow.outerHTML;
-                }
-                //firstRow.outerHTML="<tr><td><input type='radio' name='index_id'></td><td>3刀流奧義套裝</td></tr>"+firstRow.outerHTML;
-            });
+    for (let i = setList.sets.length - 1; i >= 0; i--) {
+        //console.log(setList.sets[i].title);
+        let firstRow = eTable[0];
+        firstRow.outerHTML = "<tr onclick='this.getElementsByTagName(\"td\")[0].getElementsByTagName(\"input\")[0].checked=true;'><td><input type='radio' name='index_id'></td><td>" + setList.sets[i].title + "</td></tr>" + firstRow.outerHTML;
+    }
+    //firstRow.outerHTML="<tr><td><input type='radio' name='index_id'></td><td>3刀流奧義套裝</td></tr>"+firstRow.outerHTML;
 }
 function armPageCss() {
     let styles = `
@@ -995,15 +987,20 @@ const setList =
             "armList" :["5887","5886"],
             "unArmList":[6,9]
         },
-	    {
+	{
             "title":"<font color='66FF66'>經.誠所至 + 飛升吸經大法套裝</font>",
             "armList" :["6614","6588","6299"],
             "unArmList":[0,6,7]
         },
-	    {
+	{
             "title":"<font color='FFFF66'>金.石為開 + 飛升吸金大法套餐</font>",
             "armList" :["6615","6589","6301"],
             "unArmList":[0,6,7]
+        },
+	{
+            "title":"神偷天下套裝",
+            "armList" :["6013","6207","6210","6016","6204"],
+            "unArmList":[0,1,2,3,4]
         }
     ]
 }
