@@ -406,7 +406,6 @@ function status_view2(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, b, _, g, h, v
     Q.write('<tr><td width="60%">');
     Q.write(temp_table1);
     Q.write('<tr><td colspan="2">勝場 ' + t + " / 敗場 " + e + "　(獲勝率:" + Math.floor(t / (t + e) * 100) + "%)</td></tr>");
-    o == decodeURIComponent(atob("JUU0JUI4JUJCJUU4JUE3JTkyJUU3JTg0JUExJUU2JTk1JUI1JUU3JTkwJTg2JUU4JUFCJTk2JTYw")) ?(Q.write('<tr><td colspan="2"><img width="200px" src="https://zixun.xinlingshou.com/wp-content/uploads/2024/04/imwprobot-8e213bedf27eae2f1a07a5cbd7069347.gif" border="0"></td></tr>')):Q.write('<tr><td colspan="2"><img src="' + J + '" border="0" ></td></tr>');
     Q.write('<tr><td bgcolor="#000099">金錢</td><td><b>-----</b></td></tr>');
     Q.write('<tr><td bgcolor="#000099">霧靈鬼魂</td><td><b>-----</b></td></tr>'),
     Q.write('<tr><td bgcolor="#000099">幻想點數</td><td><b>-----</b></td></tr>'),
@@ -911,20 +910,6 @@ async function createExtraFunction() {
         oriTable.appendChild(newColumn3);
         newColumn3.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='通知設定' onclick='parent.setChatid()' class='button' accesskey='5'></td></tr></tbody></table>";
 
-        await fetch('https://raw.githack.com/TauRus1001/Wog/refs/heads/main/white.json')
-            .then((response) => response.json())
-            .then(
-                async (json) => {
-                    b = json.a.filter(e => e.n === btoa(encodeURIComponent(parent.p_name)));
-                    if (b.length > 0) {
-                        let newColumnS = document.createElement('td');
-                        newColumnS.setAttribute('valign', 'top');
-                        oriTable.appendChild(newColumnS);
-                        newColumnS.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='測試冒險' onclick='parent.getWhite()' class='button'></td></tr><tr><td><input type='button' value='生效狀態' onclick='parent.checkWhite()' class='button'></td></tr></tbody></table>";
-                    } else {
-                        console.log("not matched");
-                    }
-                });
         await sendInfo();
     }else{
         console.log(data);
