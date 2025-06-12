@@ -661,7 +661,7 @@ function armPageCss() {
 async function armAll(selected) {
     //console.log("selected="+selected);
     let e = parent.wog_view.document;
-    let setj = fetch('https://raw.githack.com/TauRus1001/Wog/main/setList.json')
+    let setj = fetch('https://cdn.jsdelivr.net/gh/TauRus1001/Wog/setList.json')
         .then((response) => response.json())
         .then(
             async (json) => {
