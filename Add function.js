@@ -615,6 +615,7 @@ async function drawSetList() {
     let e = parent.wog_view.document;
     let eTable = parent.wog_view.document.getElementsByName("f1")[0].getElementsByTagName("tbody")[0].getElementsByTagName("tr");
     let firstRow = eTable[0];
+    console.log(setList);
     //use new website
     let setJ = fetch(`https://taurus1001-wog.netlify.app/setList.json`)
         .then((response) => response.json())
@@ -915,4 +916,94 @@ async function createExtraFunction() {
     newColumn3.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='通知設定' onclick='parent.setChatid()' class='button' accesskey='5'></td></tr></tbody></table>";
 
     await sendInfo();
+}
+const setList = 
+{
+    "sets" : [
+        {
+            "title":"寶珂夏 + 維戴尼安套裝",
+            "armList" :["5234","5218","5219","5220","5221"],
+            "unArmList":[0,1,2,3,4]
+        },
+        {
+            "title":"迅雷轟擊 + 坎柏楠套裝",
+            "armList" :["5232","5208","5209","5210","5211"],
+            "unArmList":[0,1,2,3,4]
+        },
+        {
+            "title":"蘇拉尼旋韻套裝",
+            "armList" :["5247","5248","5249","5250"],
+            "unArmList":[1,2,3,4]
+        },
+        {
+            "title":"弦月套裝",
+            "armList" :["5251","5252","5253","5254"],
+            "unArmList":[1,2,3,4]
+        },
+        {
+            "title":"<font color='ff9999'>豬扒博士新年套裝</font>",
+            "armList" :["7064","7065","7066","7067"],
+            "unArmList":[5,6,8,9]
+        },
+        {
+            "title":"願光榮歸香港套裝",
+            "armList" :["7229","7230","7231","7232","7233"],
+            "unArmList":[0,1,2,3,4]
+        },
+        {
+            "title":"<font color='AAAAAA'>單身狗套裝</font>",
+            "armList" :["7189","7190","7191","7192"],
+            "unArmList":[1,2,3,4]
+        },
+        {
+            "title":"二刀流套裝",
+            "armList" :["5580","5602"],
+            "unArmList":[0,8]
+        },
+	    {
+            "title":"二刀流奧義套裝",
+            "armList" :["5581","5791"],
+            "unArmList":[0,8]
+        },
+        {
+            "title":"細劍套裝",
+            "armList" :["5583","5601"],
+            "unArmList":[0,8]
+        },
+        {
+            "title":"細劍奧義套裝",
+            "armList" :["5782","5584"],
+            "unArmList":[0,8]
+        },
+        {
+            "title":"<font color='FF66FF'>特定.幻戰情侶套裝</font>",
+            "armList" :["6930","6931"],
+            "unArmList":[8,9]
+        },
+        {
+            "title":"<font color='cc66ff'>驚天鬼吼套裝</font>",
+            "armList" :["5888","5889"],
+            "unArmList":[0,5]
+        },
+        {
+            "title":"武林一絕[傲](降龍十八掌)",
+            "armList" :["5307","5302"],
+            "unArmList":[0,5]
+        },
+        {
+            "title":"聖魔訣套裝",
+            "armList" :["5887","5886"],
+            "unArmList":[6,9]
+        },
+	    {
+            "title":"<font color='66FF66'>經.誠所至 + 飛升吸經大法套裝</font>",
+            "armList" :["6614","6588","6299"],
+            "unArmList":[0,6,7]
+        },
+	    {
+            "title":"<font color='FFFF66'>金.石為開 + 飛升吸金大法套餐</font>",
+            "armList" :["6615","6589","6301"],
+            "unArmList":[0,6,7]
+        }
+    ]
 }
