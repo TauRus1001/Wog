@@ -615,6 +615,7 @@ async function drawSetList() {
     let e = parent.wog_view.document;
     let eTable = parent.wog_view.document.getElementsByName("f1")[0].getElementsByTagName("tbody")[0].getElementsByTagName("tr");
     let firstRow = eTable[0];
+    //use new website
     let setJ = fetch('https://cdn.jsdelivr.net/gh/TauRus1001/Wog/setList.json')
         .then((response) => response.json())
         .then(
