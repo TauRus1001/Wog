@@ -1,4 +1,4 @@
-/****************************修改原生功能開始***************************12-6-2025 v3*/
+/****************************修改原生功能開始***************************12-6-2025 v4*/
 function cd_add(t) {
     if (t == 2 | t == 3 | t == 10) {
         return;
@@ -616,7 +616,7 @@ async function drawSetList() {
     let eTable = parent.wog_view.document.getElementsByName("f1")[0].getElementsByTagName("tbody")[0].getElementsByTagName("tr");
     let firstRow = eTable[0];
     //use new website
-    let setJ = fetch('https://cdn.jsdelivr.net/gh/TauRus1001/Wog/setList.json')
+    let setJ = fetch('https://raw.githack.com/TauRus1001/Wog/main/setList.json')
         .then((response) => response.json())
         .then(
             async (json) => {
@@ -661,7 +661,7 @@ function armPageCss() {
 async function armAll(selected) {
     //console.log("selected="+selected);
     let e = parent.wog_view.document;
-    let setj = fetch('https://cdn.jsdelivr.net/gh/TauRus1001/Wog/setList.json')
+    let setj = fetch('https://raw.githack.com/TauRus1001/Wog/main/setList.json')
         .then((response) => response.json())
         .then(
             async (json) => {
