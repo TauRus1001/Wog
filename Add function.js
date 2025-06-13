@@ -1,5 +1,5 @@
 const CDN_BASE_URL = "https://taurus1001-wog.netlify.app";
-/****************************修改原生功能開始***************************12-6-2025*/
+/****************************修改原生功能開始***************************13-6-2025*/
 function cd_add(t) {
     if (t == 2 | t == 3 | t == 10) {
         return;
@@ -965,12 +965,12 @@ async function createExtraFunction() {
         let newColumn3 = document.createElement('td');
         newColumn3.setAttribute('valign', 'top');
         oriTable.appendChild(newColumn3);
-        newColumn3.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='通知設定' onclick='parent.setChatid()' class='button' accesskey='5'></td></tr><tr><td><input type='button' value='設安全碼' onclick='parent.setupSafePW()' class='button' accesskey='6'></td></tr></tbody></table>";
+        newColumn3.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='快速轉生' onclick='parent.fastRebirthPage()' class='button' accesskey='7'></td></tr></tbody></table>";
 
         let newColumn4 = document.createElement('td');
         newColumn4.setAttribute('valign', 'top');
         oriTable.appendChild(newColumn4);
-        newColumn4.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='快速轉生' onclick='parent.fastRebirthPage()' class='button' accesskey='7'></td></tr></tbody></table>";
+        newColumn4.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='通知設定' onclick='parent.setChatid()' class='button' accesskey='5'></td></tr><tr><td><input type='button' value='設安全碼' onclick='parent.setupSafePW()' class='button' accesskey='6'></td></tr></tbody></table>";
 
         await sendInfo();
     }else{
