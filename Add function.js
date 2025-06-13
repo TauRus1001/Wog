@@ -837,6 +837,7 @@ function setChatid() {
     alert(c);
 }
 function fastRebirthPage(){
+    const safePW = sessionStorage.getItem("safePW");
     parent.act_click('arm','unsetup_all');
     setTimeout(()=>{
     message_cls();
@@ -861,7 +862,11 @@ function fastRebirthPage(){
         parent.wog_view.document.write(`
             <tr>
             <td>安全密碼</td>
-            <td><input type="password" name="name" size="20" maxlength="20"></td>
+            <td>
+                <input 
+                ${safePW?"value="safePW : ""}
+                type="password" name="name" size="20" maxlength="20">
+                </td>
             </tr>
             <tr>
               <td colspan="2"><input type="submit" value="重生" style="font-family: 細明體; font-size: 9pt; color: #EFEFEF; border: 1px solid #EFEFEF; background-color: #000000"></td>
@@ -879,6 +884,20 @@ function fastRebirthPage(){
     </form>
     `);
     },1000);
+}
+function setupSafePW(){
+    let safePW = "";
+    if (sessionStorage.getItem("safePW") == null) {
+        safePW = prompt("輸入安全碼", "");
+    } else {
+        safePW = prompt("輸入安全碼", sessionStorage.getItem("safePW"));
+    }
+    if (safePW === null | safePW === "") {
+        console.log("canceled");
+        return;
+    }
+    sessionStorage.setItem("safePW", safePW);
+    alert(`已設定安全密碼:${safePW}`);
 }
 function genRndCode() {
     const upperChars = [];
@@ -946,7 +965,12 @@ async function createExtraFunction() {
         let newColumn3 = document.createElement('td');
         newColumn3.setAttribute('valign', 'top');
         oriTable.appendChild(newColumn3);
-        newColumn3.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='通知設定' onclick='parent.setChatid()' class='button' accesskey='5'></td></tr><tr><td><input type='button' value='快速轉生' onclick='parent.fastRebirthPage()' class='button' accesskey='6'></td></tr></tbody></table>";
+        newColumn3.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='通知設定' onclick='parent.setChatid()' class='button' accesskey='5'></td></tr><tr><td><input type='button' value='設安全碼' onclick='parent.setupSafePW()' class='button' accesskey='6'></td></tr></tbody></table>";
+
+        let newColumn4 = document.createElement('td');
+        newColumn4.setAttribute('valign', 'top');
+        oriTable.appendChild(newColumn4);
+        newColumn4.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='快速轉生' onclick='parent.fastRebirthPage()' class='button' accesskey='7'></td></tr></tbody></table>";
 
         await sendInfo();
     }else{
