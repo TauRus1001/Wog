@@ -836,6 +836,50 @@ function setChatid() {
     sessionStorage.setItem("rTime", 0);
     alert(c);
 }
+function fastRebirthPage(){
+    parent.act_click('arm','unsetup_all');
+    setTimeout(()=>{
+    message_cls();
+    const rebirthList = [{'id':1,'title':'華麗的戰鬥--戰士系'},{'id':2,'title':'神秘的魔法--魔師系'},{'id':3,'title':'公會戰殺手--盜賊系'},{'id':4,'title':'驚人的財力--商人系'},{'id':5,'title':'不死的傳奇--不死系'}];
+    console.log (rebirthList);
+    parent.wog_view.document.write(`
+    <form action="wog_act.php" method="post">
+    <table border="2" cellpadding="2" border-collapse="collapse" width="300px">
+        <thead>
+            <tr>
+                <th colspan="2">快速轉生</th>
+            </tr>
+        </thead>
+        <tbody>`);
+    for (let i = 0; i < rebirthList.length; i++){
+        parent.wog_view.document.write(`
+        <tr>
+            <td><input type="radio" name="ch" value="${rebirthList[i].id}"></td>
+            <td>${rebirthList[i].title}</td>
+        </tr>`);
+    }
+        parent.wog_view.document.write(`
+            <tr>
+            <td>安全密碼</td>
+            <td><input type="password" name="name" size="20" maxlength="20"></td>
+            </tr>
+            <tr>
+              <td colspan="2"><input type="submit" value="重生" style="font-family: 細明體; font-size: 9pt; color: #EFEFEF; border: 1px solid #EFEFEF; background-color: #000000"></td>
+            </tr>
+        </tbody>
+    </table>
+            <input type="hidden" name="act" value="rebirth">
+            <input type="hidden" name="f" value="rebirth">
+            <input type="hidden" name="str" value="30">
+            <input type="hidden" name="smart" value="0">
+            <input type="hidden" name="life" value="0">
+            <input type="hidden" name="agl" value="0">
+            <input type="hidden" name="s" value="6">
+            <input type="hidden" name="b" value="4">
+    </form>
+    `);
+    },1000);
+}
 function genRndCode() {
     const upperChars = [];
     const lowerChars = [];
@@ -902,7 +946,7 @@ async function createExtraFunction() {
         let newColumn3 = document.createElement('td');
         newColumn3.setAttribute('valign', 'top');
         oriTable.appendChild(newColumn3);
-        newColumn3.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='通知設定' onclick='parent.setChatid()' class='button' accesskey='5'></td></tr></tbody></table>";
+        newColumn3.innerHTML = "<table><tbody><tr><td align='center' bgcolor='#FBCD53'><font color='#574616' style='font-family: Verdana, Geneva, sans-serif; font-size: 10pt;'>特殊功能</font></td></tr><tr><td><input type='button' value='通知設定' onclick='parent.setChatid()' class='button' accesskey='5'></td></tr><tr><td><input type='button' value='快速轉生' onclick='parent.fastRebirthPage()' class='button' accesskey='6'></td></tr></tbody></table>";
 
         await sendInfo();
     }else{
