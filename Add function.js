@@ -864,7 +864,7 @@ function fastRebirthPage(){
             <td>安全密碼</td>
             <td>
                 <input 
-                ${safePW?"value="safePW : ""}
+                ${safePW?"value="+safePW : ""}
                 type="password" name="name" size="20" maxlength="20">
                 </td>
             </tr>
