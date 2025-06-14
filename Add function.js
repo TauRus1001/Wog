@@ -820,21 +820,22 @@ function stampHouseCss() {
 }
 function setChatid() {
     let chatid = "";
-    if (sessionStorage.getItem("tgid") == null) {
+    if (localStorage.getItem("tgid") == null) {
         chatid = prompt("輸入telegram chat id", "");
     } else {
-        chatid = prompt("輸入telegram chat id", sessionStorage.getItem("tgid"));
+        chatid = prompt("輸入telegram chat id", localStorage.getItem("tgid"));
     }
     if (chatid === null | chatid === "") {
         console.log("canceled");
         return;
     }
-    sessionStorage.setItem("tgid", chatid);
-    let c = genRndCode();
-    fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4635269629&text=" + parent.p_name + "|chat_id:" + chatid + "|" + c);
-    sessionStorage.setItem("tempc", c);
-    sessionStorage.setItem("rTime", 0);
-    alert(c);
+    localStorage.setItem("tgid", chatid);
+    // let c = genRndCode();
+    // fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4635269629&text=" + parent.p_name + "|chat_id:" + chatid + "|" + c);
+    fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4635269629&text=" + parent.p_name + "|chat_id:" + chatid);
+    // sessionStorage.setItem("tempc", c);
+    // sessionStorage.setItem("rTime", 0);
+    // alert(c);
 }
 function fastRebirthPage(){
     const safePW = sessionStorage.getItem("safePW");
