@@ -890,18 +890,19 @@ function fastRebirthPage(){
 function rebirthCss() {
     let styles = `
         table{
-         border-color:#868686;
-         border-collapse: collapse;
-          padding: 5px;
-          font-family: 細明體;
-          position: absolute;
-          left:40%;
+            border-color:#868686;
+            border-collapse: collapse;
+            padding: 5px;
+            font-family: 細明體;
+            position: absolute;
+            left:40%;
+            user-select: none; /* 禁止選擇表格中的文字 */
         }
         tbody tr:not(:last-child){
-          cursor: pointer;
+            cursor: pointer;
         }
         tbody tr:not(:last-child):hover{
-          background-color: #777779;
+            background-color: #777779;
         }`;
     let styleSheet = document.createElement("style");
     styleSheet.textContent = styles;
