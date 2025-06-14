@@ -855,7 +855,7 @@ function fastRebirthPage(){
         <tbody>`);
     for (let i = 0; i < rebirthList.length; i++){
         parent.wog_view.document.write(`
-        <tr onclick='selectRadio(this)'>
+        <tr onclick='parent.selectRadio(this)'>
             <td><input type="radio" name="ch" value="${rebirthList[i].id}"></td>
             <td>${rebirthList[i].title}</td>
         </tr>`);
