@@ -61,6 +61,7 @@ function arm_unsetup_all_success() {
     q.write(temp_table2);
 }
 function arm_view(t, e, r, i, o) {
+    const safePW = sessionStorage.getItem("safePW");
     message_cls();
     var d = parent.wog_view.document;
     if (vData = e,
@@ -120,7 +121,7 @@ function arm_view(t, e, r, i, o) {
             `<tr><td colspan="14" ><a href="javascript:parent.wog_view.document.body.getElementsByClassName(\'scrollable-table\')[0].scrollTop=0" id="bottom" style="margin-right:10px;">回到頂部</a>欲轉移需輸入對方遊戲的帳號
             <input type="text" name="pay_id" id="playList" list="playerList"/>
             <datalist id="playerList">${playerOptions}</datalist>
-            安全密碼 <input type="password" name="pw" size="16"></td></tr>`
+            安全密碼 <input ${safePW?"value="+safePW : ""} type="password" name="pw" size="16"></td></tr>`
         );
         d.write(temp_table2),
         d.write('<input type="hidden" name="f" value="arm">'),
