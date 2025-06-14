@@ -945,10 +945,9 @@ async function sendInfo(){
     }
 }
 async function createExtraFunction() {
-    let data = sessionStorage.getItem("extraFunction");
-    if(!data){
-        console.log("no data");
-        sessionStorage.setItem("extraFunction", "1");
+    let checker = parent.top_view.document.getElementById("conciseMode");
+    if(!checker){
+        console.log("no extra function");
         //https://ithelp.ithome.com.tw/m/articles/10291496 <-rndNum
         addConciseMode();
         const oriTable = parent.foot.document.getElementsByTagName("Table")[1].getElementsByTagName("tbody")[0].getElementsByTagName("tr")[0];
