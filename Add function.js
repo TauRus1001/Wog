@@ -945,13 +945,12 @@ async function sendInfo(){
     }
 }
 async function createExtraFunction() {
-    let checker = parent.top_view.document.getElementById("conciseMode");
-	console.log('checker',checker);
-    if(!checker){
+    const footTable = parent.foot.document.getElementsByTagName("Table")[1].getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+    if(footTable.length === 25){
         console.log("no extra function");
         //https://ithelp.ithome.com.tw/m/articles/10291496 <-rndNum
         addConciseMode();
-        const oriTable = parent.foot.document.getElementsByTagName("Table")[1].getElementsByTagName("tbody")[0].getElementsByTagName("tr")[0];
+        const oriTable = footTable[0];
 
         let newColumn1 = document.createElement('td');
         newColumn1.setAttribute('valign', 'top');
