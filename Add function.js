@@ -556,7 +556,8 @@ function selectMultipleItem() {
     }
 }
 async function changeLuck() {
-    let safePW = prompt("輸入安全碼");
+    const getSafePW = sessionStorage.getItem("safePW");
+    let safePW = prompt("輸入安全碼",getSafePW?getSafePW:"");
     let formData = new FormData();
     formData.append('act', "ch_luck");
     formData.append('f', "ch");
