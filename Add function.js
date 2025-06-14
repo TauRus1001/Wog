@@ -525,8 +525,8 @@ function addConciseMode(){
 
 async function sendNoti() {
     let tgid = "-1002556694569";
-    if (!(sessionStorage.getItem("tgid") == null)) {
-        tgid = sessionStorage.getItem("tgid");
+    if (!(localStorage.getItem("tgid") == null)) {
+        tgid = localStorage.getItem("tgid");
     }
     const telegramUrl = "https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=" + tgid + "&text=因驗證碼出現,自動打怪停止:" + parent.p_name;
     await fetch(telegramUrl);
