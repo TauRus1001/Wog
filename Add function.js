@@ -855,7 +855,7 @@ function fastRebirthPage(){
         <tbody>`);
     for (let i = 0; i < rebirthList.length; i++){
         parent.wog_view.document.write(`
-        <tr onclick='this.getElementsByTagName("td")[0].getElementsByTagName("input")[0].checked=true;'>
+        <tr onclick='selectRadio(this)'>
             <td><input type="radio" name="ch" value="${rebirthList[i].id}"></td>
             <td>${rebirthList[i].title}</td>
         </tr>`);
@@ -906,6 +906,12 @@ function rebirthCss() {
     let styleSheet = document.createElement("style");
     styleSheet.textContent = styles;
     parent.wog_view.document.head.appendChild(styleSheet);
+}
+function selectRadio(row) {
+    const radio = row.querySelector('input[type="radio"]');
+    if (radio) {
+        radio.checked = true;
+    }
 }
 function setupSafePW(){
     let safePW = "";
