@@ -1,4 +1,3 @@
-const CDN_BASE_URL = "https://taurus1001-wog.netlify.app";
 /****************************修改原生功能開始***************************13-6-2025*/
 function cd_add(t) {
     if (t == 2 | t == 3 | t == 10) {
