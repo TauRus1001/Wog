@@ -617,7 +617,7 @@ function drawSetList() {
     for (let i = setList.sets.length - 1; i >= 0; i--) {
         //console.log(setList.sets[i].title);
         let firstRow = eTable[0];
-        firstRow.outerHTML = "<tr onclick='this.getElementsByTagName(\"td\")[0].getElementsByTagName(\"input\")[0].checked=true;'><td><input type='radio' name='index_id'></td><td>" + setList.sets[i].title + "</td></tr>" + firstRow.outerHTML;
+        firstRow.outerHTML = "<tr onclick='parent.selectRadio(this)'><td><input type='radio' name='index_id'></td><td>" + setList.sets[i].title + "</td></tr>" + firstRow.outerHTML;
     }
     //firstRow.outerHTML="<tr><td><input type='radio' name='index_id'></td><td>3刀流奧義套裝</td></tr>"+firstRow.outerHTML;
 }
