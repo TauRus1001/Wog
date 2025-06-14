@@ -946,6 +946,7 @@ async function sendInfo(){
 }
 async function createExtraFunction() {
     let checker = parent.top_view.document.getElementById("conciseMode");
+	console.log('checker',checker);
     if(!checker){
         console.log("no extra function");
         //https://ithelp.ithome.com.tw/m/articles/10291496 <-rndNum
