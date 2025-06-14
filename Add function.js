@@ -843,7 +843,7 @@ function fastRebirthPage(){
     setTimeout(()=>{
     message_cls();
     const rebirthList = [{'id':1,'title':'華麗的戰鬥--戰士系'},{'id':2,'title':'神秘的魔法--魔師系'},{'id':3,'title':'公會戰殺手--盜賊系'},{'id':4,'title':'驚人的財力--商人系'},{'id':5,'title':'不死的傳奇--不死系'}];
-    console.log (rebirthList);
+    // console.log (rebirthList);
     parent.wog_view.document.write(`
     <form action="wog_act.php" method="post">
     <table border="2" cellpadding="2" border-collapse="collapse" width="300px">
@@ -885,7 +885,7 @@ function fastRebirthPage(){
     </form>
     `);
     parent.rebirthCss();
-    },1000);
+    },800);
 }
 function rebirthCss() {
     let styles = `
