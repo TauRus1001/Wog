@@ -121,13 +121,13 @@ function arm_view(t, e, r, i, o) {
         d.write(`<tr><td colspan="14" ><a href="javascript:parent.wog_view.document.body.getElementsByClassName(\'scrollable-table\')[0].scrollTop=0" id="bottom" style="margin-right:10px;">回到頂部</a>欲轉移需輸入對方遊戲的帳號`);
         if(isMobile){
             d.write(`
-                <input type="text" name="pay_id" id="playList" list="playerList"/>
-                <datalist id="playerList">${playerOptions}</datalist>`
+                <input type="text" name="pay_id" id="playList"/>
+                <select id="playerList" onchange="this.form.playList.value=this.value">${playerOptions}</select>`
             );
         }else{
             d.write(`
-                <input type="text" name="pay_id" id="playList"/>
-                <select id="playerList" onchange="this.form.playList.value=this.value">${playerOptions}</select>`
+                <input type="text" name="pay_id" id="playList" list="playerList"/>
+                <datalist id="playerList">${playerOptions}</datalist>`
             );
         }
         d.write(`安全密碼 <input ${safePW?"value="+safePW : ""} type="password" name="pw" size="16"></td></tr>`),
