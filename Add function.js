@@ -61,6 +61,7 @@ function arm_unsetup_all_success() {
     q.write(temp_table2);
 }
 function arm_view(t, e, r, i, o) {
+    const isMobile = uaIsMobile();
     const safePW = sessionStorage.getItem("safePW");
     message_cls();
     var d = parent.wog_view.document;
@@ -114,13 +115,13 @@ function arm_view(t, e, r, i, o) {
         let playerOptions = "";
         for (let i = 0; i < online_list.length; i++) {
             if(online_list[i]!=parent.p_name){
-                playerOptions += `<option>${online_list[i]}</option>`;
+                playerOptions += `<option value="${online_list[i]}">${online_list[i]}</option>`;
             }
         }
         d.write(
             `<tr><td colspan="14" ><a href="javascript:parent.wog_view.document.body.getElementsByClassName(\'scrollable-table\')[0].scrollTop=0" id="bottom" style="margin-right:10px;">回到頂部</a>欲轉移需輸入對方遊戲的帳號
-            <input type="text" name="pay_id" id="playList" list="playerList"/>
-            <datalist id="playerList">${playerOptions}</datalist>
+            <input type="text" name="pay_id" id="playList"/>
+            <select id="playerList">${playerOptions}</select>
             安全密碼 <input ${safePW?"value="+safePW : ""} type="password" name="pw" size="16"></td></tr>`
         );
         d.write(temp_table2),
@@ -473,6 +474,13 @@ function status_view2(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, b, _, g, h, v
     Q.write(`\n    <div name="adBox" style="position:absolute;left:37%;top:350px;height:650px;overflow:auto;display:none;">\n      <div style="border: 1px solid black;width: 600px;">\n        <table width="600px" border="1" bgcolor="#555555" style="\n        border: 1px solid black;\n        Z-INDEX: 100">\n          <thead style="position: sticky; top: 0; background-color: #555555;">\n            <tr width="100%">\n              <th style="text-align: right"><a href="javascript:parent.adBoxToggle()">關閉</a></th>\n            </tr>\n        </thead>\n          <tbody style="color:white;">\n          <tr bgcolor="#4B689E">\n              <td>${G}</td>\n            </tr>\n        </table>\n      </div>\n    </div>\n    `)
 }
 /****************************修改原生功能結束****************************/
+function uaIsMobile() {
+    const ua = navigator.userAgent.toLowerCase();
+    if(ua.includes('mobi') || ua.includes('tablet')){  
+       return true;
+    }
+    return false;
+}
 function synSelectItem(itemName,itemAmount) { //精煉多選物品
     const itemList={'天龍石':1068,'帝龍石':1069,'戰龍石':1070,'泣龍石':1071,'聖龍石':1072,'斷龍石':1074,'神龍石':1076};
     const itemId = itemList[itemName];
