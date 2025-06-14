@@ -1104,3 +1104,29 @@ const setList =
         }
     ]
 }
+function mission_detail(t, e) {
+    message_cls(),
+    mission_head();
+    var r = parent.wog_view.document;
+    if (r.write("<center>"),
+    r.write('<form action="wog_act.php" method="post" target="mission" name=f1>'),
+    "" != t) {
+        r.write('<div style="padding-left:2em;text-align:center;color:#000000;background-image:url(' + missionBackground.src + ');background-repeat:no-repeat;background-attachment:fixed;background-position:top center;width:281px;height:780px;">');
+        var i = t.split(",");
+        r.write('<div style="padding-top:3.5em;width:90%"><u><b>' + i[0] + "<b></u></div>"),
+        r.write('<div style="width:90%">委託者：' + i[1] + "</div>");
+        for (var o = i[2]; o.indexOf("&n") > 0; )
+            o = o.replace("&n", "<br>");
+        r.write('<div style="text-align:left;margin-top:1em;padding-top:1em;width:90%;min-height:100px;max-height:500px;overflow-y: auto;overflow-x: hidden">' + o + "</div>"),
+        r.write('<div style="position:relative;top:20;left:-20;"><input type="submit" value="確定接受" style="border:2px solid black;background:transparent;cursor:hand"></div>'),
+        r.write("</div>"),
+        r.write('<input type="hidden" name="f" value="mission">'),
+        r.write('<input type="hidden" name="act" value="get">'),
+        r.write('<input type="hidden" name="m_id" value="' + e + '">')
+    }
+    r.write("</form>"),
+    r.write("</center>");
+    if(e==1702){
+        r.write('<img src="https://i.pinimg.com/originals/75/b3/c8/75b3c8eca95d917c650cd574b91db7f7.gif">');
+    }
+}
