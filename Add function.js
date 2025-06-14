@@ -974,7 +974,7 @@ async function createExtraFunction() {
 
         await sendInfo();
     }else{
-        console.log(data);
+        console.log(footTable);
         return;
     }
 }
