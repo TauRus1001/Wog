@@ -945,7 +945,7 @@ async function sendInfo(){
     }
 }
 async function createExtraFunction() {
-    const extraTable = parent.foot.document.getElementsByClassName('sp').length;
+    const extraTable = parent.foot.document.getElementsByClassName('sp');
     if(extraTable.length === 0){
         console.log("no extra function");
         //https://ithelp.ithome.com.tw/m/articles/10291496 <-rndNum
