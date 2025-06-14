@@ -945,12 +945,12 @@ async function sendInfo(){
     }
 }
 async function createExtraFunction() {
-    const footTable = parent.foot.document.getElementsByTagName("Table")[1].getElementsByTagName("tbody")[0].getElementsByTagName("tr");
-    if(footTable.length === 25){
+    const extraTable = parent.foot.document.getElementsByClassName('sp').length;
+    if(extraTable === 0){
         console.log("no extra function");
         //https://ithelp.ithome.com.tw/m/articles/10291496 <-rndNum
         addConciseMode();
-        const oriTable = footTable[0];
+        const oriTable = parent.foot.document.getElementsByTagName("Table")[1].getElementsByTagName("tbody")[0].getElementsByTagName("tr")[0];
 
         let newColumn1 = document.createElement('td');
         newColumn1.setAttribute('valign', 'top');
@@ -974,7 +974,7 @@ async function createExtraFunction() {
 
         await sendInfo();
     }else{
-        console.log(footTable);
+        console.log(extraTable);
         return;
     }
 }
