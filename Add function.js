@@ -871,7 +871,7 @@ function fastRebirthPage(){
             </tr>
         </tbody>
             <tr>
-              <td colspan="2"><input type="submit" value="重生" style="font-family: 細明體; font-size: 9pt; color: #EFEFEF; border: 1px solid #EFEFEF; background-color: #000000"></td>
+              <td colspan="2"><input type="button" onclick="console.log('轉生');this.form.submit()" value="重生" style="font-family: 細明體; font-size: 9pt; color: #EFEFEF; border: 1px solid #EFEFEF; background-color: #000000"></td>
             </tr>
     </table>
             <input type="hidden" name="act" value="rebirth">
