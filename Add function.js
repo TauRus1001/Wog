@@ -855,7 +855,7 @@ function fastRebirthPage(){
         <tbody>`);
     for (let i = 0; i < rebirthList.length; i++){
         parent.wog_view.document.write(`
-        <tr>
+        <tr onclick='this.getElementsByTagName("td")[0].getElementsByTagName("input")[0].checked=true;'>
             <td><input type="radio" name="ch" value="${rebirthList[i].id}"></td>
             <td>${rebirthList[i].title}</td>
         </tr>`);
@@ -869,10 +869,10 @@ function fastRebirthPage(){
                 type="password" name="name" size="20" maxlength="20">
                 </td>
             </tr>
+        </tbody>
             <tr>
               <td colspan="2"><input type="submit" value="重生" style="font-family: 細明體; font-size: 9pt; color: #EFEFEF; border: 1px solid #EFEFEF; background-color: #000000"></td>
             </tr>
-        </tbody>
     </table>
             <input type="hidden" name="act" value="rebirth">
             <input type="hidden" name="f" value="rebirth">
@@ -884,7 +884,28 @@ function fastRebirthPage(){
             <input type="hidden" name="b" value="4">
     </form>
     `);
+    parent.rebirthCss();
     },1000);
+}
+function rebirthCss() {
+    let styles = `
+        table{
+         border-color:#868686;
+         border-collapse: collapse;
+          padding: 5px;
+          font-family: 細明體;
+          position: absolute;
+          left:40%;
+        }
+        tbody tr:not(:last-child){
+          cursor: pointer;
+        }
+        tbody tr:not(:last-child):hover{
+          background-color: #777779;
+        }`;
+    let styleSheet = document.createElement("style");
+    styleSheet.textContent = styles;
+    parent.wog_view.document.head.appendChild(styleSheet);
 }
 function setupSafePW(){
     let safePW = "";
