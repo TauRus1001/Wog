@@ -118,12 +118,19 @@ function arm_view(t, e, r, i, o) {
                 playerOptions += `<option value="${online_list[i]}">${online_list[i]}</option>`;
             }
         }
-        d.write(
-            `<tr><td colspan="14" ><a href="javascript:parent.wog_view.document.body.getElementsByClassName(\'scrollable-table\')[0].scrollTop=0" id="bottom" style="margin-right:10px;">回到頂部</a>欲轉移需輸入對方遊戲的帳號
-            <input type="text" name="pay_id" id="playList"/>
-            <select id="playerList" onchange="this.form.playList.value=this.value">${playerOptions}</select>
-            安全密碼 <input ${safePW?"value="+safePW : ""} type="password" name="pw" size="16"></td></tr>`
-        );
+        d.write(`<tr><td colspan="14" ><a href="javascript:parent.wog_view.document.body.getElementsByClassName(\'scrollable-table\')[0].scrollTop=0" id="bottom" style="margin-right:10px;">回到頂部</a>欲轉移需輸入對方遊戲的帳號`);
+        if(isMobile){
+            d.write(`
+                <input type="text" name="pay_id" id="playList" list="playerList"/>
+                <datalist id="playerList">${playerOptions}</datalist>`
+            );
+        }else{
+            d.write(`
+                <input type="text" name="pay_id" id="playList"/>
+                <select id="playerList" onchange="this.form.playList.value=this.value">${playerOptions}</select>`
+            );
+        }
+        d.write(`安全密碼 <input ${safePW?"value="+safePW : ""} type="password" name="pw" size="16"></td></tr>`),
         d.write(temp_table2),
         d.write('<input type="hidden" name="f" value="arm">'),
         d.write('<input type="hidden" name="act" value="setup">'),
