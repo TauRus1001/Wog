@@ -1127,6 +1127,6 @@ function mission_detail(t, e) {
     r.write("</form>"),
     r.write("</center>");
     if(e==1702){
-        r.write('<img src="https://i.pinimg.com/originals/75/b3/c8/75b3c8eca95d917c650cd574b91db7f7.gif">');
+        r.write('<div style="display:flex;justify-content:center;"><img src="https://i.pinimg.com/originals/75/b3/c8/75b3c8eca95d917c650cd574b91db7f7.gif"></div>');
     }
 }
