@@ -483,7 +483,7 @@ function status_view2(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, b, _, g, h, v
 /****************************修改原生功能結束****************************/
 function uaIsMobile() {
     const ua = navigator.userAgent.toLowerCase();
-    if(ua.includes('mobi') || ua.includes('tablet')){  
+    if(ua.includes('mobi') || ua.includes('tablet') || ua.includes('linux')){  
        return true;
     }
     return false;
