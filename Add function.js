@@ -126,7 +126,7 @@ function arm_view(t, e, r, i, o) {
             );
         }else{
             d.write(`
-                <input type="text" name="pay_id" id="playList" list="playerList"/>
+                <input name="pay_id" id="playList" list="playerList"/>
                 <datalist id="playerList"><select>${playerOptions}</select></datalist>`
             );
         }
