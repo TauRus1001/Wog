@@ -127,7 +127,7 @@ function arm_view(t, e, r, i, o) {
         }else{
             d.write(`
                 <input type="text" name="pay_id" id="playList" list="playerList"/>
-                <datalist id="playerList">${playerOptions}</datalist>`
+                <datalist id="playerList"><select>${playerOptions}</select></datalist>`
             );
         }
         d.write(`安全密碼 <input ${safePW?"value="+safePW : ""} type="password" name="pw" size="16"></td></tr>`),
