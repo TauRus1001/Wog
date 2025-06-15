@@ -742,7 +742,7 @@ async function changeStamp(changeAmount, changeTime) {
     }
     let changeData = [];
     let formData = new FormData();
-    let e = parent.wog_view.document;
+    const e = parent.wog_view.document;
     e.body.innerHTML = "";
     formData.append('f', "ch");
     formData.append('act', "stamp");
@@ -759,11 +759,11 @@ async function changeStamp(changeAmount, changeTime) {
         }).then((html) => {
             let start = 0;
             start = (html.indexOf("stamp_end")) + 10;
-            let temp = html.substring(start, html.length);
-            let end = temp.indexOf("')</script>");
-            itemValue = (html.substring(start, start + end)).replace("'", "");
-            aLength = changeData.length;
-            add = true;
+            const temp = html.substring(start, html.length);
+            const end = temp.indexOf("')</script>");
+            const itemValue = (html.substring(start, start + end)).replace("'", "");
+            const aLength = changeData.length;
+            let add = true;
             for (let i = 0; i < aLength; i++) {
                 if (!(changeData[i].name == itemValue)) {
                     continue;
@@ -778,7 +778,6 @@ async function changeStamp(changeAmount, changeTime) {
                     t: 1
                 });
             }
-
             if (end === -1) {
                 e.write(temp_table1);
                 e.write('<tr><td>沒有足夠的印花</td></tr>');
@@ -797,7 +796,7 @@ async function changeStamp(changeAmount, changeTime) {
 }
 async function newStampHouse() {
     message_cls();
-    let stampNumber = await getStampNumber();
+    const stampNumber = await getStampNumber();
     wog_view.document.write(`<form action="wog_act.php" method="post" target="mission"><table width="97%" border="2" cellspacing="0" cellpadding="2" align="center" bordercolor="#868686"><tbody><tr><td>歡迎來到印花屋,大家可以將沒用的裝備換成印花,然後到此換領不同的禮物!每次換領需收取10萬元手續費喔!請在下面選擇閣下想換領的印花數目!</td></tr></tbody></table><hr><p style="position: relative; left: 2%; font-family: 細明體; font-size: 10pt; color: #EFEFEF;">你的印花數目:<font style="color: yellow;font-size:30px;"><b>` + stampNumber + `</b></font></p><p style="position: relative; left: 2%; font-family: 細明體; font-size: 10pt; color: #EFEFEF;">換領次數: <input type="number" id="changeTime" value="1" style="position: relative; left: 1%; font-family: 細明體; font-size: 10pt; color: #EFEFEF; border: 1px solid #EFEFEF; background-color: #000000"></p><p style="position: relative; left: 2%;color:red;">連續換領會對伺服器做成負擔，故上限設定為100次</p><table width="97%" border="2" cellspacing="0" cellpadding="2" align="center" bordercolor="#868686"><tbody><tr><td>印花數目</td><td>可換禮物</td></tr><tr><td><input type="button" value="50個印花" onclick="const t=parent.wog_view.document.querySelector('#changeTime').value;if(confirm('是否使用50個印花換領'+t+'次禮物?(消耗'+t*50+'印花)')){parent.changeStamp(50,parseInt(t))}" style="font-family: 細明體; font-size: 9pt; color: #EFEFEF; border: 1px solid #EFEFEF; background-color: #000000">(可換領次數:` + Math.floor(stampNumber / 50) + `)</td><td>路加達．戒<br>C箱<br>三國．啟動碼<br>薑餅仔的眼睛<br>捕捉器<br>50000 hp回復劑<br>金太陽徽章<br>120000 hp回復劑<br>160000 hp回復劑<br>200000 hp回復劑<br>幻想會員證<br>80000 hp回復劑<br>500霧靈換領券<br>一階封神石<br>幻想寶箱<br>卡片寶箱<br>殘卷寶箱<br>二百億換領券<br>石頭寶箱<br>咒紋錦盒<br>一百億兌換卷<br>封印錦盒<br><font color="0000FF">登入禮卷</font><br></td></tr><tr><td><input type="button" value="200個印花" onclick="const t=parent.wog_view.document.querySelector('#changeTime').value;if(confirm('是否使用200個印花換領'+t+'次禮物?(消耗'+t*200+'印花)')){parent.changeStamp(200,parseInt(t))}" style="font-family: 細明體; font-size: 9pt; color: #EFEFEF; border: 1px solid #EFEFEF; background-color: #000000">(可換領次數:` + Math.floor(stampNumber / 200) + `)</td><td><font color="0000FF">登入禮卷</font><br>1500霧靈換領券<br>200%天籟真元(250場)<br>咒紋錦盒<br>殘卷寶箱<br>石頭寶箱<br>封印錦盒<br></td></tr><tr><td><input type="button" value="500個印花" onclick="const t=parent.wog_view.document.querySelector('#changeTime').value;if(confirm('是否使用500個印花換領'+t+'次禮物?(消耗'+t*500+'印花)')){parent.changeStamp(500,parseInt(t))}" style="font-family: 細明體; font-size: 9pt; color: #EFEFEF; border: 1px solid #EFEFEF; background-color: #000000">(可換領次數:` + Math.floor(stampNumber / 500) + `)</td><td>200%天籟真元(700場)<br>素材寶箱<br>潘朵拉的卡片<br>赫淮斯托斯的卡片<br>一百億兌換卷<br>咒紋錦盒<br>殘卷寶箱<br>石頭寶箱<br></td></tr><tr><td><input type="button" value="1000個印花" onclick="const t=parent.wog_view.document.querySelector('#changeTime').value;if(confirm('是否使用1000個印花換領'+t+'次禮物?(消耗'+t*1000+'印花)')){parent.changeStamp(1000,parseInt(t))}" style="font-family: 細明體; font-size: 9pt; color: #EFEFEF; border: 1px solid #EFEFEF; background-color: #000000">(可換領次數:` + Math.floor(stampNumber / 1000) + `)</td><td>殘卷寶箱<br>B箱<br>六百億換領券<br>幽冥護符<br>神諸葛亮<br>神呂布<br></td></tr><tr><td><input type="button" value="2000個印花" onclick="const t=parent.wog_view.document.querySelector('#changeTime').value;if(confirm('是否使用2000個印花換領'+t+'次禮物?(消耗'+t*2000+'印花)')){parent.changeStamp(2000,parseInt(t))}" style="font-family: 細明體; font-size: 9pt; color: #EFEFEF; border: 1px solid #EFEFEF; background-color: #000000">(可換領次數:` + Math.floor(stampNumber / 2000) + `)</td><td>魅力之水<br>體質之水<br>生命之水<br>信仰之水<br>王者護符<br><font color="FFD700">精剛石</font><br>5000霧靈換領券<br>仙奇丹<br><font color="FFD700">封印的金龍石</font><br></td></tr><tr><td><input type="button" value="6000個印花" onclick="const t=parent.wog_view.document.querySelector('#changeTime').value;if(confirm('是否使用6000個印花換領'+t+'次禮物?(消耗'+t*6000+'印花)')){parent.changeStamp(6000,parseInt(t))}" style="font-family: 細明體; font-size: 9pt; color: #EFEFEF; border: 1px solid #EFEFEF; background-color: #000000">(可換領次數:` + Math.floor(stampNumber / 6000) + `)</td><td><font color="FFD700">封印的金龍石</font><br><font color="FFD700">至尊書頁</font><br>A箱<br>智力之水<br><font color="FFFF99">糖糖</font><br>V剎經驗包<br>幻想廢礦<br>力量之水<br>速度之水<br>十億經驗值乾坤袋<br></td></tr><tr></tr></tbody></table></form>`);
     parent.stampHouseCss();
 }
@@ -806,7 +805,7 @@ async function getStampNumber() {
     formData.append('f', "chara");
     formData.append('act', "status_view");
 
-    let stampNo = await fetch("https://wog.we-u.net/wog_act.php", {
+    const stampNo = await fetch("https://wog.we-u.net/wog_act.php", {
             body: formData,
             method: "post"
         })
@@ -824,13 +823,13 @@ async function getStampNumber() {
     return stampNo;
 }
 function stampHouseCss() {
-    let styles = `
+    const styles = `
         input#changeTime::-webkit-outer-spin-button,
         input#changeTime::-webkit-inner-spin-button {
           -webkit-appearance: none;
           margin: 0;
         }`;
-    let styleSheet = document.createElement("style");
+    const styleSheet = document.createElement("style");
     styleSheet.textContent = styles;
     parent.wog_view.document.head.appendChild(styleSheet);
 }
