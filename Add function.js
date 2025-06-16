@@ -426,6 +426,7 @@ function status_view2(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, b, _, g, h, v
     Q.write('<tr><td width="60%">');
     Q.write(temp_table1);
     Q.write('<tr><td colspan="2">勝場 ' + t + " / 敗場 " + e + "　(獲勝率:" + Math.floor(t / (t + e) * 100) + "%)</td></tr>");
+    Q.write('<tr><td colspan="2"><img src="' + J + '" border="0" ></td></tr>');
     Q.write('<tr><td bgcolor="#000099">金錢</td><td><b>-----</b></td></tr>');
     Q.write('<tr><td bgcolor="#000099">霧靈鬼魂</td><td><b>-----</b></td></tr>'),
     Q.write('<tr><td bgcolor="#000099">幻想點數</td><td><b>-----</b></td></tr>'),
