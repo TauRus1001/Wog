@@ -38,7 +38,7 @@ function mission_book(t, e) {
     }
 }
 async function event() {
-    parent.foot.document.getElementsByName("ats1")[0].style="background-color:red;"
+    parent.foot.document.getElementsByName("ats1")[0].style="background-color:#d30000;"
     parent.foot.document.getElementsByName("ats1")[0].onclick = function(){parent.unlockAd_view()};
 
     parent.sendNoti();
