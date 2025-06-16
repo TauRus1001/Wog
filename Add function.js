@@ -38,6 +38,10 @@ function mission_book(t, e) {
     }
 }
 async function event() {
+    parent.foot.document.getElementsByName("ats1")[0].disabled=true;
+    parent.foot.document.getElementsByName("ats1")[0].style="background-color:red;"
+    parent.foot.document.getElementsByName("ats1")[0].onclick = function(){parent.unlockAd_view()};
+
     parent.sendNoti();
     var t = parent.wog_view.document;
     message_cls();
@@ -48,6 +52,15 @@ async function event() {
         t.write(temp_table2);
     await parent.sleep(500);
     alert("驗證碼出現了");
+}
+function unlockAd_view(){
+    const text = "你確定要解鎖冒險開始嗎？";
+
+    if (confirm(text) == true) {
+        parent.ad_view();
+        parent.foot.document.getElementsByName("ats1")[0].disabled=false;
+        parent.foot.document.getElementsByName("ats1")[0].style="background-color:none;"
+        parent.foot.document.getElementsByName("ats1")[0].onclick = function(){parent.ad_view()}
 }
 function arm_unsetup_all_success() {
     var t, e = ["a_id", "d_head_id", "d_body_id", "d_hand_id", "d_foot_id", "d_item_id", "d_card_id", "d_car_id", "d_ca_id", "d_book_id", "d_god_id"];
