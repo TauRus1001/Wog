@@ -38,7 +38,6 @@ function mission_book(t, e) {
     }
 }
 async function event() {
-    parent.foot.document.getElementsByName("ats1")[0].disabled=true;
     parent.foot.document.getElementsByName("ats1")[0].style="background-color:red;"
     parent.foot.document.getElementsByName("ats1")[0].onclick = function(){parent.unlockAd_view()};
 
@@ -58,7 +57,6 @@ function unlockAd_view(){
 
     if (confirm(text) == true) {
         parent.ad_view();
-        parent.foot.document.getElementsByName("ats1")[0].disabled=false;
         parent.foot.document.getElementsByName("ats1")[0].style="background-color:none;"
         parent.foot.document.getElementsByName("ats1")[0].onclick = function(){parent.ad_view()}
     }
