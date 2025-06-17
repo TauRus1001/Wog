@@ -9,6 +9,56 @@ function cd_add(t) {
         setup_time(start_time),
         window.setTimeout("CountDown()", 100)
 }
+function rank_view(t) {
+    message_cls();
+    var e = parent.wog_view.document;
+    e.write(""),
+    e.write(temp_table1),
+    e.write("<tr>"),
+    e.write("<td COLSPAn=15><center>幻想戰爭傑出玩家排行榜</center></td>"),
+    e.write("</tr><tr>");
+    for (var r = 0; r < well.length; r++)
+        e.write("<td " + (r != t ? "onmouseover=\"this.style.color='#4B689E'\" onmouseout=\"this.style.color='white'\" onclick=\"parent.wog_view.location.href='wog_etc.php?f=king&type=" + well[r].type + "&time=" + well[r].time + '\'" style="cursor:pointer"' : 'bgcolor="#4B689E"') + ">" + well[r].title + "</td>");
+    if (e.write("</tr>" + temp_table2),
+    null != t) {
+        var i = "";
+        if (i = well[t].temp_str) {
+            e.write("<center>"),
+            e.write('<table width="97%" border="2" cellspacing="2" cellpadding="5" align="center" bordercolor="#868686">');
+            for (var o = i.split(";"), d = 0; d < o.length; d++) {
+                var n = o[d].split(",");
+                e.write(`<tr><td width="25%">No.${n[0]}</td><td width="25%"><a href="javascript:parent.yesname('${n[1]}')">${n[1]}</a></td><td width="50%">${n[2]}</td></tr>`);
+            }
+            e.write(temp_table2),
+            e.write("</center>")
+        }
+    }
+}
+function rank_vip_view(t) {
+    message_cls();
+    var e = parent.wog_view.document;
+    e.write(""),
+    e.write(temp_table1),
+    e.write("<tr>"),
+    e.write("<td COLSPAn=15><center>VIP幻想戰爭傑出玩家排行榜</center></td>"),
+    e.write("</tr><tr>");
+    for (var r = 0; r < well.length; r++)
+        e.write("<td " + (r != t ? "onmouseover=\"this.style.color='#4B689E'\" onmouseout=\"this.style.color='white'\" onclick=\"parent.wog_view.location.href='wog_etc.php?f=king_vip&type=" + well[r].type + "&time=" + well[r].time + '\'" style="cursor:pointer"' : 'bgcolor="#4B689E"') + ">" + well[r].title + "</td>");
+    if (e.write("</tr>" + temp_table2),
+    null != t) {
+        var i = "";
+        if (i = well[t].temp_str) {
+            e.write("<center>"),
+            e.write('<table width="97%" border="2" cellspacing="2" cellpadding="5" align="center" bordercolor="#868686">');
+            for (var o = i.split(";"), d = 0; d < o.length; d++) {
+                var n = o[d].split(",");
+                e.write(`<tr><td width="25%">No.${n[0]}</td><td width="25%"><a href="javascript:parent.yesname('${n[1]}')">${n[1]}</a></td><td width="50%">${n[2]}</td></tr>`);
+            }
+            e.write(temp_table2),
+            e.write("</center>")
+        }
+    }
+}
 function mission_book(t, e) {
     message_cls(),
     mission_head();
