@@ -175,6 +175,13 @@
                 "level":1,
                 "limitation":2,
                 "end_date":"07/17/2025"
+            },
+            {
+                "index":25,
+                "name":"天櫂",
+                "level":0,
+                "limitation":2,
+                "end_date":"07/17/2025"
             }
         ],
     "version":"1.0.8beta"
