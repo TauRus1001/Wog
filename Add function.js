@@ -88,6 +88,7 @@ function mission_book(t, e) {
     }
 }
 function onlinelist(t) {
+    online_list = [];
     var e = parent.wog_peo.document;
     message_cls(e, 0),
     e.write(online_temp_table1);
@@ -97,7 +98,6 @@ function onlinelist(t) {
       , d = 0
       , n = 0;
     if ("" != t) {
-        e.write("<img src=./img/logo/summer.gif>"),
         e.write('<tr bgcolor="#868686"><td>名稱</td><td>LV</td><td>轉生</td></tr>');
         for (var a = t.split(";"), l = 0; l < a.length; l++) {
             var s = a[l].split(",")
@@ -114,12 +114,11 @@ function onlinelist(t) {
             3 == s[10] && (name = "(SA)"),
             s[8] >= 1 ? (r[s[5]] += '<tr><td>' + clipboardImage +'<a href=javascript:parent.yesname("' + s[0] + '") target="foot"><b><font color="#33FF00">' + s[0] + "</font></b></a>" + name + "</td><td>" + s[2] + "</td><td>" + s[6] + "</td></tr>",
             n++) : r[s[5]] += '<tr><td>' + clipboardImage + '<a href=javascript:parent.yesname("' + s[0] + '") target="foot"><b><font color="' + p + '">' + s[0] + "</font></b></a>" + name + "</td><td>" + s[2] + "</td><td>" + s[6] + "</td></tr>"
+            online_list.push(s[0]);
         }
         for (l = 0; l < i; l++)
             r[l] && (e.write(r[l]),
             e.write('<tr><td colspan="4">↗' + section.getPlace(l) + "練功↖<hr></td></tr>"));
-        e.write('<tr><td bgcolor="#868686" colspan="3"><font color="#66ccff">男生</font> ' + o + ' 人、<font color="#ff99cc">女生</font> ' + d + " 人</td></tr>"),
-        e.write('<tr><td bgcolor="#868686" colspan="3">線上人數 ' + a.length + ' 人、<font color="#33FF00">發呆</font> ' + n + " 人</td></tr>")
     } else
         e.write('<tr><td colspan="3"  bgcolor="#868686">線上人數 0 人</td></tr>');
     e.write(temp_table2);
@@ -425,7 +424,7 @@ function lv_up(t, e, r, i, o, d, n, a) {//顯示上升等級
     l.write(temp_table2))
 }
 //刪除gif及統計人數
-function onlinelist(t) {
+function onlinelist2(t) {
     online_list = [];
     var e = parent.wog_peo.document;
     message_cls(e, 0),
