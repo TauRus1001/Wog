@@ -87,6 +87,97 @@ function mission_book(t, e) {
         r.write("</form>")
     }
 }
+function onlinelist(t) {
+    var e = parent.wog_peo.document;
+    message_cls(e, 0),
+    e.write(online_temp_table1);
+    var r = new Array
+      , i = section.placeNum
+      , o = 0
+      , d = 0
+      , n = 0;
+    if ("" != t) {
+        e.write("<img src=./img/logo/summer.gif>"),
+        e.write('<tr bgcolor="#868686"><td>名稱</td><td>LV</td><td>轉生</td></tr>');
+        for (var a = t.split(";"), l = 0; l < a.length; l++) {
+            var s = a[l].split(",")
+              , p = psex(s[1]);
+            const clipboardImage = `<div class="tooltip"><img onmouseout="parent.outFunc(this)"  onClick="parent.copyText('${s[0]}',this);" style="margin-right:5px;cursor: pointer;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAPFBMVEX///////9HcEz///////////////////////////////////////////////////////////////////+n2Z8OAAAAE3RSTlMY0wCZ7TMrUa4ImKESa4zUh6TlC0yskQAAAFpJREFUGNO9y1sOgDAIRNGRtlCob/a/V7HRxhV4viY3GdBNLCWTPkGzMJ8ecmGZCWq+i3eyuykweeNWw8HNJ9whL6Vb8hPi3sV4w/Bf2L5hA7R+Q1UQr2lYmS7OUwvimmOvhwAAAABJRU5ErkJggg=="/>
+  <span class="tooltiptext">Copy to clipboard</span>
+</div>`;
+            "1" == s[1] ? o++ : d++,
+            s[3] = 1 == s[3] ? "Y" : "N",
+            r[s[5]] || (r[s[5]] = ""),
+            0 == s[10] && (name = ""),
+            1 == s[10] && (name = "(GM)"),
+            2 == s[10] && (name = "(SGM)"),
+            3 == s[10] && (name = "(SA)"),
+            s[8] >= 1 ? (r[s[5]] += '<tr><td>' + clipboardImage +'<a href=javascript:parent.yesname("' + s[0] + '") target="foot"><b><font color="#33FF00">' + s[0] + "</font></b></a>" + name + "</td><td>" + s[2] + "</td><td>" + s[6] + "</td></tr>",
+            n++) : r[s[5]] += '<tr><td>' + clipboardImage + '<a href=javascript:parent.yesname("' + s[0] + '") target="foot"><b><font color="' + p + '">' + s[0] + "</font></b></a>" + name + "</td><td>" + s[2] + "</td><td>" + s[6] + "</td></tr>"
+        }
+        for (l = 0; l < i; l++)
+            r[l] && (e.write(r[l]),
+            e.write('<tr><td colspan="4">↗' + section.getPlace(l) + "練功↖<hr></td></tr>"));
+        e.write('<tr><td bgcolor="#868686" colspan="3"><font color="#66ccff">男生</font> ' + o + ' 人、<font color="#ff99cc">女生</font> ' + d + " 人</td></tr>"),
+        e.write('<tr><td bgcolor="#868686" colspan="3">線上人數 ' + a.length + ' 人、<font color="#33FF00">發呆</font> ' + n + " 人</td></tr>")
+    } else
+        e.write('<tr><td colspan="3"  bgcolor="#868686">線上人數 0 人</td></tr>');
+    e.write(temp_table2);
+    parent.peoCss();
+}
+function peoCss() {
+    let styles = `
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 140px;
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 150%;
+      left: 50%;
+      margin-left: -75px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .tooltip .tooltiptext::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #555 transparent transparent transparent;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+    `;
+    let styleSheet = parent.wog_peo.document.createElement("style");
+    styleSheet.textContent = styles;
+    parent.wog_peo.document.head.appendChild(styleSheet);
+}
+function copyText(text,target) {
+    navigator.clipboard.writeText(text);
+    target.parentNode.children[1].innerText = "Copied: " + text;
+}
+function outFunc(target) {
+    setTimeout(()=>{
+    target.parentNode.children[1].innerText = "Copy to clipboard";
+    },500);
+}
 function event() {
     parent.foot.document.getElementsByName("ats1")[0].style="background-color:#d30000;"
     parent.foot.document.getElementsByName("ats1")[0].onclick = function(){parent.unlockAd_view()};
