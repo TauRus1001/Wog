@@ -217,7 +217,7 @@ function arm_view(t, e, r, i, o) {
     var d = parent.wog_view.document;
     if (vData = e,
         arm_head(),
-        d.write('<hr><tr><td colspan="11" >可使用的背包格數 ：' + i + ' </td></tr><a href="#bottom" style="margin-left:20px;">移到底部</a>'),
+        d.write('<hr><tr><td colspan="11" >可使用的背包格數 ：' + i + ' </td></tr><a href="parent.wog_view.document.body.getElementsByClassName('scrollable-table')[0].scrollTo({top: 9999});" style="margin-left:20px;">移到底部</a>'),
         d.write(`<a id="pandora" href="#bottom" style="margin-left:10px;"></a>`),
         d.write(`<a id="hephaestus" href="#bottom" style="margin-left:10px;"></a>`),
         d.write(`<div class='scrollable-table'>`),
@@ -268,7 +268,7 @@ function arm_view(t, e, r, i, o) {
                 playerOptions += `<option value="${online_list[i]}">${online_list[i]}</option>`;
             }
         }
-        d.write(`<tr><td colspan="14" ><a href="javascript:parent.wog_view.document.body.getElementsByClassName(\'scrollable-table\')[0].scrollTop=0" id="bottom" style="margin-right:10px;">回到頂部</a>欲轉移需輸入對方遊戲的帳號`);
+        d.write(`<tr><td colspan="14" ><a href="javascript:parent.wog_view.document.body.getElementsByClassName('scrollable-table')[0].scrollTo({top: 0});" id="bottom" style="margin-right:10px;">回到頂部</a>欲轉移需輸入對方遊戲的帳號`);
         if(isMobile){
             d.write(`
                 <input type="text" name="pay_id" id="playList"/>
