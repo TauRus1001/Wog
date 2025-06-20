@@ -217,7 +217,7 @@ function arm_view(t, e, r, i, o) {
     var d = parent.wog_view.document;
     if (vData = e,
         arm_head(),
-        d.write('<hr><tr><td colspan="11" >可使用的背包格數 ：' + i + ' </td></tr><a href="parent.wog_view.document.body.getElementsByClassName("scrollable-table")[0].scrollTo({top: 9999});" style="margin-left:20px;">移到底部</a>'),
+        d.write('<hr><tr><td colspan="11" >可使用的背包格數 ：' + i + ' </td></tr><a href="javascript:parent.wog_view.document.body.getElementsByClassName("scrollable-table")[0].scrollTo({top: 9999});" style="margin-left:20px;">移到底部</a>'),
         d.write(`<a id="pandora" href="#bottom" style="margin-left:10px;"></a>`),
         d.write(`<a id="hephaestus" href="#bottom" style="margin-left:10px;"></a>`),
         d.write(`<div class='scrollable-table'>`),
