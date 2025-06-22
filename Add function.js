@@ -292,7 +292,7 @@ function arm_view(t, e, r, i, o) {
         if ("d_item_id" != r) {
             parent.wog_view.document.head.getElementsByTagName("style")[1].innerHTML = '.scrollable-table{height:72%;overflow-y:auto;}.scrollable-table>form>#bagList{width:100%}th{background:#083118;position:sticky;top:0;font-size: 11pt;}table#bagList>tbody>tr:nth-last-of-type(-n+2){position: sticky;bottom: 27;background:#000000;}table#bagList>tbody>tr:last-child{position:sticky;bottom:0;background:#000000;}'
         }
-        const scrollHeight = parent.wog_view.document.body.getElementsByClassName('scrollable-table')[0].scrollHeight;Add commentMore actions
+        const scrollHeight = parent.wog_view.document.body.getElementsByClassName('scrollable-table')[0].scrollHeight;
         parent.wog_view.document.getElementById("goEnd").setAttribute("href",`javascript:parent.wog_view.document.body.getElementsByClassName('scrollable-table')[0].scrollTo({top: ${scrollHeight}});parent.wog_view.document.body.scrollTo({top: 9999});`)
 }
 //wog_view背景圖片切換
