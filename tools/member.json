@@ -189,6 +189,13 @@
                 "level":0,
                 "limitation":2,
                 "end_date":"07/17/2025"
+            },
+            {
+                "index":27,
+                "name":"魚",
+                "level":0,
+                "limitation":4,
+                "end_date":"07/17/2025"
             }
         ],
     "version":"1.0.8beta"
