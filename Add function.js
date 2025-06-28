@@ -679,6 +679,7 @@ function useMultipleItems(){
         const useTime = parseInt(parent.wog_view.document.f2.item_num.value);
         openbox(selected_id,useTime);
     }else{
+        alert("錯誤的選項");
         return;
     }
 }
