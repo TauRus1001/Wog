@@ -641,7 +641,106 @@ function uaIsMobile() {
     }
     return false;
 }
-function synSelectItem(itemName,itemAmount) { //精煉多選物品
+function useMultipleItems(){
+    let selected_id = 0;
+    parent.wog_view.document.f2.adds.forEach((e)=>{if(e.checked){selected_id = parseInt(e.value);}});
+    //console.log(selected_id);
+    const boxes = {
+        2685:'幻想寶箱',
+        2686:'石頭寶箱',
+        2690:'卡片寶箱',
+        2711:'霧靈寶箱',
+        2712:'毛公仔寶箱',
+        2812:'雲逆寶箱',
+        2879:'封印錦盒',
+        2880:'咒紋錦盒',
+        2882:'天使寶箱',
+        2883:'死神寶箱',
+        3334:'深海寶箱',
+        3540:'寶石收藏箱(Lv1)',
+        3541:'寶石收藏箱(Lv2)',
+        3542:'寶石收藏箱(Lv3)',
+        4025:'冥界寶箱',
+        4574:'神秘寶箱(火)',
+        4575:'神秘寶箱(水)',
+        4576:'神秘寶箱(木)',
+        4671:'素材寶箱',
+        4785:'清心錦盒',
+        4787:'武林至尊錦盒',
+        5606:'殘卷寶箱',
+        5607:'錢幣寶箱',
+        7183:'A箱',
+        7184:'B箱',
+        7185:'C箱',
+        7186:'善良箱',
+        7187:'狡猾箱'
+    }
+    if(selected_id in boxes){
+        const useTime = parseInt(parent.wog_view.document.f2.item_num.value);
+        openbox(selected_id,useTime);
+    }else{
+        return;
+    }
+}
+async function openbox(id,useTime){
+    let changeData = [];
+    let formData = new FormData();
+    let e = parent.wog_view.document;
+    e.body.innerHTML="";
+    e.write(temp_table1);
+    e.write('<tr><td>開啓中...請稍後..請不要離開頁面</td></tr>');
+    e.write(temp_table2);
+    formData.append('adds', id);
+    formData.append('items[]', id);
+    formData.append('item_num', 1);
+    formData.append('f', 'arm');
+    formData.append('act', 'setup');
+    for(let i = 0;i<useTime;i++){
+    await fetch("https://wog.we-u.net/wog_act.php",
+        {
+            body: formData,
+            method: "post"
+        }).then((response) => {
+        return response.text();
+        }).then((html) => {
+        //console.log(html);
+        let start = 0;
+        start = (html.indexOf("draw_end2"))+11;
+        let temp = html.substring(start,html.length);
+        let end = (temp.indexOf(")</script>"))-2;
+        const itemValue = (html.substring(start,start+end)).replace("'","");
+        const aLength = changeData.length;
+        let add = true;
+        //console.log(itemValue);
+        for (let i = 0; i < aLength; i++) {
+            if (!(changeData[i].name == itemValue)) {
+                continue;
+            }
+                add = false;
+                changeData[i].t += 1;
+                break;
+            }
+        if (itemValue === "hea") {
+            i = useTime;
+        }
+        if (add && itemValue != "hea") {
+            changeData.push({
+                name: itemValue,
+                t: 1
+            });
+        }
+        return itemValue;
+        });
+    }
+    e.write('<hr>');
+    e.write(`<div align="center"><table border="2" cellspacing="0" cellpadding="2" bordercolor="#868686"><tbody><tr><td width="auto" nowrap="nowrap">已獲得項目</td><td width="15%" nowrap="nowrap">數量</td></tr>`);
+    for (let j = 0; j < changeData.length; j++) {
+        e.write('<tr><td>' + changeData[j].name + '</td><td>' + changeData[j].t + '</td></tr>');
+    }
+    e.write(temp_table2 + '</div>');
+}
+//精煉多選物品
+function synSelectItem(itemName,itemAmount) {
     const itemList={'天龍石':1068,'帝龍石':1069,'戰龍石':1070,'泣龍石':1071,'聖龍石':1072,'斷龍石':1074,'神龍石':1076};
     const itemId = itemList[itemName];
     const synElements = parent.wog_view.document.getElementsByName("syn[]");
