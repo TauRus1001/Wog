@@ -718,7 +718,7 @@ async function openbox(id,useTime){
             itemCase = 2;
         }
         let temp = html.substring(start,html.length);
-        console.log(temp);
+        //console.log(temp);
         
         if(itemCase === 2){
             end = (temp.indexOf(")</script>"));
