@@ -646,6 +646,7 @@ function useMultipleItems(){
     parent.wog_view.document.f2.adds.forEach((e)=>{if(e.checked){selected_id = parseInt(e.value);}});
     //console.log(selected_id);
     const boxes = {
+        533:'20格背包',
         2685:'幻想寶箱',
         2686:'石頭寶箱',
         2690:'卡片寶箱',
@@ -689,7 +690,7 @@ async function openbox(id,useTime){
     let e = parent.wog_view.document;
     e.body.innerHTML="";
     e.write(temp_table1);
-    e.write('<tr><td>開啓中...請稍後..請不要離開頁面</td></tr>');
+    e.write('<tr><td>開啓中...請稍後...請不要離開頁面</td></tr>');
     e.write(temp_table2);
     formData.append('adds', id);
     formData.append('items[]', id);
@@ -706,13 +707,30 @@ async function openbox(id,useTime){
         }).then((html) => {
         //console.log(html);
         let start = 0;
-        start = (html.indexOf("draw_end2"))+11;
+        let end = 0;
+        let itemValue = "";
+        let itemCase = 0; //itemCase 0=error, 1=boxes, 2=bag
+        if (html.includes("draw_end2")){
+            start = (html.indexOf("draw_end2"))+11;
+            itemCase = 1;
+        }else if (html.includes("parent.bag_up")){
+            start = (html.indexOf("parent.bag_up"))+14;
+            itemCase = 2;
+        }
         let temp = html.substring(start,html.length);
-        let end = (temp.indexOf(")</script>"))-2;
-        const itemValue = (html.substring(start,start+end)).replace("'","");
+        console.log(temp);
+        
+        if(itemCase === 2){
+            end = (temp.indexOf(")</script>"));
+            itemValue = "背包" + (html.substring(start,start+end)).replace("'","") + "格";
+        }else if(itemCase === 1){
+            end = (temp.indexOf(")</script>"))-2;
+            itemValue = (html.substring(start,start+end)).replace("'","");
+        }
+        
         const aLength = changeData.length;
         let add = true;
-        //console.log(itemValue);
+        // console.log(itemValue);
         for (let i = 0; i < aLength; i++) {
             if (!(changeData[i].name == itemValue)) {
                 continue;
