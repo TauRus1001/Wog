@@ -137,9 +137,9 @@
             {
                 "index":19,
                 "name":"星星有淚",
-                "level":0,
-                "limitation":2,
-                "end_date":"05/08/2025"
+                "level":3,
+                "limitation":4,
+                "end_date":"11/01/2025"
             },
             {
                 "index":20,
@@ -193,6 +193,13 @@
             {
                 "index":27,
                 "name":"魚",
+                "level":0,
+                "limitation":4,
+                "end_date":"07/17/2025"
+            },
+            {
+                "index":28,
+                "name":"何金銀",
                 "level":0,
                 "limitation":4,
                 "end_date":"07/17/2025"
