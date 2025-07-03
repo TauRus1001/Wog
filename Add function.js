@@ -949,7 +949,7 @@ async function armAll(selected) {
     }
     let unArmList = setList.sets[selected].unArmList;
     for (let i = 0; i < unArmList.length; i++) {
-	parent.unArm(unArmList[i]);
+	await parent.unArm(unArmList[i]);
 	await parent.sleep(150);
     }
     let armList = setList.sets[selected].armList;
@@ -1393,6 +1393,12 @@ const setList =
             "title":"神偷天下套裝",
             "armList" :["6013","6207","6210","6016","6204"],
             "unArmList":[0,1,2,3,4]
-        }
+        },
+	{
+	    "title":"時間之流",
+	    "description":"埃及神話",
+	    "armList" :["5090"],
+	    "unArmList":[5]
+	}
     ]
 }
