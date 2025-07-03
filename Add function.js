@@ -949,8 +949,8 @@ async function armAll(selected) {
     }
     let unArmList = setList.sets[selected].unArmList;
     for (let i = 0; i < unArmList.length; i++) {
-	await parent.unArm(unArmList[i]);
 	await parent.sleep(150);
+    	await parent.unArm(unArmList[i]);
     }
     let armList = setList.sets[selected].armList;
     for (let i = 0; i < armList.length; i++) {
