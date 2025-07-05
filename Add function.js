@@ -1008,7 +1008,7 @@ function armPageindexChecked() {
         }
     }
 }
-async function changeStamp(changeAmount, changeTime) {
+aasync function changeStamp(changeAmount, changeTime) {
     if (changeTime < 1 || changeTime > 200) {
         alert("錯誤的換領次數，請輸入1-200");
         return;
@@ -1021,7 +1021,7 @@ async function changeStamp(changeAmount, changeTime) {
     formData.append('act', "stamp");
     formData.append('temp_id', changeAmount);
     e.write(temp_table1);
-    e.write('<tr><td>換領中...請稍後..請不要離開頁面</td></tr>');
+    e.write(`<tr><td>換領中...請稍後..請不要離開頁面 <label id="changedTime">0</label> / ${changeTime}</td></tr>`);
     e.write(temp_table2);
     for (let i = 0; i < changeTime; i++) {
         await fetch("https://wog.we-u.net/wog_act.php", {
@@ -1057,6 +1057,7 @@ async function changeStamp(changeAmount, changeTime) {
                 e.write("</td></tr>" + temp_table2);
                 i = changeTime;
             }
+            parent.wog_view.document.getElementById("changedTime").innerText = i+1;
             return itemValue;
         });
     }
