@@ -1402,49 +1402,85 @@ const setList =
 	}
     ]
 }
-function job_end(t, e) {
+function shop_home_view(t, e, r, i, o, d, n, a) {
     message_cls();
-    var r = parent.wog_view.document
-      , i = new Array;
-    if (i[0] = "",
-    i[1] = "刪除成功",
-    i[2] = "轉職成功",
-    i[3] = "設定成功",
-    i[4] = "感謝你使用本銀行",
-    i[5] = "休息了一晚後,HP回復精神飽滿",
-    i[6] = "購買完成",
-    i[7] = "訊息成功發出",
-    i[8] = "成功取得以及裝備奧義",
-    i[9] = "開始擺攤",
-    i[10] = "建立成功",
-    i[11] = "改變成功",
-    i[12] = "成功卸除裝備",
-    i[13] = "",
-    i[14] = "手續完成,請等待核可",
-    i[15] = "手續完成",
-    i[16] = "過度疲勞寵物死亡",
-    i[17] = "寵物逃跑",
-    i[18] = "放生成功",
-    i[19] = "復活成功",
-    i[20] = "任務接受成功",
-    i[21] = "恭喜完成任務",
-    i[22] = "取消任務成功",
-    i[23] = "運氣已更改!",
-    i[24] = "官職已設定!",
-    i[25] = "聊天室頭銜已更改!",
-    i[26] = "安全密碼已更改!",
-    i[27] = "出價成功!",
-    i[28] = "密碼更改成功,已發送電郵通知!",
-    i[29] = "問題已成功回報,請等候回復!",
-    i[30] = "訊息發送成功!",
-    i[32] = "減去敗數成功!!",
-    r.write(temp_table1),
-    6 == t ? r.write("<tr><td >" + i[t] + '!!</br><a href="javascript:parent.wog_view.document.Window.history.back();">點此返回上一頁</a></td></tr>') : r.write("<tr><td >" + i[t] + "!!</td></tr>"),
-    3 == t ? r.write("<tr><td><img src='https://media1.tenor.com/m/UlP2f-_TTLkAAAAd/dandadan-okarun.gif'></td></tr>") : "",
-    e) {
-        for (; e.indexOf("&n") > 0; )
-            e = e.replace("&n", "<br>");
-        r.write("<tr><td class=b1>" + e + "</td></tr>")
-    }
-    r.write(temp_table2)
+    var l = parent.wog_view.document;
+    if (l.write(temp_table1),
+    l.write('<form action="wog_act.php" method="post" name="f1" target="mission">'),
+    o <= 7 && r < 6 && (l.write("<tr><td colspan=6>第" + o + "級裝備</td></tr>"),
+    l.write("<tr>"),
+    l.write("<td " + ("0" == r ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,' + o + ',0)"') + ">武器裝備</td>"),
+    l.write("<td " + ("1" == r ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,' + o + ',1)"') + ">頭部裝備</td>"),
+    l.write("<td " + ("2" == r ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,' + o + ',2)"') + ">身體裝備</td>"),
+    l.write("<td " + ("3" == r ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,' + o + ',3)"') + ">手部裝備</td>"),
+    l.write("<td " + ("4" == r ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,' + o + ',4)"') + ">腳部裝備</td>"),
+    l.write("</tr>"),
+    l.write(temp_table2),
+    l.write(temp_table1),
+    l.write("<tr>"),
+    l.write("<td " + ("1" == o ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,1,' + r + ')"') + ">LV1</td>"),
+    l.write("<td " + ("2" == o ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,2,' + r + ')"') + ">LV2</td>"),
+    l.write("<td " + ("3" == o ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,3,' + r + ')"') + ">LV3</td>"),
+    l.write("<td " + ("4" == o ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,4,' + r + ')"') + ">LV4</td>"),
+    l.write("<td " + ("5" == o ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,5,' + r + ')"') + ">LV5</td>"),
+    l.write("<td " + ("6" == o ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,6,' + r + ')"') + ">LV6</td>"),
+    l.write("<td " + ("7" == o ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,7,' + r + ')"') + ">LV7</td>")),
+    8 == o && (l.write("<tr><td colspan=10>裝備雜貨屋</td></tr>"),
+    l.write("<tr>"),
+    l.write("<td " + ("0" == r ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,' + o + ',0)"') + ">武器裝備</td>"),
+    l.write("<td " + ("1" == r ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,' + o + ',1)"') + ">頭部裝備</td>"),
+    l.write("<td " + ("2" == r ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,' + o + ',2)"') + ">身體裝備</td>"),
+    l.write("<td " + ("3" == r ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,' + o + ',3)"') + ">手部裝備</td>"),
+    l.write("<td " + ("4" == r ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,' + o + ',4)"') + ">腳部裝備</td>"),
+    l.write("<td " + ("5,6" == r ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,' + o + ",'5,6')\"") + ">道具裝備</td>"),
+    l.write("<td " + ("7" == r ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,' + o + ',7)"') + ">護符裝備</td>"),
+    l.write("<td " + ("8" == r ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,' + o + ',8)"') + ">座騎裝備</td>"),
+    l.write("<td " + ("9" == r ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,' + o + ',9)"') + ">幻想卡裝備</td>")),
+    8 == r && o < 4 && (l.write("<tr><td colspan=10>座騎裝備</td></tr>"),
+    l.write("<tr>"),
+    l.write("<td " + ("1" == o ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,1,8)"') + ">物理座騎</td>"),
+    l.write("<td " + ("2" == o ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,2,8)"') + ">魔法座騎</td>"),
+    l.write("<td " + ("3" == o ? 'bgcolor="#4B689E"' : 'onmouseover="this.style.color=\'#4B689E\'" onmouseout="this.style.color=\'white\'" onclick="parent.th_submit(document.f1,3,8)"') + ">神之座騎</td>")),
+    9 == o && l.write("<tr><td colspan=10>藏寶洞</td>"),
+    "5,6" == r && 1 == o && l.write("<tr><td colspan=10>道具小店</td>"),
+    10 == r && 1 == o && l.write("<tr><td colspan=10>幻想書局</td>"),
+    l.write("</tr>"),
+    l.write('<input type="hidden" name="f" value="shop">'),
+    l.write('<input type="hidden" name="act" value="view">'),
+    l.write('<input type="hidden" name="temp_id" value="">'),
+    l.write('<input type="hidden" name="temp_id2" value="">'),
+    l.write("</form>"),
+    l.write(temp_table2),
+    l.write('<form action="wog_act.php" method="post" name=pageform target="mission">'),
+    pagesplit(d, n),
+    l.write('<input type="hidden" name="page" value="">'),
+    l.write('<input type="hidden" name="f" value="shop">'),
+    l.write('<input type="hidden" name="act" value="view">'),
+    l.write('<input type="hidden" name="temp_id" value="' + r + '">'),
+    l.write('<input type="hidden" name="temp_id2" value="' + o + '">'),
+    l.write("</form>"),
+    l.write('<form action="wog_act.php" method="post" target="mission">'),
+    l.write(temp_table1),
+    a < 1 && l.write("<tr><td colspan=12>現時物價:<font color=blue><b>" + a + "</b></font></td></tr>"),
+    a > 1 && l.write("<tr><td colspan=12>現時物價:<font color=red><b>" + a + "</b></font></td></tr>"),
+    1 == a && l.write("<tr><td colspan=12>現時物價:" + a + "</td></tr>"),
+    l.write("<tr><td></td><td>物攻</td><td>魔攻</td><td>物防</td><td>魔防</td><td>速度</td><td>職業</td><td>能力限制</td><td>名稱</td><td>金錢(包物價)</td><td>霧靈</td><td>幻想點數</td></tr>"),
+    "" != t)
+        for (var s = t.split(";"), p = 0; p < s.length; p++) {
+            var c = s[p].split(",");
+            0 == c[11] ? s10 = "無" : s10 = "'+s2[11]+' 熟練度:('+job_pro(s2[12])+'%)",
+            l.write('<tr onMouseOver="this.style.backgroundColor=\'#777779\'" onMouseOut="this.style.backgroundColor=\'\'" onclick="parent.wog_view.document.forms[2].adds[' + p + '].checked=true" style="cursor:hand"><td ><input type="radio" name="adds" value="' + c[0] + '"></td><td>' + c[6] + "</td><td>" + c[7] + "</td><td>" + c[1] + "</td><td>" + c[2] + "</td><td>" + c[3] + "</td><td>" + s10 + "</td><td>力:" + c[8] + " 速:" + c[9] + " 智:" + c[10] + " 轉生:" + c[14] + "</td><td>" + c[5] + "</td><td>" + c[4] + "</td><td>" + c[13] + "</td><td>" + c[15] + "</td></tr>")
+        }
+    else
+        l.write('<tr><td colspan="13" >沒有可以使用的裝具</td></tr>');
+    s = i.split(",");
+    l.write('<tr bgcolor="#777779"><td ><font color="#FF0000">E</font></td><td>' + s[4] + "</td><td>" + s[5] + "</td><td>" + s[0] + "</td><td>" + s[1] + "</td><td>" + s[2] + "</td><td>---</td><td>---</td><td>" + s[3] + "</td><td>---</td><td>---</td><td>---</td></tr>"),
+    l.write('<tr><td colspan="14">請選擇數量:<input type="text" name="buy_num" value="1" size="4" maxlength="4"> (最大9999)'),
+    l.write('<tr><td colspan="13" ><input type="submit" value="確定購買" style="' + sbutton + '">購買時將扣除價錢*物價的金錢</td></tr>'),
+    (r == 2 && o == 5) ? l.write('<tr><td onclick=alert((decodeURIComponent(atob("JUU2JTg4JTkxJUU2JTg0JTlCJUU1JUI5JUJCJUU2JTgzJUIzJUU2JTg4JUIwJUU3JTg4JUFEd29n")))); colspan="13" >身上金額 ' + s[6] + "</td></tr>"):l.write('<tr><td colspan="13" >身上金額 ' + s[6] + "</td></tr>"),
+    l.write(temp_table2),
+    l.write('<input type="hidden" name="f" value="shop">'),
+    l.write('<input type="hidden" name="act" value="buy">'),
+    l.write('<input type="hidden" name="temp_id" value="' + r + '">'),
+    l.write("</form>");
 }
