@@ -691,7 +691,7 @@ async function openbox(id,useTime){
     let e = parent.wog_view.document;
     e.body.innerHTML="";
     e.write(temp_table1);
-    e.write('<tr><td>開啓中...請稍後...請不要離開頁面</td></tr>');
+    e.write(`<tr><td>開啓中...請稍後...請不要離開頁面 <label id="usedTime">0</label> / ${useTime}</td></tr>`);
     e.write(temp_table2);
     formData.append('adds', id);
     formData.append('items[]', id);
@@ -719,7 +719,8 @@ async function openbox(id,useTime){
             itemCase = 2;
         }
         let temp = html.substring(start,html.length);
-        //console.log(temp);
+        // console.log(temp);
+        parent.wog_view.document.getElementById("usedTime").innerText = i+1;
         
         if(itemCase === 2){
             end = (temp.indexOf(")</script>"));
@@ -736,10 +737,10 @@ async function openbox(id,useTime){
             if (!(changeData[i].name == itemValue)) {
                 continue;
             }
-                add = false;
-                changeData[i].t += 1;
-                break;
-            }
+            add = false;
+            changeData[i].t += 1;
+            break;
+        }
         if (itemValue === "hea") {
             i = useTime;
         }
