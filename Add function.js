@@ -643,10 +643,10 @@ function uaIsMobile() {
 }
 function useMultipleItems(){
     let selected_id = 0;
+    let itemType = 0;
     parent.wog_view.document.f2.adds.forEach((e)=>{if(e.checked){selected_id = parseInt(e.value);}});
     //console.log(selected_id);
     const boxes = {
-        533:'20格背包',
         2685:'幻想寶箱',
         2686:'石頭寶箱',
         2690:'卡片寶箱',
@@ -667,7 +667,6 @@ function useMultipleItems(){
         4576:'神秘寶箱(木)',
         4671:'素材寶箱',
         4785:'清心錦盒',
-        4786:'天元黃金箱',
         4787:'武林至尊錦盒',
         5606:'殘卷寶箱',
         5607:'錢幣寶箱',
@@ -677,15 +676,26 @@ function useMultipleItems(){
         7186:'善良箱',
         7187:'狡猾箱'
     }
+    const powerItem = {
+        7079:'糖糖'
+    }
     if(selected_id in boxes){
-        const useTime = parseInt(parent.wog_view.document.f2.item_num.value);
-        openbox(selected_id,useTime);
-    }else{
+        itemType = 1;
+    }
+    if(selected_id in powerItem){
+        itemType = 3;
+    }
+    // console.log('itemType',itemType)
+
+    //itemType 1 = boxes, 2 = powerItem
+    if (itemType == 0){
         alert("錯誤的選項");
         return;
     }
+    const useTime = parseInt(parent.wog_view.document.f2.item_num.value);
+    openbox(selected_id,useTime,itemType);
 }
-async function openbox(id,useTime){
+async function openbox(id,useTime,itemType){
     let changeData = [];
     let formData = new FormData();
     let e = parent.wog_view.document;
@@ -698,6 +708,7 @@ async function openbox(id,useTime){
     formData.append('item_num', 1);
     formData.append('f', 'arm');
     formData.append('act', 'setup');
+    let finalTime = 0;
     for(let i = 0;i<useTime;i++){
     await fetch("https://wog.we-u.net/wog_act.php",
         {
@@ -706,29 +717,37 @@ async function openbox(id,useTime){
         }).then((response) => {
         return response.text();
         }).then((html) => {
-        //console.log(html);
+        // console.log(html);
         let start = 0;
         let end = 0;
         let itemValue = "";
-        let itemCase = 0; //itemCase 0=error, 1=boxes, 2=bag
-        if (html.includes("draw_end2")){
-            start = (html.indexOf("draw_end2"))+11;
-            itemCase = 1;
-        }else if (html.includes("parent.bag_up")){
-            start = (html.indexOf("parent.bag_up"))+14;
-            itemCase = 2;
+        let temp = "";
+        //itemType 0=error, 1=boxes, 2=bag
+        switch (itemType){
+            case 3:
+                start = (html.indexOf("parent.lv_up2"))+14;
+                temp = html.substring(start,html.length);
+                // console.log(temp);
+                end = (temp.indexOf(")</script>"));
+                itemValue = html.substring(start,start+end);
+                break;
+            case 2:
+                start = (html.indexOf("parent.bag_up"))+14;
+                temp = html.substring(start,html.length);
+                // console.log(temp);
+                end = (temp.indexOf(")</script>"));
+                itemValue = "背包" + (html.substring(start,start+end)).replace("'","") + "格";
+                break;
+            case 1:
+                start = (html.indexOf("draw_end2"))+11;
+                temp = html.substring(start,html.length);
+                // console.log(temp);
+                end = (temp.indexOf(")</script>"))-2;
+                itemValue = (html.substring(start,start+end)).replace("'","");
+                break;
         }
-        let temp = html.substring(start,html.length);
-        // console.log(temp);
-        parent.wog_view.document.getElementById("usedTime").innerText = i+1;
-        
-        if(itemCase === 2){
-            end = (temp.indexOf(")</script>"));
-            itemValue = "背包" + (html.substring(start,start+end)).replace("'","") + "格";
-        }else if(itemCase === 1){
-            end = (temp.indexOf(")</script>"))-2;
-            itemValue = (html.substring(start,start+end)).replace("'","");
-        }
+        finalTime = i+1;
+        parent.wog_view.document.getElementById("usedTime").innerText = finalTime;
         
         const aLength = changeData.length;
         let add = true;
@@ -754,11 +773,39 @@ async function openbox(id,useTime){
         });
     }
     e.write('<hr>');
-    e.write(`<div align="center"><table border="2" cellspacing="0" cellpadding="2" bordercolor="#868686"><tbody><tr><td width="auto" nowrap="nowrap">已獲得項目</td><td width="15%" nowrap="nowrap">數量</td></tr>`);
-    for (let j = 0; j < changeData.length; j++) {
-        e.write('<tr><td>' + changeData[j].name + '</td><td>' + changeData[j].t + '</td></tr>');
+    if (itemType ==3){
+        const tempArray = changeData[0].name.split(",");
+        console.log(tempArray);
+        e.write(temp_table1 + '<tr><td class="b1" colspan="10"><b>' + p_name + " 能力上升 </b></td></tr>"),
+        e.write("<tr><td><b>力量</b></td>"),
+        e.write("<td><b>速度</b></td>"),
+        e.write("<td><b>智力</b></td>"),
+        e.write("<td><b>生命</b></td>"),
+        e.write("<td><b>體質</b></td>"),
+        e.write("<td><b>魅力</b></td>"),
+        e.write("<td><b>信仰</b></td>"),
+        e.write("<td><b>經驗加乘</b></td>"),
+        0 != Number(tempArray[7]) && e.write("<td><b>EXP</b></td>"),
+        e.write("</tr>"),
+        e.write("<tr><td><b>↑ " + Number(tempArray[0])*finalTime + "</b></td>"),
+        e.write("<td><b>↑ " + Number(tempArray[1])*finalTime + "</b></td>"),
+        e.write("<td><b>↑ " + Number(tempArray[2])*finalTime + "</b></td>"),
+        e.write("<td><b>↑ " + Number(tempArray[3])*finalTime + "</b></td>"),
+        e.write("<td><b>↑ " + Number(tempArray[4])*finalTime + "</b></td>"),
+        e.write("<td><b>↑ " + Number(tempArray[5])*finalTime + "</b></td>"),
+        e.write("<td><b>↑ " + Number(tempArray[6])*finalTime + "</b></td>"),
+        e.write("<td><b>" + Number(tempArray[8])*finalTime + "場</b></td>"),
+        0 != Number(tempArray[7]) && e.write("<td><b>↑ " + Number(tempArray[7])*finalTime + "</b></td>"),
+        e.write("</tr>"),
+        e.write(temp_table2)
+    }else{
+        e.write(`<div align="center"><table border="2" cellspacing="0" cellpadding="2" bordercolor="#868686"><tbody><tr><td width="auto" nowrap="nowrap">已獲得項目</td><td width="15%" nowrap="nowrap">數量</td></tr>`);
+        for (let j = 0; j < changeData.length; j++) {
+            e.write('<tr><td>' + changeData[j].name + '</td><td>' + changeData[j].t + '</td></tr>');
+        }
+        e.write(temp_table2 + '</div>');
     }
-    e.write(temp_table2 + '</div>');
+    
 }
 //精煉多選物品
 function synSelectItem(itemName,itemAmount) {
