@@ -214,9 +214,9 @@
             {
                 "index":30,
                 "name":"小冬天",
-                "level":0,
+                "level":1,
                 "limitation":2,
-                "end_date":"07/17/2025"
+                "end_date":"10/06/2025"
             }
         ],
     "version":"1.0.8beta"
