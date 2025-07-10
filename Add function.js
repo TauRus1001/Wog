@@ -404,19 +404,24 @@ function fire_date(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, _, b, g, h) {
     v.write(temp_table2),
     "" != p_support_name && v.write('<img id=g4 src="' + img + p_support_img + '.gif" border="0" style="position: absolute;left: 5%;top: 200;Z-INDEX: 1;visibility: hidden">')
 }
-function pet_break() {
+async function pet_break() {
     var t = parent.wog_view.document;
-    t.write(temp_table1),
-    t.write("<tr><td>捕捉器損壞</td></tr>"),
-    t.write("<tr><td><button style='font-family: 細明體; font-size: 9pt; color: #EFEFEF; border: 1px solid #EFEFEF; background-color: #000000' onClick='if(confirm(`要換上新的捕捉器嗎?`)){parent.armItem(258);}'>裝備捕捉器</button></td></tr>"),
-    t.write(temp_table2);   
+    setTimeout(async()=>{
+        if(confirm('捕捉器損壞, 要換上新的捕捉器嗎?')){
+            await parent.armItem(258);
+        }
+    },500);
 }
-function pet_get(t) {
+async function pet_get(t) {
     var e = parent.wog_view.document;
     e.write(temp_table1),
     e.write("<tr><td>捕捉到 " + t + "</td></tr>"),
-    e.write("<tr><td><button style='font-family: 細明體; font-size: 9pt; color: #EFEFEF; border: 1px solid #EFEFEF; background-color: #000000' onClick='if(confirm(`要換上新的捕捉器嗎?`)){parent.armItem(258);}'>裝備捕捉器</button></td></tr>"),
     e.write(temp_table2)
+    setTimeout(async()=>{
+        if(confirm('捕捉到' + t + ', 要換上新的捕捉器嗎?')){
+            await parent.armItem(258);
+        }
+    },500);
 }
 function lv_up(t, e, r, i, o, d, n, a) {//顯示上升等級
     var l = parent.wog_view.document;
