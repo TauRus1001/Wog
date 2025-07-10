@@ -224,6 +224,13 @@
                 "level":0,
                 "limitation":2,
                 "end_date":"07/07/2025"
+            },
+            {
+                "index":32,
+                "name":"辣殺",
+                "level":0,
+                "limitation":2,
+                "end_date":"07/07/2025"
             }
         ],
     "version":"1.0.8beta"
