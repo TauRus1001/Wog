@@ -855,7 +855,13 @@ function synSelectItem(itemName,itemAmount) {
     }
 }
 function conciseStatus(){
-    return parent.top_view.document.querySelector("#btnToggle").checked;
+    let status = false;
+	try{
+        status = parent.top_view.document.querySelector("#btnToggle").checked;
+	}catch(e){
+        //
+    }
+    return status
 }
 function addConciseMode(){
     parent.top_view.document.getElementsByTagName("tbody")[0].getElementsByTagName("tr")[0].getElementsByTagName("td")[0].outerHTML=`
