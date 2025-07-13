@@ -212,6 +212,12 @@ function arm_unsetup_all_success() {
 }
 function arm_view(t, e, r, i, o) {
     const isMobile = uaIsMobile();
+    try{
+        online_list = online_list;
+    }
+    catch(e){
+        online_list = [];
+    }
     const safePW = sessionStorage.getItem("safePW");
     message_cls();
     var d = parent.wog_view.document;
