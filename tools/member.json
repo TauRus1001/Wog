@@ -6,7 +6,7 @@
                 "name":"初心者",
                 "level":3,
                 "limitation":6,
-                "end_date":"04/08/2024"
+                "end_date":"04/08/2124"
             },
             {
                 "index":1,
@@ -233,5 +233,5 @@
                 "end_date":"07/07/2025"
             }
         ],
-    "version":"1.0.8beta"
+    "version":"1.0.9beta"
 }
