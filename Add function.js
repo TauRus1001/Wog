@@ -1098,7 +1098,7 @@ function armPageindexChecked() {
     }
 }
 async function changeStamp(changeAmount, changeTime) {
-    if (changeTime < 1 || changeTime > 200) {
+    if (!changeTime || changeTime < 1 || changeTime > 200) {
         alert("錯誤的換領次數，請輸入1-200");
         return;
     }
