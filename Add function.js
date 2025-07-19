@@ -687,7 +687,6 @@ function useMultipleItems(){
         3541:'寶石收藏箱(Lv2)',
         3542:'寶石收藏箱(Lv3)',
         4025:'冥界寶箱',
-        4030:'血紅寶箱',
         4574:'神秘寶箱(火)',
         4575:'神秘寶箱(水)',
         4576:'神秘寶箱(木)',
@@ -702,6 +701,9 @@ function useMultipleItems(){
         7185:'C箱',
         7186:'善良箱',
         7187:'狡猾箱'
+    }
+    const bagItem = {
+        533:'20格背包'
     }
     const powerItem = {
         283:'力量之水',
@@ -718,6 +720,9 @@ function useMultipleItems(){
     if(selected_id in boxes){
         itemType = 1;
     }
+    if(selected_id in boxes){
+        itemType = 2;
+    }
     if(selected_id in powerItem){
         itemType = 3;
     }
@@ -731,117 +736,112 @@ function useMultipleItems(){
     const useTime = parseInt(parent.wog_view.document.f2.item_num.value);
     openbox(selected_id,useTime,itemType);
 }
-async function openbox(id,useTime,itemType){
-    let changeData = [];
+async function openbox(id, useTime, itemType) {
     let formData = new FormData();
     let e = parent.wog_view.document;
-    e.body.innerHTML="";
+    e.body.innerHTML = "";
     e.write(temp_table1);
     e.write(`<tr><td>開啓中...請稍後...請不要離開頁面 <label id="usedTime">0</label> / ${useTime}</td></tr>`);
     e.write(temp_table2);
+    
     formData.append('adds', id);
     formData.append('items[]', id);
     formData.append('item_num', 1);
     formData.append('f', 'arm');
     formData.append('act', 'setup');
-    let finalTime = 0;
-    for(let i = 0;i<useTime;i++){
-    await fetch("https://wog.we-u.net/wog_act.php",
-        {
+    
+    const responses = [];
+    let successfulCount = 0; // 計算成功的請求次數
+
+    for (let i = 0; i < useTime; i++) {
+        const html = await fetch("https://wog.we-u.net/wog_act.php", {
             body: formData,
             method: "post"
-        }).then((response) => {
-        return response.text();
-        }).then((html) => {
-        // console.log(html);
+        }).then((response) => response.text());
+
         let start = 0;
         let end = 0;
         let itemValue = "";
         let temp = "";
-        //itemType 0=error, 1=boxes, 2=bag
-        switch (itemType){
+
+        // 根據 itemType 獲取 itemValue
+        switch (itemType) {
             case 3:
-                start = (html.indexOf("parent.lv_up2"))+14;
-                temp = html.substring(start,html.length);
-                // console.log(temp);
+                start = (html.indexOf("parent.lv_up2")) + 14;
+                temp = html.substring(start, html.length);
                 end = (temp.indexOf(")</script>"));
-                itemValue = html.substring(start,start+end);
+                itemValue = html.substring(start, start + end);
                 break;
             case 2:
-                start = (html.indexOf("parent.bag_up"))+14;
-                temp = html.substring(start,html.length);
-                // console.log(temp);
+                start = (html.indexOf("parent.bag_up")) + 14;
+                temp = html.substring(start, html.length);
                 end = (temp.indexOf(")</script>"));
-                itemValue = "背包" + (html.substring(start,start+end)).replace("'","") + "格";
+                itemValue = "背包" + (html.substring(start, start + end)).replace("'", "") + "格";
                 break;
             case 1:
-                start = (html.indexOf("draw_end2"))+11;
-                temp = html.substring(start,html.length);
-                // console.log(temp);
-                end = (temp.indexOf(")</script>"))-2;
-                itemValue = (html.substring(start,start+end)).replace("'","");
+                start = (html.indexOf("draw_end2")) + 11;
+                temp = html.substring(start, html.length);
+                end = (temp.indexOf(")</script>")) - 2;
+                itemValue = (html.substring(start, start + end)).replace("'", "");
                 break;
         }
-        finalTime = i+1;
-        parent.wog_view.document.getElementById("usedTime").innerText = finalTime;
-        
-        const aLength = changeData.length;
-        let add = true;
-        // console.log(itemValue);
-        for (let i = 0; i < aLength; i++) {
-            if (!(changeData[i].name == itemValue)) {
-                continue;
-            }
-            add = false;
-            changeData[i].t += 1;
-            break;
+
+        // 確保 itemValue 有效
+        if (itemValue) {
+            responses.push(itemValue);
+            successfulCount++; // 增加成功計數
+            parent.wog_view.document.getElementById("usedTime").innerText = successfulCount; // 更新成功的次數
         }
+
         if (itemValue === "hea") {
-            i = useTime;
+            break; // 如果 itemValue 是 "hea"，結束循環
         }
-        if (add && itemValue != "hea") {
-            changeData.push({
-                name: itemValue,
-                t: 1
-            });
-        }
-        return itemValue;
-        });
     }
+
+    // 使用 reduce 計算出現次數
+    const changeData = responses.reduce((acc, itemValue) => {
+        const existing = acc.find(item => item.name === itemValue);
+        if (existing) {
+            existing.t += 1;
+        } else {
+            acc.push({ name: itemValue, t: 1 });
+        }
+        return acc;
+    }, []);
+
     e.write('<hr>');
-    if (itemType ==3){
+    
+    if (itemType == 3) {
         const tempArray = changeData[0].name.split(",");
-        console.log(tempArray);
-        e.write(temp_table1 + '<tr><td class="b1" colspan="10"><b>' + p_name + " 能力上升 </b></td></tr>"),
-        e.write("<tr><td><b>力量</b></td>"),
-        e.write("<td><b>速度</b></td>"),
-        e.write("<td><b>智力</b></td>"),
-        e.write("<td><b>生命</b></td>"),
-        e.write("<td><b>體質</b></td>"),
-        e.write("<td><b>魅力</b></td>"),
-        e.write("<td><b>信仰</b></td>"),
-        e.write("<td><b>經驗加乘</b></td>"),
-        0 != Number(tempArray[7]) && e.write("<td><b>EXP</b></td>"),
-        e.write("</tr>"),
-        e.write("<tr><td><b>↑ " + Number(tempArray[0])*finalTime + "</b></td>"),
-        e.write("<td><b>↑ " + Number(tempArray[1])*finalTime + "</b></td>"),
-        e.write("<td><b>↑ " + Number(tempArray[2])*finalTime + "</b></td>"),
-        e.write("<td><b>↑ " + Number(tempArray[3])*finalTime + "</b></td>"),
-        e.write("<td><b>↑ " + Number(tempArray[4])*finalTime + "</b></td>"),
-        e.write("<td><b>↑ " + Number(tempArray[5])*finalTime + "</b></td>"),
-        e.write("<td><b>↑ " + Number(tempArray[6])*finalTime + "</b></td>"),
-        e.write("<td><b>" + Number(tempArray[8])*finalTime + "場</b></td>"),
-        0 != Number(tempArray[7]) && e.write("<td><b>↑ " + Number(tempArray[7])*finalTime + "</b></td>"),
-        e.write("</tr>"),
-        e.write(temp_table2)
-    }else{
+        e.write(temp_table1 + '<tr><td class="b1" colspan="10"><b>' + p_name + ' 能力上升 </b></td></tr>');
+        e.write("<tr><td><b>力量</b></td>");
+        e.write("<td><b>速度</b></td>");
+        e.write("<td><b>智力</b></td>");
+        e.write("<td><b>生命</b></td>");
+        e.write("<td><b>體質</b></td>");
+        e.write("<td><b>魅力</b></td>");
+        e.write("<td><b>信仰</b></td>");
+        e.write("<td><b>經驗加乘</b></td>");
+        if (0 != Number(tempArray[7])) e.write("<td><b>EXP</b></td>");
+        e.write("</tr>");
+        e.write("<tr><td><b>↑ " + Number(tempArray[0]) * successfulCount + "</b></td>");
+        e.write("<td><b>↑ " + Number(tempArray[1]) * successfulCount + "</b></td>");
+        e.write("<td><b>↑ " + Number(tempArray[2]) * successfulCount + "</b></td>");
+        e.write("<td><b>↑ " + Number(tempArray[3]) * successfulCount + "</b></td>");
+        e.write("<td><b>↑ " + Number(tempArray[4]) * successfulCount + "</b></td>");
+        e.write("<td><b>↑ " + Number(tempArray[5]) * successfulCount + "</b></td>");
+        e.write("<td><b>↑ " + Number(tempArray[6]) * successfulCount + "</b></td>");
+        e.write("<td><b>" + Number(tempArray[8]) * successfulCount + "場</b></td>");
+        if (0 != Number(tempArray[7])) e.write("<td><b>↑ " + Number(tempArray[7]) * successfulCount + "</b></td>");
+        e.write("</tr>");
+        e.write(temp_table2);
+    } else {
         e.write(`<div align="center"><table border="2" cellspacing="0" cellpadding="2" bordercolor="#868686"><tbody><tr><td width="auto" nowrap="nowrap">已獲得項目</td><td width="15%" nowrap="nowrap">數量</td></tr>`);
         for (let j = 0; j < changeData.length; j++) {
             e.write('<tr><td>' + changeData[j].name + '</td><td>' + changeData[j].t + '</td></tr>');
         }
         e.write(temp_table2 + '</div>');
     }
-    
 }
 //精煉多選物品
 function synSelectItem(itemName,itemAmount) {
@@ -1102,7 +1102,7 @@ async function changeStamp(changeAmount, changeTime) {
         alert("錯誤的換領次數，請輸入1-200");
         return;
     }
-    let changeData = [];
+    
     let formData = new FormData();
     const e = parent.wog_view.document;
     e.body.innerHTML = "";
@@ -1112,49 +1112,55 @@ async function changeStamp(changeAmount, changeTime) {
     e.write(temp_table1);
     e.write(`<tr><td>換領中...請稍後..請不要離開頁面 <label id="changedTime">0</label> / ${changeTime}</td></tr>`);
     e.write(temp_table2);
+
+    // 儲存所有的回應
+    const responses = [];
+    let successfulCount = 0; // 計算成功的請求次數
+
     for (let i = 0; i < changeTime; i++) {
-        await fetch("https://wog.we-u.net/wog_act.php", {
+        const html = await fetch("https://wog.we-u.net/wog_act.php", {
             body: formData,
             method: "post"
-        }).then((response) => {
-            return response.text();
-        }).then((html) => {
-            let start = 0;
-            start = (html.indexOf("stamp_end")) + 10;
-            const temp = html.substring(start, html.length);
-            const end = temp.indexOf("')</script>");
-            const itemValue = (html.substring(start, start + end)).replace("'", "");
-            const aLength = changeData.length;
-            let add = true;
-            for (let i = 0; i < aLength; i++) {
-                if (!(changeData[i].name == itemValue)) {
-                    continue;
-                }
-                add = false;
-                changeData[i].t += 1;
-                break;
-            }
-            if (add == true) {
-                changeData.push({
-                    name: itemValue,
-                    t: 1
-                });
-            }
-            if (end === -1) {
-                e.write(temp_table1);
-                e.write('<tr><td>沒有足夠的印花</td></tr>');
-                e.write("</td></tr>" + temp_table2);
-                i = changeTime;
-            }
-            parent.wog_view.document.getElementById("changedTime").innerText = i+1;
-            return itemValue;
-        });
+        }).then((response) => response.text());
+
+        let start = html.indexOf("stamp_end") + 10;
+        const temp = html.substring(start, html.length);
+        const end = temp.indexOf("')</script>");
+        const itemValue = (html.substring(start, start + end)).replace("'", "");
+
+        if (itemValue) { // 確保 itemValue 有效
+            responses.push(itemValue);
+            successfulCount++; // 增加成功計數
+        }
+
+        if (end === -1) {
+            e.write(temp_table1);
+            e.write('<tr><td>沒有足夠的印花</td></tr>');
+            e.write("</td></tr>" + temp_table2);
+            break; // 結束循環
+        }
+
+        parent.wog_view.document.getElementById("changedTime").innerText = successfulCount; // 更新成功的次數
     }
+
+    // 使用 reduce 計算出現次數
+    const changeData = responses.reduce((acc, itemValue) => {
+        const existing = acc.find(item => item.name === itemValue);
+        if (existing) {
+            existing.t += 1;
+        } else {
+            acc.push({ name: itemValue, t: 1 });
+        }
+        return acc;
+    }, []);
+
     e.write('<hr>');
     e.write(`<div align="center"><table border="2" cellspacing="0" cellpadding="2" bordercolor="#868686"><tbody><tr><td width="auto" nowrap="nowrap">已換領項目</td><td width="15%" nowrap="nowrap">數量</td></tr>`);
-    for (let j = 0; j < changeData.length; j++) {
-        e.write('<tr><td>' + changeData[j].name + '</td><td>' + changeData[j].t + '</td></tr>');
-    }
+    
+    changeData.forEach(item => {
+        e.write('<tr><td>' + item.name + '</td><td>' + item.t + '</td></tr>');
+    });
+
     e.write(temp_table2 + '</div>');
 }
 async function newStampHouse() {
