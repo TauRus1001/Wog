@@ -238,6 +238,20 @@
                 "level":3,
                 "limitation":4,
                 "end_date":"08/17/2025"
+            },
+            {
+                "index":34,
+                "name":"Free2play",
+                "level":3,
+                "limitation":4,
+                "end_date":"08/20/2025"
+            },
+            {
+                "index":35,
+                "name":"天櫂",
+                "level":3,
+                "limitation":4,
+                "end_date":"08/20/2025"
             }
         ],
     "version":"1.0.9beta"
