@@ -720,7 +720,7 @@ function useMultipleItems(){
     if(selected_id in boxes){
         itemType = 1;
     }
-    if(selected_id in boxes){
+    if(selected_id in bagItem){
         itemType = 2;
     }
     if(selected_id in powerItem){
