@@ -1,5 +1,5 @@
 function getNameList(){
-    return ['Neo','藍拳聖使','zwx123456','gogo1200']
+    return ['Neo','藍拳聖使','zwx123456']
 }
 function data_send(t, e, r, i, o, d) {
     var n = parent.foot.document.f1
