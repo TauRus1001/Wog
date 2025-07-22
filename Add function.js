@@ -531,6 +531,10 @@ function syn_view(t, e, r) { //精煉新增勾選5龍石
                 wog_view.document.getElementById("synInfo").innerHTML+=`<br>戒龍石元素及真龍石元素請到<a href="javascript:parent.act_click('syn','list');">合成大師</a>`
             }
         }
+        //如果該物品數量大於5時，改成5
+        if(a>5){
+            a=5;
+        }
         for (var s = 0; s < a; s++) {
             if (null != l){
                 var p = "*" + l[s];
