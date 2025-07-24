@@ -1478,6 +1478,11 @@ const setList =
             "unArmList":[0,5]
         },
         {
+            "title":"武林一絕[傲](打狗棒法)",
+            "armList" :["5317","5303"],
+            "unArmList":[0,5]
+        },
+        {
             "title":"聖魔訣套裝",
             "armList" :["5887","5886"],
             "unArmList":[6,9]
