@@ -1468,6 +1468,11 @@ const setList =
             "unArmList":[8,9]
         },
         {
+            "title":"<font color='DD0000'>新.火眼金睛套裝</font>",
+            "armList" :["6552","6551"],
+            "unArmList":[8,9]
+        },
+        {
             "title":"<font color='cc66ff'>驚天鬼吼套裝</font>",
             "armList" :["5888","5889"],
             "unArmList":[0,5]
@@ -1493,7 +1498,7 @@ const setList =
             "unArmList":[0,6,7]
         },
 	{
-            "title":"<font color='FFFF66'>金.石為開 + 飛升吸金大法套餐</font>",
+            "title":"<font color='FFFF66'>金.石為開 + 飛升吸金大法套裝</font>",
             "armList" :["6615","6589","6301"],
             "unArmList":[0,6,7]
         },
