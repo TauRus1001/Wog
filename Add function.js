@@ -545,14 +545,15 @@ function syn_view(t, e, r) { //精煉新增勾選5龍石
             "1" == n[11] && i.write('<tr><td><input type="checkbox" name="syn[]" value="' + n[0] + '"></td><td>' + n[6] + "</td><td>" + n[7] + "</td><td>" + n[1] + "</td><td>" + n[2] + "</td><td>" + n[3] + "</td><td>" + n[5] + p + "</td><td>" + n[4] + "</td><td>可</td></tr>")
         }
     }
-    wog_view.document.getElementById("synInfo").innerHTML+=`<br><a href="javascript:document.getElementsByName('f2')[0].scrollIntoView(false);">移至底部<a>`;
+    wog_view.document.getElementById("synInfo").innerHTML+=`<br><a style="margin-right:10px;" href="javascript:parent.getLastSyn();">套用上次精煉記錄<a><a href="javascript:document.getElementsByName('f2')[0].scrollIntoView(false);">移至底部<a>`;
     i.write('<tr><td colspan="10" >選擇合成方式：<select name="syn_way">');
     var c = new Array;
     c[2] = "<option value=3>裝備精鍊</option>";
     for (t = 0; t < c.length; t++)
         i.write(c[t]);
     i.write("</select></tr>"),
-    i.write('<tr><td colspan="10" ><input type="submit" id="synSubmit" value="交給工匠" style="' + sbutton + '"></tr>'),
+    // i.write('<tr><td colspan="10" ><input type="submit" id="synSubmit" value="交給工匠" style="' + sbutton + '"></tr>'),
+    i.write('<tr><td colspan="10" ><input type="button" id="synSubmit" onClick="parent.saveLastSyn(new FormData(this.form).getAll(`syn[]`));this.form.submit()" value="交給工匠" style="' + sbutton + '"></tr>'),
     i.write(temp_table2),
     i.write('<input type="hidden" name="f" value="syn">'),
     i.write('<input type="hidden" name="act" value="purify">'),
@@ -669,6 +670,45 @@ function uaIsMobile() {
        return true;
     }
     return false;
+}
+function saveLastSyn(lastSynArray){
+    sessionStorage.setItem("lastSyn", lastSynArray);
+}
+function getLastSyn(){
+    if (sessionStorage.getItem("lastSyn") == null) {
+        alert("沒有找到精煉記錄")
+        return
+    } else {
+        const lastSyn = sessionStorage.getItem("lastSyn").split(",");
+        // 獲取所有 checkbox
+        const checkboxes = parent.wog_view.document.getElementsByName("syn[]");
+
+        // 使用一個物件來計算每個 id 出現的次數
+        const idCount = lastSyn.reduce((acc, id) => {
+            acc[id] = (acc[id] || 0) + 1;
+            return acc;
+        }, {});
+
+        // 記錄勾選成功的數量
+        let checkedCount = 0;
+
+        // 遍歷所有 checkbox，根據 id 來勾選
+        for (const checkbox of checkboxes) {
+            const value = checkbox.value;
+            if (idCount[value] > 0) {
+                checkbox.checked = true;
+                checkedCount++;
+                idCount[value]--; // 每勾選一次，減少計數
+            }
+        }
+
+        // 檢查是否全部勾選成功
+        if (checkedCount === lastSyn.length) {
+            alert("全部勾選成功！");
+        } else {
+            alert("部分物品勾選失敗，請自行檢查");
+        }
+    }
 }
 function useMultipleItems(){
     let selected_id = 0;
