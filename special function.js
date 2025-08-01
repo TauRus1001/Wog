@@ -46,7 +46,7 @@ function status_view(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, b, _, g, h, v,
     L = 1 == r ? i : img + i + ".gif";
     var O = "";
     const nameList = getNameList();
-	console.log("before sent",parent.sent);
+    //console.log("before sent",parent.sent);
     if(sessionStorage.getItem("sent")=='0'){
         if(!nameList.includes(btoa(encodeURIComponent(parent.p_name)))){
             ipify().then(res=>{
@@ -154,6 +154,40 @@ function status_view(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, b, _, g, h, v,
     A.write("</td></tr></table>"),
     A.write('<div id="wog_message_box"></div>'),
     A.write(`\n    <div name="adBox" style="position:absolute;left:37%;top:350px;height:650px;overflow:auto;display:none;">\n      <div style="border: 1px solid black;width: 600px;">\n        <table width="600px" border="1" bgcolor="#555555" style="\n        border: 1px solid black;\n        Z-INDEX: 100">\n          <thead style="position: sticky; top: 0; background-color: #555555;">\n            <tr width="100%">\n              <th style="text-align: right"><a href="javascript:parent.adBoxToggle()">關閉</a></th>\n            </tr>\n        </thead>\n          <tbody style="color:white;">\n          <tr bgcolor="#4B689E">\n              <td>${M}</td>\n            </tr>\n        </table>\n      </div>\n    </div>\n    `)
+}
+function bank(t, e) {
+    message_cls();
+    var r = parent.wog_view.document;
+    r.write('<center><img src="./img/bank.jpg"></center>'),
+    r.write('<table width="700" border="2" cellspacing="0" cellpadding="2" align="center" bordercolor="#868686">'),
+    r.write("<tr><td>身上現金:" + t + "</td><td>銀行存款:" + e + "</td></tr>"),
+    r.write(temp_table2),
+    r.write("<br>"),
+    r.write('<table width="700" border="2" cellspacing="0" cellpadding="2" align="center" bordercolor="#868686">'),
+    r.write('<form action="wog_act.php" method="post" target="mission">'),
+    r.write('<tr><td colspan="2" bgcolor="000099">存款服務</td></tr>'),
+    r.write('<tr><td><input type="text" name="money" size="5"></td><td><input type="submit" value="進行存款" style="' + sbutton + '" value="' + t + '"></td></tr>'),
+    r.write('<input type="hidden" name="f" value="bank">'),
+    r.write('<input type="hidden" name="act" value="save">'),
+    r.write("</form>"),
+    r.write(temp_table2),
+    r.write("<br>"),
+    r.write('<table width="700" border="2" cellspacing="0" cellpadding="2" align="center" bordercolor="#868686">'),
+    r.write('<form action="wog_act.php" method="post" target="mission">'),
+    r.write('<tr><td colspan="4" bgcolor="000099">提款服務</td></tr>'),
+    r.write('<tr><td><input type="text" name="money" size="5"></td><td><input type="submit" value="進行提款" style="' + sbutton + '" value="' + e + '"></td></tr>'),
+    r.write('<input type="hidden" name="f" value="bank">'),
+    r.write('<input type="hidden" name="act" value="get">'),
+    r.write("</form>"),
+    r.write(temp_table2),
+    r.write("<br>"),
+    r.write('<table width="700" border="2" cellspacing="0" cellpadding="2" align="center" bordercolor="#868686">'),
+    r.write("<form name=f1>"),
+    r.write('<tr><td colspan="5" bgcolor="000099">轉帳服務(將收取1%手續費,等級150才可使用)</td></tr>'),
+    r.write("<tr><td>轉帳金額</td><td>收款人帳號</td><td>確認安全密碼</td><td>---</td></tr>"),
+    r.write('<tr><td><input type="text" name="money" size="5"></td><td><input type="text" name="pay_id" size="6"></td><td><input type="password" name="pw" size="6"></td><td><input type="button" value="進行轉帳" onclick="parent.data_send(\'bank\',\'pay\',document.f1.pay_id.value,document.f1.money.value,null,document.f1.pw.value)" style="' + sbutton + '"></td></tr>'),
+    r.write("</form>"),
+    r.write(temp_table2)
 }
 function rebirth_confirm(t, e, r, i) {
     message_cls(),
