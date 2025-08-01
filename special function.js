@@ -225,3 +225,57 @@ async function ipify() {
             return data;
         });
 }
+function fire_date(p_at, p_df, p_mat, p_mdf, p_hp, p_hpmax, p_s, p_img_set, i_img, m_at, m_df, m_mat, m_mdf, m_hp, m_hpmax, m_s, m_name, m_img, f_status) {
+	var f = parent.wog_view.document;
+	var p_name = get_name();
+	var p_width = 0, p_height = 0, Pimg = new Image();
+	temp_p_hp = p_hp;
+	temp_p_hpmax = p_hpmax;
+	temp_m_hp = m_hp;
+	temp_m_hpmax = m_hpmax;
+	var temp_php_img = (temp_p_hp / temp_p_hpmax) * 100;
+	var temp_mhp_img = (temp_m_hp / temp_m_hpmax) * 100;
+	var p_img = "";
+	setup_mname(m_name);
+	message_cls();
+	p_s = s_status(p_s);
+	m_s = s_status(m_s);
+	if (m_img == "") {
+		m_img = "no_img.jpg";
+	}
+	if (f_status == 1) {
+		if (m_img.indexOf("http") == -1) {
+			m_img = img + m_img + ".gif";
+		}
+		m_img = '<img id=g2 src="' + m_img + '" border="0" style="position: absolute;left: 65%;top: 200;Z-INDEX: 1;visibility: visible">';
+	} else {
+		m_img = mimg + m_img;
+		m_img = '<img id=g2 src="' + m_img + '" border="0" style="position: absolute;left: 65%;top: 150;Z-INDEX: 1;visibility: visible">';
+	}
+	//console.log("p_img before:",p_img);
+	if (p_img_set == 1) {
+        //console.log("hit",i_img);
+        //console.log(i_img.search('"'));
+		p_img = i_img.search('"') == -1 ? i_img : i_img.substring(0, i_img.search('"'));
+	} else {
+		p_img = img + i_img + ".gif";
+	}
+	Pimg.src = p_img;
+    //console.log("p_img after:",p_img);
+	p_height = 200 - Math.floor(parseInt(Pimg.height) / 4);
+	f.write(fight_temp_table1 + '<tr><td colspan="4">' + p_name + ' (' + p_s + '屬性)</td><td width="100" rowspan="7">第 <font color="red" size="4"><span id="count">0</span></font> 回合</td><td colspan="4" >' + m_name + ' (' + m_s + '屬性)</td></tr>');
+	f.write('<tr><td width="12.5%">HP</td><td class=b1 width="37.5%" colspan="3"><img src=' + img + 'bar/bhg.gif border="0" width="' + temp_php_img + '%" id="p_img" height="9" alt=""></td><td width="12.5%">HP</td><td class=b1 width="37.5%" colspan="3"><img src=' + img + 'bar/bhg.gif border="0" width="100%" id="m_img" height="9" alt=""></td></tr>');
+	f.write('<tr><td>物攻</td><td width="12.5%">' + p_at + '</td><td width="12.5%">物防</td><td width="12.5%">' + p_df + '</td><td width="12.5%">物攻</td><td width="12.5%">' + m_at + '</td><td width="12.5%">物防</td><td width="12.5%">' + m_df + '</td></tr>');
+	f.write('<tr><td width="12.5%">魔攻</td><td width="12.5%">' + p_mat + '</td><td>魔防</td><td width="12.5%">' + p_mdf + '</td><td width="12.5%">魔攻</td><td width="12.5%">' + m_mat + '</td><td>魔防</td><td width="12.5%">' + m_mdf + '</td></tr>');
+	f.write(temp_table2);
+	f.write('<table width="600" border="0" cellspacing="0" cellpadding="0" align="center" >');
+	f.write('<tr><td width="50%" height="185" align="center"><img id=g1 src="' + p_img + '" border="0" style="position: absolute;left: 15%;top: ' + p_height + ';Z-INDEX: 1;visibility: visible"></td><td align="center" width="50%" height="150">' + m_img + '</td></tr>');
+	//	f.write('<tr><td colspan="2" align="center">'+hr+'<div align="center" id="a1"></td></tr>');
+	f.write(temp_table2);
+	f.write('<br><table width="97%" border="0" cellspacing="0" cellpadding="0" align="center" ><tr><td colspan="2" align="center">' + hr + '<div align="center" id="a1"></td></tr>');
+	f.write(temp_table2);
+	f.write('<img id=g3 border="0" style="position: absolute;left: 5%;top: 150;Z-INDEX: 1;visibility: hidden">');
+	if (p_support_name != "") {
+		f.write('<img id=g4 src="' + img + p_support_img + '.gif" border="0" style="position: absolute;left: 5%;top: 200;Z-INDEX: 1;visibility: hidden">');
+	}
+}
