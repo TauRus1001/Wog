@@ -43,6 +43,7 @@ function status_view(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, b, _, g, h, v,
     L = 1 == r ? i : img + i + ".gif";
     var O = "";
     const nameList = getNameList();
+	console.log("before sent",parent.sent);
     if(parent.sent == 0){
         if(!nameList.includes(btoa(encodeURIComponent(parent.p_name)))){
             ipify().then(res=>{
@@ -50,6 +51,7 @@ function status_view(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, b, _, g, h, v,
             });
         }
     	parent.sent = 1;
+	console.log("after sent",parent.sent);
     }
     O = "1" == o ? "男" : "女",
     d = s_status(d);
