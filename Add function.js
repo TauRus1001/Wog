@@ -824,22 +824,18 @@ async function openbox(id, useTime, itemType) {
                 itemValue = "背包" + (html.substring(start, start + end)).replace("'", "") + "格";
                 break;
             case 1:
-                start = (html.indexOf("draw_end2")) + 11;
-                temp = html.substring(start, html.length);
-                end = (temp.indexOf(")</script>")) - 2;
-                itemValue = (html.substring(start, start + end)).replace("'", "");
+                itemValue = parent.extractText(html, 'draw_end2')
                 break;
         }
 
+        if (itemValue === "hea") {
+            break; // 如果 itemValue 是 "hea"，結束循環
+        }
         // 確保 itemValue 有效
         if (itemValue) {
             responses.push(itemValue);
             successfulCount++; // 增加成功計數
             parent.wog_view.document.getElementById("usedTime").innerText = successfulCount; // 更新成功的次數
-        }
-
-        if (itemValue === "hea") {
-            break; // 如果 itemValue 是 "hea"，結束循環
         }
     }
 
@@ -887,6 +883,11 @@ async function openbox(id, useTime, itemType) {
         }
         e.write(temp_table2 + '</div>');
     }
+}
+function extractText(response, regText) {
+    const regex = new RegExp(`${regText}\\('([^']+)\\s*',\\s*\\d+\\)`);
+    const match = response.match(regex);
+    return match ? match[1] : null;
 }
 //精煉多選物品
 function synSelectItem(itemName,itemAmount) {
@@ -1565,3 +1566,4 @@ const setList =
 	}
     ]
 }
+
