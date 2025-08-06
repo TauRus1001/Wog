@@ -259,6 +259,13 @@
                 "level":0,
                 "limitation":2,
                 "end_date":"08/20/2025"
+            },
+            {
+                "index":37,
+                "name":"小湊春市",
+                "level":0,
+                "limitation":2,
+                "end_date":"08/20/2025"
             }
         ],
     "version":"1.0.9beta"
