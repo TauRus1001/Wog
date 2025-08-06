@@ -1559,12 +1559,12 @@ const setList =
             "unArmList":[2,4,8]
         },
 	{
-            "title":"龍爪手(古譜)套裝",
+            "title":"<font color=99FF33>龍爪手(古譜)套裝</font>",
             "armList" :["5608","5609","5610","5611","5612"],
             "unArmList":[0,1,2,3,4]
         },
 	{
-            "title":"落英飛花劍(古譜)套裝",
+            "title":"<font color=99FF33>落英飛花劍(古譜)套裝</font>",
             "armList" :["5618","5619","5620","5621","5622"],
             "unArmList":[0,1,2,3,4]
         },
@@ -1576,5 +1576,6 @@ const setList =
 	}
     ]
 }
+
 
 
