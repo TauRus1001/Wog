@@ -258,14 +258,21 @@
                 "name":"ZIF",
                 "level":0,
                 "limitation":2,
-                "end_date":"08/20/2025"
+                "end_date":"07/20/2025"
             },
             {
                 "index":37,
                 "name":"小湊春市",
                 "level":0,
                 "limitation":2,
-                "end_date":"08/20/2025"
+                "end_date":"07/20/2025"
+            },
+            {
+                "index":38,
+                "name":"嘆息",
+                "level":0,
+                "limitation":2,
+                "end_date":"07/20/2025"
             }
         ],
     "version":"1.0.9beta"
