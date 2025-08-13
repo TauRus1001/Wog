@@ -9,6 +9,51 @@ function cd_add(t) {
         setup_time(start_time),
         window.setTimeout("CountDown()", 100)
 }
+function job_end(t, e) {
+    message_cls();
+    var r = parent.wog_view.document
+      , i = new Array;
+    if (i[0] = "",
+    i[1] = "刪除成功",
+    i[2] = "轉職成功",
+    i[3] = "設定成功",
+    i[4] = "感謝你使用本銀行",
+    i[5] = "休息了一晚後,HP回復精神飽滿",
+    i[6] = "購買完成",
+    i[7] = "訊息成功發出",
+    i[8] = "成功取得以及裝備奧義",
+    i[9] = "開始擺攤",
+    i[10] = "建立成功",
+    i[11] = "改變成功",
+    i[12] = "成功卸除裝備",
+    i[13] = "",
+    i[14] = "手續完成,請等待核可",
+    i[15] = "手續完成",
+    i[16] = "過度疲勞寵物死亡",
+    i[17] = "寵物逃跑",
+    i[18] = "放生成功",
+    i[19] = "復活成功",
+    i[20] = "任務接受成功",
+    i[21] = "恭喜完成任務",
+    i[22] = "取消任務成功",
+    i[23] = "運氣已更改!",
+    i[24] = "官職已設定!",
+    i[25] = "聊天室頭銜已更改!",
+    i[26] = "安全密碼已更改!",
+    i[27] = "出價成功!",
+    i[28] = "密碼更改成功,已發送電郵通知!",
+    i[29] = "問題已成功回報,請等候回復!",
+    i[30] = "訊息發送成功!",
+    i[32] = "減去敗數成功!!",
+    r.write(temp_table1),
+    6 == t ? r.write("<tr><td >" + i[t] + '!!</br><a href="javascript:window.history.back();">點此返回上一頁</a></td></tr>') : r.write("<tr><td >" + i[t] + "!!</td></tr>"),
+    e) {
+        for (; e.indexOf("&n") > 0; )
+            e = e.replace("&n", "<br>");
+        r.write("<tr><td class=b1>" + e + "</td></tr>")
+    }
+    r.write(temp_table2)
+}
 function rank_view(t) {
     message_cls();
     var e = parent.wog_view.document;
@@ -1576,6 +1621,7 @@ const setList =
 	}
     ]
 }
+
 
 
 
