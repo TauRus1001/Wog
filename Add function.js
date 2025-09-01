@@ -301,9 +301,15 @@ function arm_view(t, e, r, i, o) {
                 var g = "";
                 // console.log(c);
                 "1" == p[12] && (g = "bgcolor=" + nosend),
-                    "<acronym title='力量:" + p[8] + " 速度:" + p[9] + " 智力:" + p[10] + " 轉生:" + p[14] + " 職業:" + p[11] + "'>限制</acronym>",
-                    d.write("<tr " + g + " onMouseOver=\"this.style.backgroundColor='#777779'\" onMouseOut=\"this.style.backgroundColor=''\" onclick=\"parent.setRadioValue('adds'," + p[0] + ");parent.setCheckBoxValue(" + a + ')" style="cursor:hand"><td>' + l + '</td><td><input type="radio" name="adds" value="' + p[0] + '" data-name="' + p[5] + '"></td><td>' + p[6] + "</td><td>" + p[7] + "</td><td>" + p[1] + "</td><td>" + p[2] + "</td><td>" + p[3] + "</td><td><a href=\"javascript:parent.data_send2('arm','check_arm','" + r + "'," + p[0] + "," + l + ')">' + p[5] + "</a>" + b + _ + "</td><td>" + p[4] + "</td><td>" + p[15] + "</td><td>" + p[17] + "</td><td>" + p[18] + '</td><td><input type="checkbox" name="items[]" id="listKey-' + a + '" value="' + p[0] + '"></td><td>'+p[0]+'</td></tr>'),
-                    a++
+                "<acronym title='力量:" + p[8] + " 速度:" + p[9] + " 智力:" + p[10] + " 轉生:" + p[14] + " 職業:" + p[11] + "'>限制</acronym>",
+                d.write("<tr " + g + " onMouseOver=\"this.style.backgroundColor='#777779'\" onMouseOut=\"this.style.backgroundColor=''\" onclick=\"parent.setRadioValue('adds'," + p[0] + ");parent.setCheckBoxValue(" + a + ')" style="cursor:hand"><td>' + l + '</td><td><input type="radio" name="adds" value="' + p[0] + '" data-name="' + p[5] + '"></td><td>' + p[6] + "</td><td>" + p[7] + "</td><td>" + p[1] + "</td><td>" + p[2] + "</td><td>" + p[3] + "</td><td><a href=\"javascript:parent.data_send2('arm','check_arm','" + r + "'," + p[0] + "," + l + ')">' + p[5] + "</a>" + b + _ + "</td><td>" + p[4] + "</td><td>" + p[15] + "</td><td>" + p[17] + "</td><td>" + p[18] + '</td><td><input type="checkbox" name="items[]" id="listKey-' + a + '" value="' + p[0] + '"></td><td>'+p[0]+'</td></tr>');
+                a++;
+                //hide item if that items is over 100 rows
+                const maxItemNumber = 100;
+                if(u==maxItemNumber-1 && conciseStatus()){
+                    d.write(`<tr style="background-color:#777779"><td colspan='14'>已隱藏 ${c-maxItemNumber} 個 ${p[5]}</td></tr>`);
+                    break;
+                }
             }
         }
     else
@@ -1621,6 +1627,7 @@ const setList =
 	}
     ]
 }
+
 
 
 
