@@ -246,7 +246,7 @@
                 "name":"Free2play",
                 "level":4,
                 "limitation":4,
-                "end_date":"09/20/2025",
+                "end_date":"10/20/2025",
                 "eq":["6614","6299","6588","7189","7190","7191","7192","6552","6551","7342"]
             },
             {
@@ -254,7 +254,7 @@
                 "name":"天櫂",
                 "level":3,
                 "limitation":4,
-                "end_date":"09/20/2025"
+                "end_date":"10/20/2025"
             },
             {
                 "index":36,
@@ -287,6 +287,13 @@
             {
                 "index":40,
                 "name":"5522133",
+                "level":0,
+                "limitation":2,
+                "end_date":"08/16/2025"
+            },
+            {
+                "index":41,
+                "name":"alexcchay",
                 "level":0,
                 "limitation":2,
                 "end_date":"08/16/2025"
