@@ -422,6 +422,39 @@ function ad_view() {
         t.write("<script>document.f1.f_hp.value=" + i + ";</script>");
     }
 }
+function datechk(t, e) {
+    var r = parent.foot.document.f1
+      , o = "";
+    !0 == r.ats1.disabled && (o = "5秒內不能冒險"),
+    e.f_count.value > 400 && (o = "戰鬥回合數不能大於" + f_count),
+    !0 == e.a_type[0].checked && (r.act.value = e.act1.value,
+    r.temp_id.value = 0),
+    !0 == e.a_type[1].checked && (r.act.value = e.act2.value,
+    r.temp_id.value = 1,
+    "20" != e.act2.value || confirm("挑戰冠軍需付50000元費用") || (o = "結束挑戰"),
+    "21" == e.act2.value && "" == r.towho.value && (o = "沒有選擇對像不能PK")),
+    "" == r.act.value && (o = "請選擇場地"),
+    "" != o ? alert(o) : (!0 == e.a_mode[0].checked && (r.temp_id2.value = 1),
+    !0 == e.a_mode[1].checked && (r.temp_id2.value = 2),
+    Sookie("wog_set_cookie", r.temp_id.value + "," + r.act.value + "," + r.temp_id2.value + "," + e.act_area.value),
+    Sookie("wog_set_f_count", e.f_count.value),
+    Sookie("wog_set_f_hp", e.f_hp.value),
+    r.f.value = "fire",
+    r.action = "wog_fight.php",
+    r.at_type.value = t,
+    r.sat_name.value = e.sat_name.value,
+    r.temp_id3.value = e.f_count.value,
+    r.temp_id4.value = e.f_hp.value,
+    r.submit());
+    checkForNewCaptcha(3).then((result) => {
+        console.log(result);
+        if(result){
+            parent.foot.document.getElementsByName("ats1")[0].style="background-color:#d30000;"
+            parent.foot.document.getElementsByName("ats1")[0].onclick = function(){parent.unlockAd_view()};
+            parent.sendNoti();
+        }
+    });
+}
 function change_mission(t, e) {
     var r = e;
     0 == t ? r.a_type[0].checked = !0 : 1 == t && (r.a_type[1].checked = !0);
@@ -721,6 +754,25 @@ function uaIsMobile() {
        return true;
     }
     return false;
+}
+function checkForNewCaptcha(maxChecks) {
+    return new Promise((resolve) => {
+        let checkNewCaptchaTime = 0;
+
+        const intervalId = setInterval(() => {
+            const newCaptcha = parent.wog_view.document.getElementById('captcha-submit');
+            if (newCaptcha) {
+                clearInterval(intervalId);
+                resolve(true); // 當找到元素時，resolve 並返回 true
+            } else {
+                checkNewCaptchaTime++;
+                if (checkNewCaptchaTime >= maxChecks) {
+                    clearInterval(intervalId);
+                    resolve(false); // 如果超過最大檢查次數，resolve 並返回 false
+                }
+            }
+        }, 1000);
+    });
 }
 function saveLastSyn(lastSynArray){
     sessionStorage.setItem("lastSyn", lastSynArray);
@@ -1627,6 +1679,7 @@ const setList =
 	}
     ]
 }
+
 
 
 
