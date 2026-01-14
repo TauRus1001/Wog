@@ -641,7 +641,14 @@ function syn_view(t, e, r) { //精煉新增勾選5龍石
     i.write(temp_table2),
     i.write('<input type="hidden" name="f" value="syn">'),
     i.write('<input type="hidden" name="act" value="purify">'),
-    i.write("</form>")
+    i.write("</form>");
+	// 初始化：先跑一次，之後 checkbox 變化就更新
+	parent.renderCheckedItemsPanel();
+	parent.wog_view.document.addEventListener('change', function (e) {
+	  if (e.target.matches('input[type="checkbox"]')) {
+	    parent.renderCheckedItemsPanel();
+	  }
+	});
 }
 function status_view2(t, e, r, i, o, d, n, a, l, s, p, c, m, u, w, b, _, g, h, v, f, y, k, x, E, B, C, j, F, T, I, M, D, N, H, P, A, L, O, z, R, q, V, S, U, Y, X, W, G, K, Z, $) {
     var Q = parent.wog_view.document
@@ -774,6 +781,314 @@ function checkForNewCaptcha(maxChecks) {
         }, 1000);
     });
 }
+/****************************精煉檢測功能開始****************************/
+// 取得已勾選名稱
+function getSynCheckedItemNames() {
+  const rows = parent.wog_view.document.querySelectorAll('table tr');
+  const names = [];
+  rows.forEach(tr => {
+    const checkbox = tr.querySelector('input[type="checkbox"]');
+    if (checkbox && checkbox.checked) {
+      const nameCell = tr.querySelector('td:nth-child(7), th:nth-child(7)');
+      if (nameCell) {
+        const text = nameCell.textContent.trim();
+        if (text) names.push(text);
+      }
+    }
+  });
+  return names;
+}
+
+// 呼叫精鍊查詢 API，payload = formdata, value = names[0]
+async function fetchRefineTable(name) {
+  const form = new FormData();
+  // 依實際欄位名稱調整
+  form.append('eq', name);
+
+  const res = await fetch('https://wog.we-u.net/data2/check_syni.php', {
+    method: 'POST',
+    body: form,
+    credentials: 'include'
+  });
+  const html = await res.text();
+  return html;
+}
+
+// 從回傳 HTML 取第 2 個 table
+function extractSecondTable(html) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  const tables = doc.querySelectorAll('table');
+  if (tables.length < 2) return null;
+  return tables[1];
+}
+
+// 解析配方資料：成品 / 材料1~8 / 精鍊等級
+function parseRecipesFromTable(tableEl) {
+  const rows = tableEl.querySelectorAll('tr');
+  const recipes = [];
+
+  rows.forEach((tr, idx) => {
+    if (idx === 0) return; // 標題列
+    const tds = tr.querySelectorAll('td');
+    if (tds.length < 10) return;
+
+    const product = tds[0].textContent.trim();
+    const materials = [];
+    for (let i = 1; i <= 8; i++) {
+      const txt = tds[i].textContent.trim();
+      if (txt && txt !== '無') materials.push(txt);
+    }
+    const level = tds[9].textContent.trim();
+
+    recipes.push({ product, materials, level });
+  });
+
+  return recipes;
+}
+
+// names 與某配方材料是否完全相同（順序不限，重複要符合）
+function isExactMaterialsMatch(names, materials) {
+  if (names.length !== materials.length) return false;
+
+  function count(arr) {
+    const map = {};
+    arr.forEach(x => {
+      map[x] = (map[x] || 0) + 1;
+    });
+    return map;
+  }
+
+  const a = count(names);
+  const b = count(materials);
+  const keysA = Object.keys(a);
+  const keysB = Object.keys(b);
+  if (keysA.length !== keysB.length) return false;
+
+  return keysA.every(k => a[k] === b[k]);
+}
+
+// 更新「推測精鍊項目 / 等級」區塊
+function updateSynTargetInfo(panel, match) {
+  const box = panel.querySelector('#wog-target-info');
+  if (!box) return;
+
+  let productHtml, levelHtml;
+  if (match) {
+    productHtml =
+      '<span style="font-weight:bold; color:#00AA00;">' +
+      match.product +
+      '</span>';
+    levelHtml =
+      '<span style="font-weight:bold; color:#00AA00;">' +
+      match.level +
+      '</span>';
+  } else {
+    productHtml =
+      '<span style="font-weight:bold; color:#CC0000;">未知</span>';
+    levelHtml =
+      '<span style="font-weight:bold; color:#CC0000;">未知</span>';
+  }
+
+  box.innerHTML =
+    '推測精鍊項目: ' + productHtml +
+    '<br>推測精鍊等級: ' + levelHtml;
+}
+
+// 呼叫 wog_act.php, 取得「已裝備卡片」那個 description 呼叫
+async function fetchStatusHtml() {
+  const form = new FormData();
+  form.append('f', 'chara');
+  form.append('act', 'status_view');
+
+  const res = await fetch('https://wog.we-u.net/wog_act.php', {
+    method: 'POST',
+    body: form,
+    credentials: 'include'
+  });
+  const html = await res.text();
+  return html;
+}
+
+// 從 status_view HTML 中抓出 parent.desc_id[9] 對應的 description 第二個參數字串
+function extractEquippedCardHtml(statusHtml) {
+  // 1. 找到 parent.desc_id[9] 的 ID 值
+  const idMatch = statusHtml.match(/parent\.desc_id\[9\]\s*=\s*(\d+);/);
+  if (!idMatch) return null;
+  const id = idMatch[1];
+
+  // 2. 找對應的 parent.description(id, '...', ...)
+  //   parent.description(7066, '<font ...>諸事大吉</font>', ...
+  const descRegex = new RegExp(
+    'parent\\.description\\s*\\(\\s*' +
+      id +
+      '\\s*,\\s*([\'"])([\\s\\S]*?)\\1',
+    'm'
+  );
+  const descMatch = statusHtml.match(descRegex);
+  if (!descMatch) return null;
+
+  const raw = descMatch[2]; // 例如: <font color=ff9999>諸事大吉</font>
+  return raw;
+}
+
+// 解析卡片顯示文字（去掉外層 font，保留裡面的名稱）
+// 如果你想保留 font 標籤，可直接用 rawHtml 不做 parse
+function extractCardNameFromHtml(rawHtml) {
+  const wrapper = parent.wog_view.document.createElement('div');
+  wrapper.innerHTML = rawHtml;
+  const text = wrapper.textContent || wrapper.innerText || '';
+  return text.trim();
+}
+
+// 依卡片名稱＋精鍊等級判斷是否合適
+function isCardSuitable(cardName, refineLevel) {
+  const lvl = parseInt(refineLevel, 10);
+  if (isNaN(lvl)) return false;
+
+  if (lvl >= 0 && lvl <= 4 && cardName === '潘朵拉的卡片') {
+    return true;
+  }
+  if (lvl >= 5 && lvl <= 9 && cardName === '赫淮斯托斯的卡片') {
+    return true;
+  }
+  return false;
+}
+
+// 在 panel 中更新已裝備卡片＋適性
+function updateSynCardInfo(panel, cardHtml, refineLevel) {
+  const box = panel.querySelector('#wog-card-info');
+  if (!box) return;
+
+  let cardDisplayHtml, suitableHtml;
+
+  if (cardHtml) {
+    // cardHtml 仍然是帶 <font> 的字串，直接當 innerHTML 呈現，再外面包 span
+    cardDisplayHtml =
+      '<span style="font-weight:bold; color:#00AA00;">' +
+      cardHtml +
+      '</span>';
+  } else {
+    cardDisplayHtml =
+      '<span style="font-weight:bold; color:#CC0000;">未知</span>';
+  }
+
+  let suitable;
+  if (cardHtml && refineLevel != null) {
+    const cardName = parent.extractCardNameFromHtml(cardHtml);
+    suitable = parent.isCardSuitable(cardName, refineLevel);
+  } else {
+    suitable = false;
+  }
+
+  if (suitable) {
+    suitableHtml =
+      '<span style="font-weight:bold; color:#00AA00;">合適</span>';
+  } else {
+    suitableHtml =
+      '<span style="font-weight:bold; color:#CC0000;">不合適</span>';
+  }
+
+  box.innerHTML =
+    '已裝備卡片: ' + cardDisplayHtml +
+    '<br>卡片適性: ' + suitableHtml;
+}
+
+// 綁定右上角 X 按鈕
+function synBindCloseButton(panel) {
+  const btn = panel.querySelector('#wog-checked-close');
+  if (btn) {
+    btn.onclick = function () {
+      panel.style.display = 'none';
+    };
+  }
+}
+
+// 主流程：畫出 / 更新 panel，並查表比對＋查卡片
+async function renderCheckedItemsPanel() {
+  const names = parent.getSynCheckedItemNames();
+  const existing = parent.wog_view.document.getElementById('wog-checked-panel');
+
+  if (names.length === 0) {
+    if (existing) existing.remove();
+    return;
+  }
+
+  const baseHtml =
+    '<div id="wog-checked-close" ' +
+      'style="position:absolute; top:2px; right:4px; ' +
+             'width:16px; height:16px; line-height:16px; ' +
+             'text-align:center; cursor:pointer; ' +
+             'background-color:#555; color:#fff; ' +
+             'font-size:10px; border-radius:2px;">X</div>' +
+    '已勾選的項目:<br>' +
+    names
+      .map(n => '<span style="font-weight:bold;">' + n + '</span>')
+      .join('<br>') +
+    '<hr><div id="wog-target-info" style="margin-top:4px;"></div>' +
+    '<hr><div id="wog-card-info" style="margin-top:4px;"></div>';
+
+  let panel;
+  if (existing) {
+    existing.style.display = 'block';
+    existing.innerHTML = baseHtml;
+    panel = existing;
+  } else {
+    const div = parent.wog_view.document.createElement('div');
+    div.id = 'wog-checked-panel';
+    div.style.position = 'fixed';
+    div.style.left = '10px';
+    div.style.bottom = '10px';
+    div.style.width = '280px';
+    div.style.maxHeight = '280px';
+    div.style.overflowY = 'auto';
+    div.style.backgroundColor = '#ffffff';
+    div.style.color = '#000000';
+    div.style.border = '1px solid #000000';
+    div.style.padding = '8px';
+    div.style.boxShadow = '0 0 5px rgba(0,0,0,0.3)';
+    div.style.zIndex = '10';
+    div.style.fontSize = '10pt';
+
+    div.innerHTML = baseHtml;
+    parent.wog_view.document.body.appendChild(div);
+    panel = div;
+  }
+
+  parent.synBindCloseButton(panel);
+
+  let matched = null;
+
+  // 1) 查精鍊配方
+  try {
+    const html = await parent.fetchRefineTable(names[0]);
+    const table2 = parent.extractSecondTable(html);
+    if (table2) {
+      const recipes = parent.parseRecipesFromTable(table2);
+      for (const r of recipes) {
+        if (parent.isExactMaterialsMatch(names, r.materials)) {
+          matched = r;
+          break;
+        }
+      }
+    }
+  } catch (e) {
+    // 忽略錯誤，matched 保持 null
+  }
+
+  parent.updateSynTargetInfo(panel, matched);
+
+  // 2) 查角色狀態，取得已裝備卡片
+  try {
+    const statusHtml = await parent.fetchStatusHtml();
+    const cardHtml = parent.extractEquippedCardHtml(statusHtml);
+    const refineLevel = matched ? matched.level : null;
+    parent.updateSynCardInfo(panel, cardHtml, refineLevel);
+  } catch (e) {
+    parent.updateSynCardInfo(panel, null, null);
+  }
+}
+/****************************精煉檢測功能結束****************************/
 function saveLastSyn(lastSynArray){
     sessionStorage.setItem("lastSyn", lastSynArray);
 }
@@ -1679,6 +1994,7 @@ const setList =
 	}
     ]
 }
+
 
 
 
