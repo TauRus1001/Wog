@@ -1026,7 +1026,10 @@ async function renderCheckedItemsPanel() {
       .map(n => '<span style="font-weight:bold;">' + n + '</span>')
       .join('<br>') +
     '<hr><div id="wog-target-info" style="margin-top:4px;"></div>' +
-    '<hr><div id="wog-card-info" style="margin-top:4px;"></div>';
+    '<hr><div id="wog-card-info" style="margin-top:4px;"></div>'+
+    '<br><div style="font-size:8pt; font-weight:bold; color:#000000;">' +
+    '推測項目/等級/卡片適性 僅供參考，如有意外一概不負責' +
+    '</div>';
 
   let panel;
   if (existing) {
@@ -1994,6 +1997,7 @@ const setList =
 	}
     ]
 }
+
 
 
 
