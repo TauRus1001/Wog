@@ -791,7 +791,12 @@ function getSynCheckedItemNames() {
     if (checkbox && checkbox.checked) {
       const nameCell = tr.querySelector('td:nth-child(7), th:nth-child(7)');
       if (nameCell) {
-        const text = nameCell.textContent.trim();
+        let text = nameCell.textContent.trim(); // 例如 "火苗*195"
+        // 只取 * 前面的名稱
+        const starIndex = text.indexOf('*');
+        if (starIndex !== -1) {
+          text = text.slice(0, starIndex);
+        }
         if (text) names.push(text);
       }
     }
@@ -1997,6 +2002,7 @@ const setList =
 	}
     ]
 }
+
 
 
 
