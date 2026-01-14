@@ -325,6 +325,41 @@
                 "level":0,
                 "limitation":2,
                 "end_date":"08/16/2025"
+            },
+            {
+                "index":46,
+                "name":"瑤瑤",
+                "level":0,
+                "limitation":2,
+                "end_date":"08/16/2025"
+            },
+            {
+                "index":47,
+                "name":"十二夜",
+                "level":0,
+                "limitation":2,
+                "end_date":"08/16/2025"
+            },
+            {
+                "index":48,
+                "name":"playGPonly",
+                "level":0,
+                "limitation":2,
+                "end_date":"08/16/2025"
+            },
+            {
+                "index":49,
+                "name":"gaoxiaocom",
+                "level":0,
+                "limitation":2,
+                "end_date":"08/16/2025"
+            },
+            {
+                "index":50,
+                "name":"ray1994",
+                "level":0,
+                "limitation":2,
+                "end_date":"08/16/2025"
             }
         ],
     "version":"1.0.9beta"
