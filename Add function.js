@@ -804,6 +804,36 @@ function getSynCheckedItemNames() {
   return names;
 }
 
+// --- 在 parent.wog_view.document 裡建立 / 取得快取用 hidden div ---
+
+function getWogCacheDiv() {
+  const doc = parent.wog_view.document;
+  let div = doc.getElementById('wog_cache_div');
+
+  if (!div) {
+    div = doc.createElement('div');
+    div.id = 'wog_cache_div';
+    div.style.display = 'none';
+    doc.body.appendChild(div);
+  }
+
+  return div;
+}
+
+function setLastValues(name0, table2Html) {
+  const div = getWogCacheDiv();
+  div.dataset.lastName0 = name0 || '';
+  // table2 以 HTML 字串形式保存
+  div.dataset.lastTable2Html = table2Html || '';
+}
+
+function getLastValues() {
+  const div = getWogCacheDiv();
+  const name0 = div.dataset.lastName0 || null;
+  const table2Html = div.dataset.lastTable2Html || '';
+  return { name0, table2Html };
+}
+
 // 呼叫精鍊查詢 API，payload = formdata, value = names[0]
 async function fetchRefineTable(name) {
   const form = new FormData();
@@ -938,7 +968,6 @@ function extractEquippedCardHtml(statusHtml) {
 }
 
 // 解析卡片顯示文字（去掉外層 font，保留裡面的名稱）
-// 如果你想保留 font 標籤，可直接用 rawHtml 不做 parse
 function extractCardNameFromHtml(rawHtml) {
   const wrapper = parent.wog_view.document.createElement('div');
   wrapper.innerHTML = rawHtml;
@@ -968,7 +997,6 @@ function updateSynCardInfo(panel, cardHtml, refineLevel) {
   let cardDisplayHtml, suitableHtml;
 
   if (cardHtml) {
-    // cardHtml 仍然是帶 <font> 的字串，直接當 innerHTML 呈現，再外面包 span
     cardDisplayHtml =
       '<span style="font-weight:bold; color:#00AA00;">' +
       cardHtml +
@@ -1009,7 +1037,7 @@ function synBindCloseButton(panel) {
   }
 }
 
-// 主流程：畫出 / 更新 panel，並查表比對＋查卡片
+// 主流程：畫出 / 更新 panel，並查表比對＋查卡片（含 names[0] 快取）
 async function renderCheckedItemsPanel() {
   const names = parent.getSynCheckedItemNames();
   const existing = parent.wog_view.document.getElementById('wog-checked-panel');
@@ -1067,10 +1095,33 @@ async function renderCheckedItemsPanel() {
 
   let matched = null;
 
-  // 1) 查精鍊配方
+  // 1) 查精鍊配方（帶快取：names[0] 相同就不發 request）
   try {
-    const html = await parent.fetchRefineTable(names[0]);
-    const table2 = parent.extractSecondTable(html);
+    const currentName0 = names[0];
+    const { name0: lastName0, table2Html: lastTable2Html } = parent.getLastValues();
+
+    let table2 = null;
+
+    if (currentName0 === lastName0 && lastTable2Html) {
+      // 使用快取的 table2 HTML
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(lastTable2Html, 'text/html');
+      const tbl = doc.querySelector('table');
+      if (tbl) table2 = tbl;
+    } else {
+      // 發 request，再把第二個 table 的 HTML 字串存到快取
+      const html = await parent.fetchRefineTable(currentName0);
+      const table2El = parent.extractSecondTable(html);
+      if (table2El) {
+        const table2Html = table2El.outerHTML;
+        parent.setLastValues(currentName0, table2Html);
+        // 再 parse 一次成為 DOM 使用
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(table2Html, 'text/html');
+        table2 = doc.querySelector('table');
+      }
+    }
+
     if (table2) {
       const recipes = parent.parseRecipesFromTable(table2);
       for (const r of recipes) {
@@ -2008,6 +2059,7 @@ const setList =
 	}
     ]
 }
+
 
 
 
