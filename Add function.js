@@ -1045,7 +1045,7 @@ async function renderCheckedItemsPanel() {
     const div = parent.wog_view.document.createElement('div');
     div.id = 'wog-checked-panel';
     div.style.position = 'fixed';
-    div.style.left = '10px';
+    div.style.right = '10px';
     div.style.bottom = '10px';
     div.style.width = '280px';
     div.style.maxHeight = '280px';
@@ -1134,6 +1134,12 @@ function getLastSyn(){
         } else {
             alert("部分物品勾選失敗，請自行檢查");
         }
+		// ★ 勾選完成後，主動刷新浮窗
+	    if (typeof renderCheckedItemsPanel === 'function') {
+	      parent.renderCheckedItemsPanel();
+	    } else if (parent && typeof parent.renderCheckedItemsPanel === 'function') {
+	      parent.renderCheckedItemsPanel();
+	    }
     }
 }
 function useMultipleItems(){
@@ -2002,6 +2008,7 @@ const setList =
 	}
     ]
 }
+
 
 
 
