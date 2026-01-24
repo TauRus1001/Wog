@@ -1558,30 +1558,38 @@ function armPageCss() {
     parent.wog_view.document.head.appendChild(styleSheet);
 }
 async function armAll(selected) {
-    //console.log("selected="+selected);
-    let e = parent.wog_view.document;
-    if (selected < 0 || selected > setList.sets.length - 1) {
-	e.body.innerHTML = "";
-	e.write(temp_table1);
-	e.write('<tr bgcolor="#4B689E"><td>輸入錯誤選項</td></tr>');
-	e.write(temp_table2);
-	return;
+  const e = parent.wog_view.document;
+
+  // 檢查選項合法性
+  const set = setList.sets[selected];
+  if (!set) {
+    e.body.innerHTML = `
+      ${temp_table1}
+      <tr bgcolor="#4B689E"><td>輸入錯誤選項</td></tr>
+      ${temp_table2}
+    `;
+    return;
+  }
+
+  // 共用處理函式
+  async function processList(list, action) {
+    for (const item of list) {
+      await parent.sleep(150);
+      await action(item);
     }
-    let unArmList = setList.sets[selected].unArmList;
-    for (let i = 0; i < unArmList.length; i++) {
-	await parent.sleep(150);
-    	await parent.unArm(unArmList[i]);
-    }
-    let armList = setList.sets[selected].armList;
-    for (let i = 0; i < armList.length; i++) {
-	await parent.sleep(150);
-	await parent.armItem(armList[i]);
-    }
-    await parent.sleep(150);
-    e.body.innerHTML = "";
-    e.write(temp_table1);
-    e.write('<tr bgcolor="#4B689E"><td>裝備完成</td></tr>');
-    e.write(temp_table2);
+  }
+
+  // 先卸裝，再裝備
+  await processList(set.unArmList, parent.unArm);
+  await processList(set.armList, parent.armItem);
+
+  // 完成提示
+  await parent.sleep(150);
+  e.body.innerHTML = `
+    ${temp_table1}
+    <tr bgcolor="#4B689E"><td>裝備完成</td></tr>
+    ${temp_table2}
+  `;
 }
 async function unArm(index) {
     let e = ["a_id", "d_head_id", "d_body_id", "d_hand_id", "d_foot_id", "d_item_id", "d_card_id", "d_car_id", "d_ca_id", "d_book_id", "d_god_id"];
@@ -2065,6 +2073,7 @@ const setList =
 		}
     ]
 }
+
 
 
 
