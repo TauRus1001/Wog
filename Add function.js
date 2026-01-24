@@ -2016,49 +2016,56 @@ const setList =
             "armList" :["5887","5886"],
             "unArmList":[6,9]
         },
-	{
+		{
             "title":"<font color='66FF66'>經.誠所至 + 飛升吸經大法套裝</font>",
             "armList" :["6614","6588","6299"],
             "unArmList":[0,6,7]
         },
-	{
+		{
             "title":"<font color='FFFF66'>金.石為開 + 飛升吸金大法套裝</font>",
             "armList" :["6615","6589","6301"],
             "unArmList":[0,6,7]
         },
-	{
+		{
             "title":"神偷天下套裝",
             "armList" :["6013","6207","6210","6016","6204"],
             "unArmList":[0,1,2,3,4]
         },
-	{
+		{
             "title":"夢遊/境旅人套裝",
             "armList" :["5020","5012","5022","5021","5023","5024"],
             "unArmList":[0,5,6,7,8,9]
         },
-	{
+		{
             "title":"海鮮幻想套裝",
             "armList" :["5204","5206","5023"],
             "unArmList":[2,4,8]
         },
-	{
+		{
             "title":"<font color=99FF33>龍爪手(古譜)套裝</font>",
             "armList" :["5608","5609","5610","5611","5612"],
             "unArmList":[0,1,2,3,4]
         },
-	{
+		{
             "title":"<font color=99FF33>落英飛花劍(古譜)套裝</font>",
             "armList" :["5618","5619","5620","5621","5622"],
             "unArmList":[0,1,2,3,4]
         },
-	{
-	    "title":"時間之流",
-	    "description":"埃及神話",
-	    "armList" :["5090"],
-	    "unArmList":[5]
-	}
+		{
+		    "title":"時間之流",
+		    "description":"埃及神話",
+		    "armList" :["5090"],
+		    "unArmList":[5]
+		},
+		{
+		    "title":"真．聖獸套裝+7",
+		    "description":"",
+		    "armList" :["4128","4135","4142","4149"],
+		    "unArmList":[1,2,3,4]
+		}
     ]
 }
+
 
 
 
