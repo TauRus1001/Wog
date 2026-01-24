@@ -2052,19 +2052,20 @@ const setList =
             "unArmList":[0,1,2,3,4]
         },
 		{
-		    "title":"時間之流",
-		    "description":"埃及神話",
-		    "armList" :["5090"],
-		    "unArmList":[5]
-		},
-		{
 		    "title":"真．聖獸套裝+7",
 		    "description":"",
 		    "armList" :["4128","4135","4142","4149"],
 		    "unArmList":[1,2,3,4]
+		},
+		{
+		    "title":"時間之流",
+		    "description":"埃及神話",
+		    "armList" :["5090"],
+		    "unArmList":[5]
 		}
     ]
 }
+
 
 
 
