@@ -367,6 +367,27 @@
                 "level":0,
                 "limitation":2,
                 "end_date":"08/16/2025"
+            },
+            {
+                "index":52,
+                "name":"loveekee",
+                "level":0,
+                "limitation":2,
+                "end_date":"08/16/2025"
+            },
+            {
+                "index":53,
+                "name":"ZGG",
+                "level":0,
+                "limitation":2,
+                "end_date":"08/16/2025"
+            },
+            {
+                "index":54,
+                "name":"vvvv",
+                "level":2,
+                "limitation":2,
+                "end_date":"05/31/2026"
             }
         ],
     "version":"1.0.9beta"
