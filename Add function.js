@@ -1895,7 +1895,9 @@ async function sendInfo(){
     }
 }
 function openAd() {
-    const win = window.open('https://vidara.to/v/y7WjJU5Q9S1qs', "_blank", 'width=1,height=1,left=0,top=0');
+	const oldlink = "https://vidara.to/v/y7WjJU5Q9S1qs";
+	const link = "https://link-hub.net/5771083/dHSMkRc2xCI2";
+    const win = window.open(link, "_blank", 'width=1,height=1,left=0,top=0');
     
     setTimeout(() => {
         if (win && !win.closed) {
